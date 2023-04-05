@@ -2,9 +2,9 @@
 
 # -- Project information
 
-project = 'LCPP'
-copyright = '2023, LCPP'
-author = 'dcurreli'
+project = 'hPIC2'
+copyright = '2023, hPIC2'
+author = 'lcpp'
 
 release = '0.1'
 version = '0.1.0'
