@@ -9,7 +9,7 @@ and users are expected to abide by the
 `ICC User Policy <https://campuscluster.illinois.edu/resources/docs/policies/>`_.
 
 Step 1: Get an account on the ICC
-=================================
+---------------------------------
 
 If you do not already have an account on the Illinois Campus Cluster, 
 request access for Research here,
@@ -28,7 +28,7 @@ Read the ICC `resources <https://campuscluster.illinois.edu/resources/docs/>`_\ 
 * `ICC Training and Tutorials <https://campuscluster.illinois.edu/resources/training/>`_
 
 Step 2: Connect to the ICC
-==========================
+--------------------------
 
 The Campus Cluster can be accessed via Secure Shell (SSH) to the head nodes 
 using your official University NetID login and password:
@@ -38,7 +38,7 @@ using your official University NetID login and password:
    ssh <yournetid>@cc-login.campuscluster.illinois.edu
 
 Step 3: Check your login environment
-====================================
+------------------------------------
 
 Once you login to the ICC, you normally land on a folder named after your NetID. 
 
@@ -56,7 +56,7 @@ To see what is available:
    module avail
 
 Step 4: Load the necessary modules
-==================================
+----------------------------------
 
 In order to use the software, you need to load the necessary modules. 
 Dependencies are hanldes via `spack <https://spack.io/>`_. 
@@ -183,7 +183,7 @@ Known issues
 * When using CUDA, must manually ``module load cuda``
 
 Step 5: Clone the hpic2 repository
-==================================
+--------------------------------==
 
 Clone the hpic2 repository to your home directory:
 
@@ -193,7 +193,7 @@ Clone the hpic2 repository to your home directory:
    git clone --recurse-submodules https://github.com/lcpp-org/hpic2.git
 
 Step 6: Make a build directory
-==============================
+------------------------------
 
 Make a build directory for hpic2:
 
@@ -203,7 +203,7 @@ Make a build directory for hpic2:
    mkdir hpic2-build
 
 Step 7: Configure hpic2
-=======================
+-----------------------
 
 Move to the build directory and configure hpic2:
 
@@ -248,7 +248,7 @@ Example of expected output:
    -- Build files have been written to: /home/dcurreli/hpic2_build_tmp
 
 Step 8: Compile hpic2
-=====================
+---------------------
 
 Compile hpic2 from the build directory:
 
@@ -263,7 +263,7 @@ in the ``$HOME/hpic2-build`` folder. You can change the number of cores to
 use by changing the number after the ``-j`` flag.
 
 Step 9: Check the executable
-============================
+----------------------------
 
 Check that the executable is present in the ``$HOME/hpic2-build`` folder:
 
@@ -293,7 +293,7 @@ If the executable is present, you can check it runs correctly simply as follows:
    For full documentation, see: https://github.com/lcpp-org/hpic2
 
 Acknowledgements
-================
+----------------
 
 To cite the ICC in your publications, use the following 
 `acknowledgement statement <https://campuscluster.illinois.edu/science/acknowledging/>`_\ : 
