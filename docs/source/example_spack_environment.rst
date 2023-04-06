@@ -5,6 +5,7 @@ This document contains example bash files for loading hpic2 for development usin
 Centos 7 Example
 ----------------
 This is an example Centos 7 bash file
+
 .. code-block:: bash
     #!/bin/bash
     cd ~/<PATH_to_HPIC2_build_location>/hpic2_build/hpic2_dev/packages/hpic2/
