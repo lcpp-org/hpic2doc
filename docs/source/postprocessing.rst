@@ -3,7 +3,7 @@ Post-Processing
 
 .. note::
 
-   This page contains a description of different POST-PROCESSING operations allowed.
+   This page will contain examples of POST-PROCESSING operations on hPIC2 data.
 
 Contents
 --------
