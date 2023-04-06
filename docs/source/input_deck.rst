@@ -1,40 +1,4 @@
 
-The ``hpic2`` executable
-============================
-
-Running ``hpic2`` with no arguments or with the ``--help`` option
-prints a help message describing usage of the executable.
-Typically, running an hPIC2 problem consists of running
-
-.. code-block:: sh
-
-   mpiexec -np n ./hpic2 --i /path/to/input/deck
-
-where ``n`` is the number of MPI procs across which to distribute the run.
-hPIC2 reads all the necessary physics information about your problem
-from the input deck;
-the format of these input decks is described in subsequent sections.
-
-As a program that uses both MPI for distributed-memory parallelism
-and Kokkos for shared-memory parallelism,
-the hPIC2 executable accepts options for both to customize the
-state of the runtime environment.
-MPI runtime options differ depending on the implementation.
-For most workstation runs, the above command is sufficient to fully utilize
-the system.
-As an example for further runtime customization,
-`OpenMPI's documentation <https://www.open-mpi.org/doc/v4.0/man1/mpirun.1.php>`_
-provides many more options.
-For runs on supercomputers, consult the documentation of
-the MPI implementation for proper use,
-or contact an hPIC2 developer for advice.
-hPIC2 also accepts options from the Kokkos
-`list <https://github.com/kokkos/kokkos/wiki/Initialization#table-51-command-line-options-for-kokkosinitialize->`_
-of initialization options.
-Generally, if Kokkos is enabled with a thread-parallel host backend,
-hPIC2 will attempt to utilize all available threads unless
-otherwise specified.
-
 Input decks
 ===========
 
@@ -46,7 +10,7 @@ New users are encouraged to find an example that mostly closely
 resembles their desired problem and suitably modify it.
 
 TOML
-====
+----
 
 hPIC2 reads from input decks written in the
 `TOML <https://toml.io/en/>`_
@@ -178,7 +142,7 @@ options:
        type1_option2 = true
 
 ``input_mode``
-==================
+--------------
 
 The ``input_mode`` table specifies high-level options governing the running
 mode of hPIC2.
@@ -215,7 +179,7 @@ is used.
 due to the inclusion of unrecognized keys.
 
 ``mesh``
-============
+--------
 
 The ``mesh`` table defines the problem domain and the mesh used for
 the fields.
@@ -437,7 +401,7 @@ hPIC2 performs the mesh decomposition for distributed runs.
 Similarly, hPIC2 requires that the mesh is not periodic.
 
 Uniform MFEM
-============
+------------
 
 If hPIC2 was compiled with MFEM support,
 a uniform finite element mesh can be quickly generated from the input deck
@@ -492,7 +456,7 @@ Generates a 3D mesh.
 Otherwise, a 2D mesh is generated.
 
 ``time``
-============
+--------
 
 The ``time`` table governs the time discretization.
 hPIC2 does not support adaptive time stepping.
@@ -561,7 +525,7 @@ The user is able to specify the parameter for generic RK2 methods.
 ``1.0`` corresponds to Heun's method.
 
 ``species``
-===============
+-----------
 
 The ``species`` table governs the list of plasmas species that will be
 simulated.
@@ -1419,7 +1383,7 @@ in the TOML spec:
    """
 
 ``magnetic_field``
-======================
+------------------
 
 The ``magnetic_field`` table governs the specification of the externally-applied
 magnetic (B) field.
@@ -1492,7 +1456,7 @@ the number of lines in each file is equal to the number of local
 nodes on each corresponding MPI process.
 
 ``electric_potential``
-==========================
+----------------------
 
 The ``electric_potential`` table governs the behavior of the potential solver
 and its boundary conditions.
@@ -1752,7 +1716,7 @@ this can be used to impose RF biases on plasmas.
 : Adds a constant to the sine function.
 
 ``output_diagnostics``
-==========================
+-----------------------
 
 The ``output_diagnostics`` table governs the type, level, and frequency of output.
 
@@ -2273,7 +2237,7 @@ A helper script in the ``scripts/`` in the hpic2 source repository is provided t
    python3 scripts/plot_iead.py IEAD_FILE
 
 ``interactions``
-====================
+----------------
 
 The ``interactions`` table governs interactions and collisions between species.
 Available interactions and interaction-specific options are presented
