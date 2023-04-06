@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+docs/.vs/docs/FileContentIndex/ed6d8461-6f40-4529-8663-01dc2158f384.vsidx
+docs/.vs/docs/FileContentIndex/read.lock
+docs/.vs/docs/v17/.wsuo
+docs/.vs/ProjectSettings.json
+docs/.vs/slnx.sqlite
+docs/.vs/VSWorkspaceState.json
