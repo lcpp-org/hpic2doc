@@ -91,6 +91,8 @@ The ``^kokkos+openmp`` option enables the OpenMP backend of Kokkos
 to allow for shared-memory parallelism. 
 The ``+cuda`` option enables the CUDA backend of Kokkos. 
 
-ATTENTION: The ``spack install`` command will take a while to
-complete. Depending on the speed your machine this can take 
-up to 10 hours. Plan accordingly. 
+.. warning::
+
+   The ``spack install`` command will take a while to
+   complete. Depending on the speed your machine this can 
+   take up to 10 hours. Plan accordingly. 
