@@ -24,8 +24,8 @@ Centos 7 Example
     #spack add rustbca
     spack install 
 
-    #sudo cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_TESTS=ON -DWITH_RUSTBCA=ON ./hpic2_dev/packages/hpic2/
+    #sudo cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_TESTS=ON -DWITH_RUSTBCA=ON ./hpic2_dev/packages/hpic2/ #This only needs to be run the first time also
     sudo make -j 
 
-    mpiexec -np 1 ./hpic2 --i ~/<PATH_to_HPIC2_build_location>/hpic2_build/hpic2_dev/packages/hpic2/examples/<name_example_file.txt>
+    mpiexec -np 1 ./hpic2 --i ~/<PATH_to_HPIC2_build_location>/hpic2_build/hpic2_dev/packages/hpic2/examples/<name_example_file.txt> #This is where you actually run hpic2, see other sections of the docs to understand syntax
 
