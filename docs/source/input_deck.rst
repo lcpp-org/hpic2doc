@@ -274,7 +274,7 @@ These meshes must use finite difference solvers.
 
 ``x2_points``
 : The first float defines the lower bound for the domain in the
-    x2-direction. The second float defines the upper bound.
+x2-direction. The second float defines the upper bound.
 
 ``x2_elem_size``
 : Size of elements in the x2-direction.
@@ -1532,27 +1532,27 @@ and no symbol indicates that the mesh is completely incompatible.
      - MFEM
    * - ``"hockney"``
      - O
-     - 
-     - 
-     - 
-     - 
+     -
+     -
+     -
+     -
    * - ``"tridiag"``
      - X
-     - 
+     -
      - X
-     - 
-     - 
+     -
+     -
    * - ``"hypre"``
      - X
      - X
      - X
      - X
-     - 
+     -
    * - ``"mfem"``
-     - 
-     - 
-     - 
-     - 
+     -
+     -
+     -
+     -
      - X
 
 
@@ -2120,9 +2120,9 @@ indicating the order in each direction separately. In case of directional
 moments, a list of direction vectors (one for each moment-order triple)
 is needed. More details are provided in the list of options below.
 In case of standard moments, the output is placed in files with filenames of the form
- ``<simulation tag>_<species name>_<lab or rest>_frame_moment_<order triple>.dat``. For
+``<simulation tag>_<species name>_<lab or rest>_frame_moment_<order triple>.dat``. For
 directional moments, the output file name will be of the form
- ``<simulation tag>_<species name>_<lab or rest>_frame_directional_moment_<order triple>_n<direction_number>.dat`` where the ``direction_number`` refers to the index
+``<simulation tag>_<species name>_<lab or rest>_frame_directional_moment_<order triple>_n<direction_number>.dat`` where the ``direction_number`` refers to the index
 of a direction in the list of direction vectors. The files are in a space-separated value format where each row represents an output time step and
 each column represents a node in the mesh.
 
