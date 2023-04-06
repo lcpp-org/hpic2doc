@@ -195,7 +195,7 @@ Available types of meshes and type-specific options are described in
 subsequent sections.
 
 Uniform mesh
-------------
+^^^^^^^^^^^^
 
 The native uniform mesh allows for simple meshes of line segments
 in one dimension and rectangular domains in two dimensions.
@@ -318,7 +318,7 @@ sections.
 : Length of the smallest element in the block.
 
 ``"maxBL"``
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~
 
 .. code-block:: toml
 
@@ -338,7 +338,7 @@ sections.
 : Length of the smallest element in the block.
 
 ``"uniform"``
-^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~
 
 .. code-block:: toml
 
@@ -355,7 +355,7 @@ sections.
 Must divide ``length``.
 
 ``"arbitrary"``
-^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
 .. code-block:: toml
 
@@ -375,7 +375,7 @@ The sum of these element sizes should be equal to ``length`` to
 within a 0.1% relative error.
 
 MFEM
-----
+^^^^
 
 `MFEM <https://mfem.org/>`_
 is a scalable library for finite element methods,
@@ -401,7 +401,7 @@ hPIC2 performs the mesh decomposition for distributed runs.
 Similarly, hPIC2 requires that the mesh is not periodic.
 
 Uniform MFEM
-------------
+^^^^^^^^^^^^
 
 If hPIC2 was compiled with MFEM support,
 a uniform finite element mesh can be quickly generated from the input deck
@@ -509,7 +509,7 @@ and additional parameters for each one will be described in subsequent sections.
 
 
 RK2 parameters
---------------
+^^^^^^^^^^^^^^^
 
 The user is able to specify the parameter for generic RK2 methods.
 
@@ -547,7 +547,7 @@ the species and tag all output for that species.
 Available types and type-specific options are provided in the following sections.
 
 Full orbit, Boris-Buneman
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This type models the species with a PIC method,
 using the Boris-Buneman time integrator to push the particles.
@@ -599,7 +599,7 @@ It is not necessary to have any sources, and the array can be completely
 omitted if no sources are desired.
 
 Uniform beam initial condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This initial condition distributes particles uniformly in space,
 according to a drifting Maxwellian distribution in velocity space.
@@ -688,7 +688,7 @@ This must not exceed the previously defined ``atomic_number``.
 : Number density of particles of this population.
 
 Initial condition from file
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This initial condition populates particles according to a drifting
 Maxwellian distribution in velocity space,
@@ -745,7 +745,7 @@ The file format is identical to that of the number density.
 The same file rules apply.
 
 Periodic boundary condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Periodic boundaries always come in pairs.
 A periodic boundary condition is associated with a measure-preserving
@@ -776,7 +776,7 @@ The ``type_params`` subtable is not required for periodic boundaries
 and should be omitted.
 
 Absorbing boundary condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When a particle is incident on an absorbing boundary,
 it is removed from the simulation.
@@ -791,7 +791,7 @@ The ``type_params`` subtable is not required for absorbing boundaries
 and should be omitted.
 
 Reflecting boundary condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When a particle is incident on a reflecting boundary,
 its velocity is reflected off of the boundary.
@@ -808,7 +808,7 @@ The ``type_params`` subtable is not required for reflecting boundaries
 and should be omitted.
 
 RustBCA boundary condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `RustBCA <https://github.com/lcpp-org/RustBCA>`_
 models the effects of ion impacts on materials.
@@ -875,7 +875,7 @@ in order to model pure sputtering.
 : Bulk binding energy of target species.
 
 Minimum mass volumetric source
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A useful feature of hPIC was the ability to populate particles each time step
 in order to maintain a constant average number density.
@@ -937,7 +937,7 @@ the x3-direction.
 to sample particle velocities.
 
 Minimum mass volumetric source, spatially varying source
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This replicates the original minimum-mass volumetric source,
 but allows the user to define a probability density function
@@ -994,7 +994,7 @@ The file format is identical to that of the PDF.
 The same file rules apply.
 
 Boltzmann electrons
--------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 To step over typical electron thermalization timescales,
 hPIC2 can assume that the electrons follow a Maxwell-Boltzmann distribution.
@@ -1026,7 +1026,7 @@ problems.
 
 
 Uniform charge background
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This species adds a uniform charge density to the electric potential solve.
 The species is assumed to be uniform and static.
@@ -1049,7 +1049,7 @@ elementary charge.
 : Number density of this species.
 
 MFEM Euler Fluid
-----------------
+^^^^^^^^^^^^^^^^^
 
 This models the species with the compressible Euler equations.
 The Euler equations are discretized using a
@@ -1138,7 +1138,7 @@ omitted if no sources are desired.
 Options will be described in subsequent sections.
 
 Uniform beam initial condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Like the uniform beam initial condition for full orbit particles,
 this sets the initial state to have uniform density,
@@ -1174,7 +1174,7 @@ convenience.
 : Temperature.
 
 RTC initial condition
-^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~
 
 A spatially dependent initial condition can be specified using the
 RTC language from Trilinos' PAMGEN package.
@@ -1234,7 +1234,7 @@ in the TOML spec:
    """
 
 Reflecting boundary condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Models an impermeable wall.
 
@@ -1248,7 +1248,7 @@ The ``type_params`` subtable is not required for reflecting boundaries
 and should be omitted.
 
 Copy-out boundary condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Outflow boundaries are notoriously difficult to numerically model
 with the Euler equations.
@@ -1265,7 +1265,7 @@ The ``type_params`` subtable is not required for copy-out boundaries
 and should be omitted.
 
 Far-field boundary condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This boundary condition approximates contact with a fluid reservoir
 with a constant and uniform state.
@@ -1298,7 +1298,7 @@ with a constant and uniform state.
 : Temperature of fluid reservoir.
 
 No-flux boundary condition
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Sets the flux of all fluid state variables to zero across the boundary.
 Despite the name, this does not accurately represent an impermeable wall
@@ -1318,7 +1318,7 @@ The ``type_params`` subtable is not required for no-flux boundaries
 and should be omitted.
 
 RTC volumetric source
-^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~
 
 The RTC language from Trilinos' PAMGEN package
 can be used to specify space- and time-dependent source terms
@@ -1398,7 +1398,7 @@ magnetic (B) field.
 Available magnetic field types are described in the following sections.
 
 Uniform magnetic field
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 The uniform magnetic field applies a magnetic field that is constant in space
 and time.
@@ -1422,7 +1422,7 @@ and time.
 : x3-component of the magnetic field.
 
 Magnetic field from file
-------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Allows the user to apply a magnetic field that is constant in time,
 but varies in space.
@@ -1534,7 +1534,7 @@ Available boundary condition types and functions are described in
 subsequent sections.
 
 Hockney solver
---------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Hockney solver is a fast direct solver for
 uniform meshes of 1D domains with periodic boundary conditions.
@@ -1548,7 +1548,7 @@ There are no solver options for the Hockney solver,
 so the ``solver_params`` subtable should be omitted.
 
 Tridiag solver
---------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The tridiag solver is a fast direct solver for
 1D domains with at least one Dirichlet boundary condition.
@@ -1560,7 +1560,7 @@ There are no solver options for this solver,
 so the ``solver_params`` subtable should be omitted.
 
 Hypre solver
-------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The
 `hypre <https://hypre.readthedocs.io/en/latest/#>`_
@@ -1602,7 +1602,7 @@ If not specified, hypre's default is used.
 If not specified, hypre's default is used.
 
 MFEM solver
------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The MFEM solver differs from the other solvers in that it uses
 the finite element method rather than the finite difference method.
@@ -1617,7 +1617,7 @@ There are no solver options for this solver,
 so the ``solver_params`` subtable should be omitted.
 
 Periodic boundary condition type
---------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Periodic boundaries always come in pairs.
 A periodic boundary condition is associated with a measure-preserving
@@ -1640,7 +1640,7 @@ See the ``examples`` directory for examples of use.
    type = "periodic"
 
 Dirichlet boundary condition type
----------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Dirichlet boundary conditions constrain the value of the potential
 at points on the boundary.
@@ -1655,7 +1655,7 @@ at points on the boundary.
        <options specific to function>
 
 Neumann boundary condition type
--------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Neumann boundary conditions constrain the component of the gradient of the
 potential normal to the boundary.
@@ -1670,7 +1670,7 @@ potential normal to the boundary.
        <options specific to function>
 
 Constant boundary condition function
-------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The constant boundary condition constrains the value of the type
 of boundary condition
@@ -1686,7 +1686,7 @@ to a constant.
 : Constant to set the boundary condition.
 
 Sine boundary condition function
---------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The sine boundary condition function sets the value of the boundary condition
 to a value that is constant in space,
@@ -1787,7 +1787,7 @@ If the directory does not exist, hPIC2 will create it.
 If this option is omitted, the current working directory will be used.
 
 ``logging``
----------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``logging`` subtable tells hPIC2's logger how much to output
 and where to output.
@@ -1851,7 +1851,7 @@ and how many units of work were performed during the kernel.
 These are written into the source code and not adjustable by users.
 
 ``particle_output``
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``particle_output`` subtable governs particle output.
 For a particle-based species, this will periodically output information about
@@ -1932,7 +1932,7 @@ The sources which are tracked are written into the source code
 and are not configurable by the user.
 
 ``field_output``
---------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``field_output`` subtable governs frequency of field output.
 The electric and magnetic fields, along with the electric potential
@@ -1998,7 +1998,7 @@ Notably, this prints output even if the stride is set to 0.
 even if the choice of stride would normally suppress output.
 
 ``field_probes``
---------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Field probes print the value of a field at a fixed position in the domain
 at a user-specified frequency.
@@ -2068,7 +2068,7 @@ Ignored in 1D simulations.
 Ignored in 1D and 2D simulations.
 
 ``moment_output``
----------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``moment_output`` subtable governs the frequency and type of output
 for kinetic moments.
@@ -2174,7 +2174,7 @@ a unit-vector as direction inputs. For example, the input ``[1.0,0.0,-1.0]`` is 
 to the unit-vector ``[0.7071,0.0,-0.7071]``
 
 ``iead_output``
--------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``iead_output`` subtable governs the frequency and parameters for
 ion energy/angle distribution output. An ion energy/angle distribution is a 2D histogram of particles of a particular species impacting a simulation boundary, where bins are angles and energies. If this TOML table is present and ``stride`` is
@@ -2196,7 +2196,7 @@ IEAD is used as an accumulation point, meaning all particles greater than
 ``MAX_ENREGY_TE`` will be binned into this row.
 
 Explanation of Fields
-"""""""""""""""""""""
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``stride``\ : (required) IEADs will be output every ``stride`` timesteps.
 
@@ -2216,7 +2216,7 @@ in the IEAD histogram for species ``SPECIES_NAME``. ``de_eV`` is therefore
 ``MAX_ENERGY_TE`` / ``NUM_ENERGY_BINS`` (default: 240).
 
 Example TOML Subtable
-"""""""""""""""""""""
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: toml
 
@@ -2244,7 +2244,7 @@ Available interactions and interaction-specific options are presented
 in subsequent sections.
 
 Electron impact ionization
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Electron impact ionizations between a ``"boris_buneman"`` ion species
 and ``"boltzmann"`` electrons is handled using Monte Carlo collisions (MCC).
@@ -2301,7 +2301,7 @@ The array may be shorter than the atomic number;
 in this case, omitted values of I are taken to be zero.
 
 Coulomb collision force
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Coulomb collisions between two species can be approximately treated using
 an effective force on each particle.
