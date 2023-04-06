@@ -12,3 +12,4 @@ Contents
    input_deck
    preprocessing
    postprocessing
+   contributing
