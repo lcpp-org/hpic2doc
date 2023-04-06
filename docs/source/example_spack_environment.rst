@@ -7,6 +7,7 @@ Centos 7 Example
 This is an example Centos 7 bash file
 
 .. code-block:: bash
+    
     #!/bin/bash
     cd ~/<PATH_to_HPIC2_build_location>/hpic2_build/hpic2_dev/packages/hpic2/
     git pull     #Auto pulling from github the latest version/branch of hpic2
