@@ -13,3 +13,10 @@ Contents
    preprocessing
    postprocessing
    contributing
+   hpic
+
+.. figure:: figures/dalle2hpic.png
+  :width: 100%
+  :align: center
+
+  (Image credits: DALL-E-2)
