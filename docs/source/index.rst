@@ -10,3 +10,5 @@ Contents
    build
    running
    input_deck
+   preprocessing
+   postprocessing

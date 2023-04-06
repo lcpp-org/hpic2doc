@@ -3,7 +3,7 @@ Pre-Processing
 
 .. note::
 
-   This page contains a description of several kind of PRE-PROCESSING operations to set up specific operations.
+   Examples of PRE-PROCESSING operations, enbling specific operations in hPIC2.
 
 Contents
 --------
