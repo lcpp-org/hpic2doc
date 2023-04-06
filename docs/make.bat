@@ -1,14 +1,16 @@
 @ECHO OFF
 
 pushd %~dp0
-
+pause
 REM Command file for Sphinx documentation
 
 if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build
 )
+pause
 set SOURCEDIR=source
 set BUILDDIR=build
+pause
 
 if "%1" == "" goto help
 
@@ -26,10 +28,12 @@ if errorlevel 9009 (
 )
 
 %SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
+pause
 goto end
 
 :help
 %SPHINXBUILD% -M help %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
+pause
 
 :end
 popd
