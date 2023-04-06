@@ -30,6 +30,7 @@ However, it is useful to mention a few features:
 * TOML is built off of key/value pairs.
   In their simplest form, they comprise a key and value separated by an
   equals sign on a single, unique line:
+
   .. code-block:: toml
 
      key = "value"
@@ -40,12 +41,14 @@ However, it is useful to mention a few features:
   a table,
   or an array.
 * Arrays are defined by lists of values in square brackets:
+
   .. code-block:: toml
 
      array = ["value1", "value2", "value3"]
 
 * A table is defined by a header, which is a key contained in
   square brackets on a unique line:
+
   .. code-block:: toml
 
      [table]
@@ -57,66 +60,70 @@ However, it is useful to mention a few features:
   in double square brackets. The following defines an array
   ``tablearray`` which contains two tables,
   each of which contains two key/value pairs:
-  ```toml
-  [[tablearray]]
-  key1 = "value1"
-  key2 = "value2"
 
-[[tablearray]]
-key3 = "value3"
-key4 = "value4"
+  .. code-block:: toml
 
-.. code-block::
+     [[tablearray]]
+     key1 = "value1"
+     key2 = "value2"
 
-   - TOML specifies that TOML files should use the `.toml` file extension.
-   - Indentation is generally ignored, and is purely for aesthetics.
+     [[tablearray]]
+     key3 = "value3"
+     key4 = "value4"
 
-   # General structure of hPIC2 input decks
-   At the top level, an hPIC2 input deck must contain the following tables,
-   and no more:
+* TOML specifies that TOML files should use the ``.toml`` file extension.
+  Indentation is generally ignored, and is purely for aesthetics.
 
-   `input_mode`
-   : Determines high-level operation modes for hPIC2.
+General structure of hPIC2 input decks
+------------------------------------------
 
-   `mesh`
-   : Defines the geometry of the domain and the mesh used for the field solve.
+At the top level, an hPIC2 input deck must contain the following tables,
+and no more:
 
-   `time`
-   : Defines the time grid.
+``input_mode``
+: Determines high-level operation modes for hPIC2.
 
-   `species`
-   : Specifies the plasma species in the problem and their simulation models.
+``mesh``
+: Defines the geometry of the domain and the mesh used for the field solve.
 
-   `magnetic_field`
-   : Describes the magnetic field to apply in the domain.
+``time``
+: Defines the time grid.
 
-   `electric_potential`
-   : Defines boundary conditions and numerical solver parameters for the
-   Poisson solver.
+``species``
+: Specifies the plasma species in the problem and their simulation models.
 
-   `output_diagnostics`
-   : Specifies the desired level and type of output during simulation.
+``magnetic_field``
+: Describes the magnetic field to apply in the domain.
 
-   `interactions`
-   : (Optional) Defines interactions between species.
+``electric_potential``
+: Defines boundary conditions and numerical solver parameters for the
+Poisson solver.
 
-   Each of these tables contains key/value pairs which determine options
-   for the simulation.
-   Available options for each are described respectively in the following
-   sections.
+``output_diagnostics``
+: Specifies the desired level and type of output during simulation.
 
-   Throughout this manual,
-   required datatypes for values are delimited by angled brackets.
-   If an option has a default value, it will be indicated in parentheses
-   within the datatype angled brackets.
-   In cases where values must take on one of a limited number of options,
-   the angle brackets will indicate this and
-   the description of the key will contain a table with the valid values.
-   For example,
-   ```toml
-   required = <integer>
-   optional = <float (0.5)>
-   limited = <options below>
+``interactions``
+: (Optional) Defines interactions between species.
+
+Each of these tables contains key/value pairs which determine options
+for the simulation.
+Available options for each are described respectively in the following
+sections.
+
+Throughout this manual,
+required datatypes for values are delimited by angled brackets.
+If an option has a default value, it will be indicated in parentheses
+within the datatype angled brackets.
+In cases where values must take on one of a limited number of options,
+the angle brackets will indicate this and
+the description of the key will contain a table with the valid values.
+For example,
+
+  .. code-block:: toml
+
+      required = <integer>
+      optional = <float (0.5)>
+      limited = <options below>
 
 indicates that the value of ``required`` must be a TOML integer and must
 be provided by the user;
