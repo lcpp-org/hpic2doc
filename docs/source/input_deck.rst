@@ -121,9 +121,9 @@ For example,
 
   .. code-block:: toml
 
-      required = <integer>
-      optional = <float (0.5)>
-      limited = <options below>
+      required = #<integer>
+      optional = #<float (0.5)>
+      limited = #<options below>
 
 indicates that the value of ``required`` must be a TOML integer and must
 be provided by the user;
@@ -157,11 +157,11 @@ mode of hPIC2.
 .. code-block:: toml
 
    [input_mode]
-   start_mode = <options below>
-   units = <options below>
-   simulation_tag = <string>
-   rng_seed = <integer (default determined from current system time)>
-   override_input_warnings = <boolean (false)>
+   start_mode = #<options below>
+   units = #<options below>
+   simulation_tag = #<string>
+   rng_seed = #<integer (default determined from current system time)>
+   override_input_warnings = #<boolean (false)>
 
 ``start_mode``
 : Currently must be set to ``"pic"``.
@@ -194,9 +194,9 @@ the fields.
 .. code-block:: toml
 
    [mesh]
-   type = <options below>
+   type = #<options below>
        [mesh.type_specification]
-       <options specific to mesh type>
+       #<options specific to mesh type>
 
 Available types of meshes and type-specific options are described in
 subsequent sections.
@@ -221,17 +221,17 @@ These meshes must use finite difference solvers.
        [mesh.type_specification]
        # Specify two of the following three options
        #---------------------------------------------------------------------#
-       x1_points = [ <float>, <float> ]
-       x1_elem_size = <float>
-       x1_num_elems = <integer>
+       x1_points = #[ <float>, <float> ]
+       x1_elem_size = #<float>
+       x1_num_elems = #<integer>
        #---------------------------------------------------------------------#
 
        # (Optional) For 2D meshes, specify two of the following three options
        # Omitting all of these options creates a 1D mesh
        #---------------------------------------------------------------------#
-       x2_points = [ <float>, <float> ]
-       x2_elem_size = <float>
-       x2_num_elems = <integer>
+       x2_points = #[ <float>, <float> ]
+       x2_elem_size = #<float>
+       x2_num_elems = #<integer>
        #---------------------------------------------------------------------#
 
 ``x1_points``
@@ -269,14 +269,14 @@ This mesh is only available if hPIC2 was compiled with pumiMBBL support.
    [mesh]
    type = "pumi"
        [mesh.type_specification]
-       domain_min_points = <array of float>
+       domain_min_points = #<array of float>
            [[mesh.type_specification.x1_blocks]]
-           submesh_type = <options below>
-           <further options specific to submesh type>
+           submesh_type = #<options below>
+           #<further options specific to submesh type>
 
            [[mesh.type_specification.x2_blocks]]
-           submesh_type = <options below>
-           <further options specific to submesh type>
+           submesh_type = #<options below>
+           #<further options specific to submesh type>
 
 ``domain_min_points``
 : An array of length either 1 or 2,
@@ -311,9 +311,9 @@ sections.
 
    [[mesh.type_specification.x1_blocks]]
    submesh_type = "minBL"
-   length = <float>
-   max_elem_size = <float>
-   min_elem_size = <float>
+   length = #<float>
+   max_elem_size = #<float>
+   min_elem_size = #<float>
 
 ``length``
 : Length of the block.
@@ -331,9 +331,9 @@ sections.
 
    [[mesh.type_specification.x1_blocks]]
    submesh_type = "minBL"
-   length = <float>
-   max_elem_size = <float>
-   min_elem_size = <float>
+   length = #<float>
+   max_elem_size = #<float>
+   min_elem_size = #<float>
 
 ``length``
 : Length of the block.
@@ -351,8 +351,8 @@ sections.
 
    [[mesh.type_specification.x1_blocks]]
    submesh_type = "minBL"
-   length = <float>
-   elem_size = <float>
+   length = #<float>
+   elem_size = #<float>
 
 ``length``
 : Length of the block.
@@ -368,8 +368,8 @@ Must divide ``length``.
 
    [[mesh.type_specification.x1_blocks]]
    submesh_type = "arbitrary"
-   length = <float>
-   elem_size_file = <string>
+   length = #<float>
+   elem_size_file = #<string>
 
 ``length``
 : Length of the block.
@@ -394,7 +394,7 @@ This mesh is only available if hPIC2 was compiled with MFEM support.
    [mesh]
    type = "mfem"
        [mesh.type_specification]
-       mesh_filename = <string>
+       mesh_filename = #<string>
 
 ``mesh_filename``
 : Path to a mesh file.
@@ -422,14 +422,14 @@ in 2D and six tetrahedra in 3D.
    [mesh]
    type = "mfem_uniform"
        [mesh.type_specification]
-       type = <string>
-       nx1 = <integer>
-       sx1 = <float>
-       nx2 = <integer>
-       sx2 = <float>
+       type = #<string>
+       nx1 = #<integer>
+       sx1 = #<float>
+       nx2 = #<integer>
+       sx2 = #<float>
        # Below is optional, but both must be specified if either one is present
-       nx3 = <integer>
-       sx3 = <float>
+       nx3 = #<integer>
+       sx3 = #<float>
 
 ``type``
 : Type of mesh element. Acceptable options are ``"quadrilateral"`` or ``"triangle"`` in 2D and ``"tetrahedron"`` or ``"hexahedron"`` in 3D.
@@ -475,13 +475,13 @@ that is uniformly partitioned.
 
    [time]
    # Specify two of the following three options
-   num_time_steps = <integer>
-   dt = <float>
-   termination_time = <float>
+   num_time_steps = #<integer>
+   dt = #<float>
+   termination_time = #<float>
    # Optional, only valid when built with MFEM and with at least one fluid species.
-   fluid_integrator = <options below ("ForwardEulerSolver")>
+   fluid_integrator = #<options below ("ForwardEulerSolver")>
        [time.fluid_integrator_params]
-       <options specific to fluid integrator>
+       #<options specific to fluid integrator>
 
 ``num_time_steps``
 : Number of time steps into which the simulation should be partitioned.
@@ -523,7 +523,7 @@ The user is able to specify the parameter for generic RK2 methods.
 .. code-block:: toml
 
    [time.fluid_integrator_params]
-   a = <float>
+   a = #<float>
 
 ``a``
 : Exposes the RK2 parameter.
@@ -543,10 +543,10 @@ the species and tag all output for that species.
 .. code-block:: toml
 
    [species.<string>]
-   mass = <float>
-   type = <options below>
+   mass = #<float>
+   type = #<options below>
        [species.<string>.type_params]
-       <options specific to species type>
+       #<options specific to species type>
 
 ``mass``
 : Mass of individual particles of this species.
@@ -566,22 +566,22 @@ This type is the workhorse of kinetic plasma modeling in hPIC2.
 .. code-block:: toml
 
    [species.<string>]
-   mass = <float>
+   mass = #<float>
    type = "boris_buneman"
        [species.<string>.type_params]
-       atomic_number = <integer (0)>
-       initial_condition = <options below>
+       atomic_number = #<integer (0)>
+       initial_condition = #<options below>
            [species.<string>.type_params.initial_condition_params]
-           <options specific to initial condition type>
+           #<options specific to initial condition type>
 
            [[species.<string>.type_params.boundary_conditions]]
-           boundary = <integer or alias>
-           type = <options below>
+           boundary = #<integer or alias>
+           type = #<options below>
                [species.<string>.type_params.boundary_conditions.type_params]
 
            [[species.<string>.type_params.volumetric_sources]]
-           type = <options below>
-           <more options specific to volumetric source type>
+           type = #<options below>
+           #<more options specific to volumetric source type>
 
 ``atomic_number``
 : Atomic number of the species.
@@ -617,28 +617,28 @@ according to a drifting Maxwellian distribution in velocity space.
        [species.<string>.type_params.initial_condition_params]
        # Choose one of the following
        #------------------------------------------------------------------------#
-       num_particles = <integer>
-       weight = <float>
+       num_particles = #<integer>
+       weight = #<float>
        #------------------------------------------------------------------------#
 
-       flow_velocity_1 = <float>
-       flow_velocity_2 = <float>
-       flow_velocity_3 = <float>
+       flow_velocity_1 = #<float>
+       flow_velocity_2 = #<float>
+       flow_velocity_3 = #<float>
 
        # Specify temperature in each direction at once,
        # or isotropic temperature,
        # or omit temperature entirely for zero temperature.
        #------------------------------------------------------------------------#
-       temperature_1 = <float>
-       temperature_2 = <float>
-       temperature_3 = <float>
+       temperature_1 = #<float>
+       temperature_2 = #<float>
+       temperature_3 = #<float>
        #------------------------------------------------------------------------#
-       temperature = <float>
+       temperature = #<float>
        #------------------------------------------------------------------------#
 
            [[species.<string>.type_params.initial_condition_params.charge_states]]
-           charge_number = <integer>
-           density = <float>
+           charge_number = #<integer>
+           density = #<float>
 
 ``num_particles``
 : Number of macroparticles to populate throughout the mesh.
@@ -707,11 +707,11 @@ These parameters are read from file as nodal fields.
 
    initial_condition = "from_file"
        [species.<string>.type_params.initial_condition_params]
-       num_particles = <integer>
-       charge_number = <integer>
-       density_filename = <string>
-       flow_velocity_filename = <string>
-       temperature_filename = <string>
+       num_particles = #<integer>
+       charge_number = #<integer>
+       density_filename = #<string>
+       flow_velocity_filename = #<string>
+       temperature_filename = #<string>
 
 ``num_particles``
 : Total number of macroparticles used to discretize this species.
@@ -776,7 +776,7 @@ See the ``examples`` directory for examples of use.
 .. code-block:: toml
 
    [[species.<string>.type_params.boundary_conditions]]
-   boundary = <integer or alias>
+   boundary = #<integer or alias>
    type = "periodic"
 
 The ``type_params`` subtable is not required for periodic boundaries
@@ -791,7 +791,7 @@ it is removed from the simulation.
 .. code-block:: toml
 
    [[species.<string>.type_params.boundary_conditions]]
-   boundary = <integer or alias>
+   boundary = #<integer or alias>
    type = "absorbing"
 
 The ``type_params`` subtable is not required for absorbing boundaries
@@ -808,7 +808,7 @@ so that no portion of the macroparticle is absorbed by the boundary.
 .. code-block:: toml
 
    [[species.<string>.type_params.boundary_conditions]]
-   boundary = <integer or alias>
+   boundary = #<integer or alias>
    type = "reflecting"
 
 The ``type_params`` subtable is not required for reflecting boundaries
@@ -839,17 +839,17 @@ of each of the target species that compose the boundary.
 .. code-block:: toml
 
    [[species.<string>.type_params.boundary_conditions]]
-   boundary = <integer or alias>
+   boundary = #<integer or alias>
    type = "rust_bca"
        [species.<string>.type_params.boundary_conditions.type_params]
-       incident_species_cutoff_energy = <float>
-       incident_species_surface_binding_energy = <float>
+       incident_species_cutoff_energy = #<float>
+       incident_species_surface_binding_energy = #<float>
            [[species.<string>.type_params.boundary_conditions.type_params.targets]]
-           species = <string>
-           wall_density = <float>
-           cutoff_energy = <float>
-           surface_binding_energy = <float>
-           bulk_binding_energy = <float>
+           species = #<string>
+           wall_density = #<float>
+           cutoff_energy = #<float>
+           surface_binding_energy = #<float>
+           bulk_binding_energy = #<float>
 
 ``incident_species_cutoff_energy``
 : Cutoff energy of incident species.
@@ -903,19 +903,19 @@ according to a drifting Maxwellian distribution in velocity space.
 
    [[species.<string>.type_params.volumetric_sources]]
    type = "minimum_mass"
-   flow_velocity_1 = <float (0.0)>
-   flow_velocity_2 = <float (0.0)>
-   flow_velocity_3 = <float (0.0)>
+   flow_velocity_1 = #<float (0.0)>
+   flow_velocity_2 = #<float (0.0)>
+   flow_velocity_3 = #<float (0.0)>
 
    # Specify temperature in each direction at once,
    # or isotropic temperature,
    # or omit temperature entirely for zero temperature.
    #--------------------------------------------------------------------------#
-   temperature_1 = <float>
-   temperature_2 = <float>
-   temperature_3 = <float>
+   temperature_1 = #<float>
+   temperature_2 = #<float>
+   temperature_3 = #<float>
    #--------------------------------------------------------------------------#
-   temperature = <float>
+   temperature = #<float>
    #--------------------------------------------------------------------------#
 
 ``flow_velocity_1``
@@ -958,9 +958,9 @@ and flow velocity are all specified as nodal fields.
 
    [[species.<string>.type_params.volumetric_sources]]
    type = "minimum_mass_from_file"
-   profile_filename = <string>
-   flow_velocity_filename = <string>
-   temperature_filename = <string>
+   profile_filename = #<string>
+   flow_velocity_filename = #<string>
+   temperature_filename = #<string>
 
 ``profile_filename``
 : Path to file specifying the probability density function
@@ -1014,8 +1014,8 @@ At most one Boltzmann electron species is allowed.
    [species.<string>]
    type = "boltzmann"
        [species.<string>.type_params]
-       temperature = <float (0.0)>
-       charge_conservation_scheme = <options below ("hagelaar")>
+       temperature = #<float (0.0)>
+       charge_conservation_scheme = #<options below ("hagelaar")>
 
 ``temperature``
 : Temperature of the electrons.
@@ -1041,11 +1041,11 @@ The species is assumed to be uniform and static.
 .. code-block:: toml
 
    [species.<string>]
-   mass = <float>
+   mass = #<float>
    type = "uniform_background"
        [species.<string>.type_params]
-       charge_number = <integer>
-       density = <float>
+       charge_number = #<integer>
+       density = #<float>
 
 ``charge_number``
 : Charge number for this species.
@@ -1073,27 +1073,27 @@ This is commensurate with the full orbit particle velocity tracking strategy.
 .. code-block:: toml
 
    [species.<string>]
-   mass = <float>
+   mass = #<float>
    type = "mfem_euler_fluid"
        [species.<string>.type_params]
-       charge_number = <integer>
-       gamma = <float>
-       order = <integer>
-       riemann_solver = <options below>
-       initial_condition = <options below>
+       charge_number = #<integer>
+       gamma = #<float>
+       order = #<integer>
+       riemann_solver = #<options below>
+       initial_condition = #<options below>
            [species.<string>.type_params.initial_condition_params]
-           <options specific to initial condition type>
+           #<options specific to initial condition type>
 
            [[species.<string>.type_params.boundary_conditions]]
-           boundary = <integer>
-           type = <options below>
+           boundary = #<integer>
+           type = #<options below>
                [species.<string>.type_params.boundary_conditions.type_params]
-               <options specific to boundary condition type>
+               #<options specific to boundary condition type>
 
            [[species.<string>.type_params.volumetric_sources]]
-           type = <options below>
+           type = #<options below>
                [species.<string>.type_params.volumetric_sources.volumetric_source_params]
-               <options specific to volumetric source type>
+               #<options specific to volumetric source type>
 
 ``charge_number``
 : Charge number for this species.
@@ -1159,11 +1159,11 @@ convenience.
 
    initial_condition = "uniform_beam"
        [species.<string>.type_params.initial_condition_params]
-       density = <float>
-       flow_velocity_1 = <float>
-       flow_velocity_2 = <float>
-       flow_velocity_3 = <float>
-       temperature = <float>
+       density = #<float>
+       flow_velocity_1 = #<float>
+       flow_velocity_2 = #<float>
+       flow_velocity_3 = #<float>
+       temperature = #<float>
 
 ``density``
 : Number density.
@@ -1195,7 +1195,7 @@ RTC language from Trilinos' PAMGEN package.
 
    initial_condition = "rtc"
        [species.<string>.type_params.initial_condition_params]
-       function_body = <string>
+       function_body = #<string>
 
 ``function_body``
 : The body of a function in the RTC language.
@@ -1248,7 +1248,7 @@ Models an impermeable wall.
 .. code-block:: toml
 
    [[species.<string>.type_params.boundary_conditions]]
-   boundary = <integer>
+   boundary = #<integer>
    type = "reflecting"
 
 The ``type_params`` subtable is not required for reflecting boundaries
@@ -1265,7 +1265,7 @@ the boundary to the outside in order to compute a numerical flux.
 .. code-block:: toml
 
    [[species.<string>.type_params.boundary_conditions]]
-   boundary = <integer>
+   boundary = #<integer>
    type = "copy_out"
 
 The ``type_params`` subtable is not required for copy-out boundaries
@@ -1280,14 +1280,14 @@ with a constant and uniform state.
 .. code-block:: toml
 
    [[species.<string>.type_params.boundary_conditions]]
-   boundary = <integer>
+   boundary = #<integer>
    type = "far_field"
        [species.<string>.type_params.boundary_conditions.type_params]
-       density = <float>
-       flow_velocity_1 = <float>
-       flow_velocity_2 = <float>
-       flow_velocity_3 = <float>
-       temperature = <float>
+       density = #<float>
+       flow_velocity_1 = #<float>
+       flow_velocity_2 = #<float>
+       flow_velocity_3 = #<float>
+       temperature = #<float>
 
 ``density``
 : Number density of fluid reservoir.
@@ -1318,7 +1318,7 @@ it can be useful for modeling supersonic outflow.
 .. code-block:: toml
 
    [[species.<string>.type_params.boundary_conditions]]
-   boundary = <integer>
+   boundary = #<integer>
    type = "no_flux"
 
 The ``type_params`` subtable is not required for no-flux boundaries
@@ -1341,7 +1341,7 @@ for the Euler equations.
    [[species.<string>.type_params.volumetric_sources]]
    type = "rtc"
        [species.<string>.type_params.volumetric_sources.volumetric_source_params]
-       function_body = <string>
+       function_body = #<string>
 
 ``function_body``
 : The body of a function in the RTC language.
@@ -1398,9 +1398,9 @@ magnetic (B) field.
 .. code-block:: toml
 
    [magnetic_field]
-   type = <options below>
+   type = #<options below>
        [magnetic_field.type_params]
-       <options specific to mesh type>
+       #<options specific to mesh type>
 
 Available magnetic field types are described in the following sections.
 
@@ -1415,9 +1415,9 @@ and time.
    [magnetic_field]
    type = "uniform"
        [magnetic_field.type_params]
-       b1 = <float>
-       b2 = <float>
-       b3 = <float>
+       b1 = #<float>
+       b2 = #<float>
+       b3 = #<float>
 
 ``b1``
 : x1-component of the magnetic field.
@@ -1440,7 +1440,7 @@ The magnetic field is specified as a nodal field.
    [magnetic_field]
    type = "from_file"
        [magnetic_field.type_params]
-       filename = <string>
+       filename = #<string>
 
 ``filename``
 : Path to file specifying the magnetic field at each node.
@@ -1471,16 +1471,16 @@ and its boundary conditions.
 .. code-block:: toml
 
    [electric_potential]
-   poisson_solver = <options below>
+   poisson_solver = #<options below>
        [electric_potential.solver_params]
-       <options specific to solver>
+       #<options specific to solver>
 
        [[electric_potential.boundary_conditions]]
-       boundary = <integer or alias>
-       type = <options below>
-       function = <options below>
+       boundary = #<integer or alias>
+       type = #<options below>
+       function = #<options below>
            [electric_potential.boundary_conditions.function_params]
-           <options specific to function>
+           #<options specific to function>
 
 ``poisson_solver``
 : The solver to use for the field solve.
@@ -1589,9 +1589,9 @@ with RF boundary conditions.
    [electric_potential]
    poisson_solver = "hypre"
        [electric_potential.solver_params]
-       relative_convergence_tolerance = <float (hypre default)>
-       absolute_convergence_tolerance = <float (hypre default)>
-       maximum_iterations = <integer (hypre default)>
+       relative_convergence_tolerance = #<float (hypre default)>
+       absolute_convergence_tolerance = #<float (hypre default)>
+       maximum_iterations = #<integer (hypre default)>
 
 To use default values provided by hypre,
 the entire ``solver_params`` subtable can be omitted.
@@ -1643,7 +1643,7 @@ See the ``examples`` directory for examples of use.
 .. code-block:: toml
 
    [[electric_potential.boundary_conditions]]
-   boundary = <integer or alias>
+   boundary = #<integer or alias>
    type = "periodic"
 
 Dirichlet boundary condition type
@@ -1655,11 +1655,11 @@ at points on the boundary.
 .. code-block:: toml
 
    [[electric_potential.boundary_conditions]]
-   boundary = <integer or alias>
+   boundary = #<integer or alias>
    type = "dirichlet"
-   function = <options below>
+   function = #<options below>
        [electric_potential.boundary_conditions.function_params]
-       <options specific to function>
+       #<options specific to function>
 
 Neumann boundary condition type
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1670,11 +1670,11 @@ potential normal to the boundary.
 .. code-block:: toml
 
    [[electric_potential.boundary_conditions]]
-   boundary = <integer or alias>
+   boundary = #<integer or alias>
    type = "neumann"
-   function = <options below>
+   function = #<options below>
        [electric_potential.boundary_conditions.function_params]
-       <options specific to function>
+       #<options specific to function>
 
 Constant boundary condition function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1687,7 +1687,7 @@ to a constant.
 
    function = "constant"
        [electric_potential.boundary_conditions.function_params]
-       value = <float>
+       value = #<float>
 
 ``value``
 : Constant to set the boundary condition.
@@ -1705,10 +1705,10 @@ this can be used to impose RF biases on plasmas.
 
    function = "sine"
        [electric_potential.boundary_conditions.function_params]
-       amplitude = <float (1.0)>
-       angular_frequency = <float (1.0)>
-       phase_shift = <float (0.0)>
-       y_offset = <float (0.0)>
+       amplitude = #<float (1.0)>
+       angular_frequency = #<float (1.0)>
+       phase_shift = #<float (0.0)>
+       y_offset = #<float (0.0)>
 
 ``amplitude``
 : The amplitude of the sine function.
@@ -1730,63 +1730,63 @@ The ``output_diagnostics`` table governs the type, level, and frequency of outpu
 .. code-block:: toml
 
    [output_diagnostics]
-   output_dir = <string (current working directory)>
+   output_dir = #<string (current working directory)>
 
        # (Optional, omit to pipe "info" level logs to stdout with no timing)
        [output_diagnostics.logging]
-       log_level = <options below ("info")>
-       log_file = <string (stdout)>
-       timing_log_enabled = <boolean (false)>
+       log_level = #<options below ("info")>
+       log_file = #<string (stdout)>
+       timing_log_enabled = #<boolean (false)>
 
        # (Optional, omit to suppress particle output)
        [output_diagnostics.particle_output]
-       stride = <integer>
-       first_step = <boolean (true)>
-       final_step = <boolean (false)>
-       species = <array of string>
-       source_counters = <boolean (false)>
+       stride = #<integer>
+       first_step = #<boolean (true)>
+       final_step = #<boolean (false)>
+       species = #<array of string>
+       source_counters = #<boolean (false)>
 
        # (Optional, omit to suppress field output)
        [output_diagnostics.field_output]
-       stride = <integer>
-       first_step = <boolean (true)>
-       final_step = <boolean (false)>
+       stride = #<integer>
+       first_step = #<boolean (true)>
+       final_step = #<boolean (false)>
 
        # (Optional, omit for no field probes)
        [[output_diagnostics.field_probes]]
-       stride = <integer>
-       first_step = <boolean (false)>
-       final_step = <boolean (false)>
-       tag = <string>
-       field = <string>
-       x1 = <float>
+       stride = #<integer>
+       first_step = #<boolean (false)>
+       final_step = #<boolean (false)>
+       tag = #<string>
+       field = #<string>
+       x1 = #<float>
        # Only needed in 2D or 3D
-       x2 = <float>
+       x2 = #<float>
        # Only needed in 3D
-       x3 = <float>
+       x3 = #<float>
 
        # (Optional, omit to suppress moment output)
        [output_diagnostics.moment_output]
-       stride = <integer>
-       first_step = <boolean (true)>
-       final_step = <boolean (false)>
-       species = <array of string>
-       lab_frame_moment_exponents = <array of array of integer>
-       rest_frame_moment_exponents = <array of array of integer>
-       lab_frame_directional_moment_exponents = <array of array of integer>
-       lab_frame_nhat_directions = <array of array of float>
-       rest_frame_directional_moment_exponents = <array of array of integer>
-       rest_frame_nhat_directions = <array of array of float>
+       stride = #<integer>
+       first_step = #<boolean (true)>
+       final_step = #<boolean (false)>
+       species = #<array of string>
+       lab_frame_moment_exponents = #<array of array of integer>
+       rest_frame_moment_exponents = #<array of array of integer>
+       lab_frame_directional_moment_exponents = #<array of array of integer>
+       lab_frame_nhat_directions = #<array of array of float>
+       rest_frame_directional_moment_exponents = #<array of array of integer>
+       rest_frame_nhat_directions = #<array of array of float>
 
        # (Optional, omit to suppress IEAD output)
        [output_diagnostics.iead_output]
-       stride = <integer>
-       first_step = <boolean (true)>
-       final_step = <boolean (false)>
+       stride = #<integer>
+       first_step = #<boolean (true)>
+       final_step = #<boolean (false)>
            # (Optional, omit to set max_energy_te to 24 and num_energy_bins to 240)
            [output_diagnostics.iead_output.<string>]
-           max_energy_te = <integer>
-           num_energy_bins = <integer>
+           max_energy_te = #<integer>
+           num_energy_bins = #<integer>
 
 ``output_dir``
 : Path to directory for output.
@@ -1804,9 +1804,9 @@ and no kernel timing will be performed.
 .. code-block:: toml
 
    [output_diagnostics.logging]
-   log_level = <options below ("info")>
-   log_file = <string (stdout)>
-   timing_log_enabled = <boolean (false)>
+   log_level = #<options below ("info")>
+   log_file = #<string (stdout)>
+   timing_log_enabled = #<boolean (false)>
 
 ``log_level``
 : The following options are available, from most to least output:
@@ -1835,7 +1835,7 @@ Each row represents an entry in the timing log
 and contains a JSON object.
 Each object takes the form
 
-.. code-block:: json
+.. code-block::
 
    {
        "mpi rank": <rank>,
@@ -1882,11 +1882,11 @@ non-pumi meshes.
 .. code-block:: toml
 
    [output_diagnostics.particle_output]
-   stride = <integer>
-   first_step = <boolean (true)>
-   final_step = <boolean (false)>
-   species = <array of string>
-   source_counters = <boolean (false)>
+   stride = #<integer>
+   first_step = #<boolean (true)>
+   final_step = #<boolean (false)>
+   species = #<array of string>
+   source_counters = #<boolean (false)>
 
 ``stride``
 : Time step interval for output.
@@ -1918,7 +1918,7 @@ a JSON file.
 Each row represents a particle source event and contains a JSON object.
 Each object takes the form
 
-.. code-block:: json
+.. code-block::
 
    {
        "event": <event name>,
@@ -1986,9 +1986,9 @@ but of the form
 .. code-block:: toml
 
    [output_diagnostics.field_output]
-   stride = <integer>
-   first_step = <boolean (true)>
-   final_step = <boolean (false)>
+   stride = #<integer>
+   first_step = #<boolean (true)>
+   final_step = #<boolean (false)>
 
 ``stride``
 : Time step interval for output.
@@ -2020,16 +2020,16 @@ For scalar fields, there is one subsequent column.
 .. code-block:: toml
 
    [[output_diagnostics.field_probes]]
-   stride = <integer>
-   first_step = <boolean (false)>
-   final_step = <boolean (false)>
-   tag = <string>
-   field = <string>
-   x1 = <float>
+   stride = #<integer>
+   first_step = #<boolean (false)>
+   final_step = #<boolean (false)>
+   tag = #<string>
+   field = #<string>
+   x1 = #<float>
    # Only needed in 2D or 3D
-   x2 = <float>
+   x2 = #<float>
    # Only needed in 3D
-   x3 = <float>
+   x3 = #<float>
 
 ``stride``
 : Time step interval for output.
@@ -2105,16 +2105,16 @@ each column represents a node in the mesh.
 .. code-block:: toml
 
    [output_diagnostics.moment_output]
-   stride = <integer>
-   first_step = <boolean (true)>
-   final_step = <boolean (false)>
-   species = <array of string>
-   lab_frame_moment_exponents = <array of array of integer>
-   rest_frame_moment_exponents = <array of array of integer>
-   lab_frame_directional_moment_exponents = <array of array of integer>
-   lab_frame_nhat_directions = <array of array of float>
-   rest_frame_directional_moment_exponents = <array of array of integer>
-   rest_frame_nhat_directions = <array of array of float>
+   stride = #<integer>
+   first_step = #<boolean (true)>
+   final_step = #<boolean (false)>
+   species = #<array of string>
+   lab_frame_moment_exponents = #<array of array of integer>
+   rest_frame_moment_exponents = #<array of array of integer>
+   lab_frame_directional_moment_exponents = #<array of array of integer>
+   lab_frame_nhat_directions = #<array of array of float>
+   rest_frame_directional_moment_exponents = #<array of array of integer>
+   rest_frame_nhat_directions = #<array of array of float>
 
 ``stride``
 : Time step interval for output.
@@ -2228,14 +2228,14 @@ Example TOML Subtable
 .. code-block:: toml
 
    [output_diagnostics.iead_output]
-   stride = <integer>
-   first_step = <boolean (true)>
-   final_step = <boolean (false)>
+   stride = #<integer>
+   first_step = #<boolean (true)>
+   final_step = #<boolean (false)>
        # (Optional, omit to set max_energy_te to 24, num_energy_bins to 240, and num_angle_bins to 90)
        [output_diagnostics.iead_output.<string>]
-       max_energy_te = <integer (24)>
-       num_energy_bins = <integer (240)>
-       num_angle_bins = <integer (90)>
+       max_energy_te = #<integer (24)>
+       num_energy_bins = #<integer (240)>
+       num_angle_bins = #<integer (90)>
 
 A helper script in the ``scripts/`` in the hpic2 source repository is provided to view an IEAD file. Usage:
 
@@ -2264,10 +2264,10 @@ whereas the latter of these is the ionization energy.
 .. code-block:: toml
 
    [interactions.electron_impact_ionization.<string>]
-   electron_species = <string>
-   A = <array of float>
-   B = <array of array of float>
-   I = <array of float>
+   electron_species = #<string>
+   A = #<array of float>
+   B = #<array of array of float>
+   I = #<array of float>
 
 The key of the table is the name of the desired ``"boris_buneman"`` species,
 which must have been defined in the ``species`` table.
@@ -2323,7 +2323,7 @@ an effective force on each particle.
 .. code-block:: toml
 
    [interactions.coulomb_collision_force.<string>]
-   target_species = <string>
+   target_species = #<string>
 
 The key of the table is the name of the desired ``"boris_buneman"`` source
 species,
