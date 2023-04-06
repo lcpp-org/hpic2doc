@@ -247,7 +247,7 @@ x2-direction. The second float defines the upper bound.
 : Number of elements in the x2-direction.
 
 pumiMBBL
---------
+^^^^^^^^
 
 The `pumiMBBL <https://github.com/SCOREC/pumiMBBL>`_
 (Multi-Block Boundary-Layer)
@@ -298,7 +298,7 @@ Further options for each of these types are described in the following
 sections.
 
 ``"minBL"``
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~
 
 .. code-block:: toml
 
