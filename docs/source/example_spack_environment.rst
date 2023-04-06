@@ -30,8 +30,3 @@ This is an example Centos 7 bash file
     sudo make -j 
 
     mpiexec -np 1 ./hpic2 --i ~/<PATH_to_HPIC2_build_location>/hpic2_build/hpic2_dev/packages/hpic2/examples/<name_example_file.txt> #This is where you actually run hpic2, see other sections of the docs to understand syntax
-
-Some Stuff at the End
----------------------
-
-Some stuff at the end
