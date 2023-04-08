@@ -1,1 +1,3 @@
-hPIC2 ReadTheDocs
+# hPIC2 ReadTheDocs
+
+https://lcpp.readthedocs.io/
