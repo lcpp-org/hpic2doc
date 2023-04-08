@@ -3,7 +3,7 @@ Welcome to hPIC2
 
 `hPIC2 <https://doi.org/10.1016/j.cpc.2022.108569>`_ is a hybrid plasma 
 simulation code written in C++ developed by the Laboratory of Computational  
-Plasma Physicsat the University of Illinois at Urbana-Champaign. 
+Plasma Physics at the University of Illinois at Urbana-Champaign. 
 The hPIC2 code investigates the simultaneous use of 
 different plasma models on the same domain, making it a hybrid code. 
 hPIC2 supports an arbitrary number of plasma species, 
