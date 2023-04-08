@@ -183,7 +183,7 @@ Known issues
 * When using CUDA, must manually ``module load cuda``
 
 Step 5: Clone the hpic2 repository
---------------------------------==
+----------------------------------
 
 Clone the hpic2 repository to your home directory:
 
