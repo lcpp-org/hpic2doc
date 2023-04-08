@@ -117,7 +117,7 @@ A ``module list`` command should now show the loaded modules, for example:
      4) hypre/2olp2oaczn3zf4nzq47qlkiqhrr6l6ec              8) hpic2deps/gcc-7.2.0/openmpi-4.1.0/kokkos+openmp~pthread-cuda_arch=none/+debug
 
 Which modules to load?
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^
 
 In order to fully utilize the hybrid parallelism of hpic2 on the ICC, 
 you need to load modules including either ``+openmp`` or ``+cuda`` in the name. 
@@ -131,7 +131,7 @@ For a release build, you can load a module including the ``~debug``\ , such as
 ``hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=70/~debug``.
 
 How to load the modules automatically?
---------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can add the following lines to your ``.bashrc`` file:
 
@@ -142,7 +142,7 @@ You can add the following lines to your ``.bashrc`` file:
    module load hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=70/~debug
 
 How to generate new modules for hpic2?
---------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 New modules can be generated using ``spack``. In order to use spack, 
 load the python3 module, ``module load python3``. If you would like to 
@@ -176,7 +176,7 @@ Check that the list of available moduels now includes the new modules,
    less /home/dcurreli/lcpp/hpic2/spack/share/spack/modules/module-index.yaml
 
 Known issues
-------------
+^^^^^^^^^^^^
 
 
 * When using OpenMPI with the Intel compiler, must manually ``module load intel/18.0``
