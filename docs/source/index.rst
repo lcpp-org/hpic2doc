@@ -1,6 +1,11 @@
 Welcome to hPIC2
 ================
 
+.. note:: 
+
+   Documentation pages of hPIC2 are under construction.
+   
+
 Contents
 --------
 
