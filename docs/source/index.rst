@@ -15,6 +15,7 @@ Contents
    build
    running
    input_deck
+   tutorials 
    preprocessing
    postprocessing
    contributing
