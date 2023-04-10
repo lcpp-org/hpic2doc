@@ -43,15 +43,15 @@ Contents
 
 .. toctree::
    :maxdepth: 1
-
+       
+   model
    build
    running
    input_deck
    tutorials 
    preprocessing
    postprocessing
-   contributing
-   hpic
+   contributing 
 
 .. figure:: figures/dalle2hpic.png
   :width: 100%
