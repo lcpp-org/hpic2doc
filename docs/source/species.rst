@@ -133,3 +133,14 @@ which yields
 
 Uniform background
 -------------------
+
+This model assumes that the species follows a Maxwellian
+distribution everywhere in space,
+so that the distribution is
+
+.. math::
+
+    f = n \sqrt{\frac{m}{2 \pi k T}} \exp \left( - \frac{m v^2}{2 k T} \right)
+
+for a given number density :math:`n` and temperature :math:`T`.
+The charge density is therefore simply :math:`\rho = q n`.
