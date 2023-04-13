@@ -194,11 +194,29 @@ the fields.
 .. code-block:: toml
 
    [mesh]
+   east_west_periodic = #<boolean (false)>
+   north_south_periodic = #<boolean (false)>
+   top_bottom_periodic = #<boolean (false)>
    type = #<options below>
        [mesh.type_specification]
        #<options specific to mesh type>
 
-Available types of meshes and type-specific options are described in
+``east_west_periodic``
+: Enables periodic boundary conditions for the field solve and all species
+between the "east" and "west" boundaries (in the Cartesian x-direction).
+
+``north_south_periodic``
+: Enables periodic boundary conditions for the field solve and all species
+between the "north" and "south" boundaries (in the Cartesian y-direction).
+Only valid for domains in at least two dimensions.
+
+``top_bottom_periodic``
+: Enables periodic boundary conditions for the field solve and all species
+between the "top" and "bottom" boundaries (in the Cartesian z-direction).
+Only valid for three-dimensional domains.
+
+``type``
+: Available types of meshes and type-specific options are described in
 subsequent sections.
 
 Uniform mesh
@@ -750,37 +768,6 @@ The same file rules apply.
 : Path to file specifying the temperature at each node.
 The file format is identical to that of the number density.
 The same file rules apply.
-
-Periodic boundary condition
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Periodic boundaries always come in pairs.
-A periodic boundary condition is associated with a measure-preserving
-diffeomorphism between the boundaries.
-When a particle is incident on a periodic boundary,
-its position and velocity are updated according to the periodic mapping
-between the boundaries.
-hPIC2 currently only supports periodic mappings
-in cardinal directions,
-i.e. purely in one of the x1-, x2-, or x3-directions.
-Note that if one boundary is marked as periodic,
-the boundary to which it is mapped must also be periodic;
-hPIC2 does not attempt to intuit periodic mappings.
-See the ``examples`` directory for examples of use.
-
-..
-
-   Periodic boundaries are not supported for pumi or MFEM meshes.
-
-
-.. code-block:: toml
-
-   [[species.<string>.type_params.boundary_conditions]]
-   boundary = #<integer or alias>
-   type = "periodic"
-
-The ``type_params`` subtable is not required for periodic boundaries
-and should be omitted.
 
 Absorbing boundary condition
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1545,11 +1532,9 @@ Hockney solver
 
 The Hockney solver is a fast direct solver for
 uniform meshes of 1D domains with periodic boundary conditions.
-It therefore must be paired with periodic boundary conditions on either
-side of the domain.
 Although it is absolutely fast, it is not parallelized and not scalable.
 Users should therefore consider using the hypre solver for
-extremely large 1D problems with periodic boundary conditions.
+extremely large 1D problems.
 
 There are no solver options for the Hockney solver,
 so the ``solver_params`` subtable should be omitted.
@@ -1561,7 +1546,7 @@ The tridiag solver is a fast direct solver for
 1D domains with at least one Dirichlet boundary condition.
 Although it is absolutely fast, it is not parallelized and not scalable.
 Users should therefore consider using the hypre solver for
-extremely large 1D problems with periodic boundary conditions.
+extremely large 1D problems.
 
 There are no solver options for this solver,
 so the ``solver_params`` subtable should be omitted.
@@ -1615,36 +1600,8 @@ The MFEM solver differs from the other solvers in that it uses
 the finite element method rather than the finite difference method.
 It can therefore only be used with MFEM meshes.
 
-..
-
-   Periodic boundary conditions are currently not supported with MFEM meshes.
-
-
 There are no solver options for this solver,
 so the ``solver_params`` subtable should be omitted.
-
-Periodic boundary condition type
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Periodic boundaries always come in pairs.
-A periodic boundary condition is associated with a measure-preserving
-diffeomorphism between the boundaries.
-The potential and the component of its gradient normal to the boundary
-at every point on the boundary is constrained to be equal to those
-at the point under the periodic mapping.
-hPIC2 currently only supports periodic mappings
-in cardinal directions,
-i.e. purely in one of the x1-, x2-, or x3-directions.
-Note that if one boundary is marked as periodic,
-the boundary to which it is mapped must also be periodic;
-hPIC2 does not attempt to intuit periodic mappings.
-See the ``examples`` directory for examples of use.
-
-.. code-block:: toml
-
-   [[electric_potential.boundary_conditions]]
-   boundary = #<integer or alias>
-   type = "periodic"
 
 Dirichlet boundary condition type
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
