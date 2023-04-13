@@ -48,9 +48,8 @@ Contents
    build
    running
    input_deck
+   utils
    tutorials 
-   preprocessing
-   postprocessing
    contributing 
 
 .. figure:: figures/dalle2hpic.png
