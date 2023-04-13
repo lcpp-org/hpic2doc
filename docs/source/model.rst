@@ -1,7 +1,7 @@
 Model
 =====
 
-This page describes the models available in the hPIC2 code. 
+This page describes the models available in the hPIC2 code.
 
 .. toctree::
    :maxdepth: 2
@@ -11,4 +11,5 @@ This page describes the models available in the hPIC2 code.
    mesh
    field_solvers
    fluids
+   interactions
    diagnostics
