@@ -57,5 +57,50 @@ Hence the Boltzmann equation becomes
 Electrostatic approximation
 -----------------------------
 
+The time evolution of the electromagnetic fields is governed by
+Maxwell's equations
+
+.. math::
+
+    \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0},
+
+    \nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t},
+
+    \nabla \cdot \vec{B} = 0,
+
+    \nabla \times \vec{B} = \mu_0 \left( \vec{J} + \epsilon_0 \frac{\partial \vec{E}}{\partial t} \right),
+
+where :math:`\rho = \rho(\vec{x}, t)` is the charge density,
+:math:`\epsilon_0` is the vacuum permittivity,
+:math:`\mu_0` is the vacuum permeability,
+and :math:`\vec{J} = \vec{J}(\vec{x}, t)` is the current density.
+In the case where the magnetic field varies slowly compared to plasma
+evolution timescales,
+the electric field is approximately irrotational
+and can therefore be represented as the gradient of a scalar potential.
+Traditionally, the electric field is written as
+
+.. math::
+
+    \vec{E} = - \nabla \phi,
+
+where :math:`\phi = \phi(\vec{x}, t)` is the electric potential.
+This electrostatic approximation yields Poisson's equation for the potential
+
+.. math::
+
+    \nabla^2 \phi = - \frac{\rho}{\epsilon_0}.
+
+The electrostatic approximation is valid when currents are small,
+which generally occurs when particles are non-relativistic.
+
+Note that the charge density can be computed from every species' distribution as
+
+.. math::
+
+    \rho = \sum \int_{\mathbb{R}^3} q f \, \mathrm{d} \vec{v},
+
+where the sum is over species.
+
 Types of problems hPIC2 can solve
 ----------------------------------
