@@ -23,6 +23,13 @@ magnetic field).
 The Newton-Lorentz equation is integrated by means of the Boris-Bunemann
 numerical method, with linearized tangent.
 
+.. figure:: figures/fullorbit.png
+  :width: 75%
+  :align: center
+
+  Full-orbit dynamics of a single charged particle
+
+
 Boltzmann electrons
 ----------------------
 
