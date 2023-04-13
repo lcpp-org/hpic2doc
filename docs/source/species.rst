@@ -7,6 +7,22 @@ a plasma species.
 Full-orbit particles
 ----------------------
 
+The basic particle model of hPIC2 is a classical non-relativistic
+full-orbit Lagrangian particle of mass :math:`m` and charge :math:`q`,
+with dynamics described by the classical Newton-Lorentz equation,
+
+.. math::
+
+   m \frac{d^2  \mathbf{x} }{dt^2} = q  \mathbf{E}  + q  \mathbf{v}  \times  \mathbf{B}
+
+where the electric field :math:`\mathbf{E}` and the magnetic field
+:math:`\mathbf{B}` are either calculated self-consistently by solving the
+Maxwell Equations, or provided externally by the user (eg. an imposed
+magnetic field).
+
+The Newton-Lorentz equation is integrated by means of the Boris-Bunemann
+numerical method, with linearized tangent.
+
 Boltzmann electrons
 ----------------------
 
