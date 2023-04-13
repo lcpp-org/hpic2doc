@@ -1,17 +1,17 @@
 Fluids
 ======
 
-DG spatial
-----------
+Discontinuous Galerkin spatial
+------------------------------
 
-RK time/substepping
+Runge-Kutta Time Stepping and Sub-stepping
+------------------------------------------
+
+Riemann solvers
+---------------
+
+Boundary Conditions
 -------------------
-
-Rieman solvers
---------------
-
-BCs
----
 
 Slope limiters
 --------------

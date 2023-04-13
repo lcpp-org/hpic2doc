@@ -131,7 +131,7 @@ For a release build, you can load a module including the ``~debug``\ , such as
 ``hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=70/~debug``.
 
 How to load the modules automatically?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can add the following lines to your ``.bashrc`` file:
 
@@ -142,7 +142,7 @@ You can add the following lines to your ``.bashrc`` file:
    module load hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=70/~debug
 
 How to generate new modules for hpic2?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 New modules can be generated using ``spack``. In order to use spack, 
 load the python3 module, ``module load python3``. If you would like to 

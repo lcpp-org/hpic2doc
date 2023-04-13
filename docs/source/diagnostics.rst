@@ -10,8 +10,8 @@ Engery-angle at boundaries
 Point-like probes
 -----------------
 
-Fields outputs
+Fields output
 --------------
 
-Particle outputs
+Particle output
 ----------------
