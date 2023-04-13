@@ -10,6 +10,184 @@ Full-orbit particles
 Boltzmann electrons
 ----------------------
 
+On ion-transport time scales, the electron behavior can in first
+approximation be described simply considering a balance between
+electrostatic forces and pressure forces on an isothermal fluid:
+:math:`-k_B T_e \nabla n_e + e n_e\nabla \phi \approx 0`, with usual
+meaning of symbols as in
+`Chen <https://doi.org/10.1007/978-3-319-22309-4_1>`_.
+Integrating the balance of forces leads to a relation between the
+electron particle density and the plasma potential in the form of
+equation
+
+.. math::
+   :label: botlzmann.equation1
+
+   \begin{aligned}
+   n_e(\mathbf{x})=n_0 \exp( e \phi(\mathbf{x})/k_B T_e),\label{botlzmann.equation1}
+   \end{aligned}
+
+where :math:`n_0` is the reference electron density corresponding to
+:math:`\phi=0`. Boltzmann electrons hold an advantage in terms of
+computational cost over the alternative approximations used in PIC
+simulations. While alternative methods capture the physical phenomena of
+electron motion to a higher degree of accuracy, the added simulation
+complexity makes it computationally expensive to run large timescale
+simulations.
+
+Time advancement schemes calculate unknown time-dependent variables at
+time :math:`t^{k+1} = t^k + \Delta t` from known variables at time
+:math:`t^k`. Common time advancement algorithm in PIC codes calculates
+the ion density :math:`n_i^{k+1}` using plasma potential :math:`\phi^k`.
+Subsequently, the plasma potential :math:`\phi^{k+1}` is solved using
+the newly calculated ion density :math:`n_i^{k+1}` and
+equation :eq:`botlzmann.equation1`, i.e,;
+
+.. math::
+   :label: poision.equation
+
+   \begin{aligned}
+   \epsilon_0 \nabla^2\phi^{k+1}(\mathbf{x})&=-\rho^{k+1}(\mathbf{x})\label{poision.equation}\\
+   &=en_e^{k+1}(\mathbf{x})-en_i^{k+1}(\mathbf{x})\label{poision.equation1}\\
+   &=en_0^{k+1} \exp(\phi^{k+1}(\mathbf{x})/T_e)-en_i^{k+1}(\mathbf{x})\label{poision.equation2}.
+   \end{aligned}
+
+Equation :eq:`poision.equation` can be solved
+using Newton-Raphson, or other methods, to calculate the plasma
+potential for the next iteration. Problems arise when the reference
+electron density :math:`n_0` varies with time as is the case in the
+presence of a volumetric source/loss, or a boundary flux. A
+self-consistent numerical scheme to calculate :math:`n_0^{k+1}` is
+required to maintain charge conservation. Breaking charge conservation
+leads to numerical oscillations and simulation divergence.
+
+The adoption of Boltzmann electrons always require to enforce 
+charge conservation through a dedicated scheme. 
+
+The charge conservation scheme is derived from the
+`Ampere-Maxwell equation <https://doi.org/10.1017/9781108333511>`_ in
+differential form,
+
+.. math::
+   :label: max.equation1
+
+   \begin{aligned}
+   \nabla \times \mathbf{B}&= \mu_0 \mathbf{J} + \epsilon_0 \mu_0 \frac{\partial \mathbf{E}}{\partial t}\label{max.equation1}
+   \end{aligned}
+
+As usual, local charge conservation is obtained by taking the divergence
+of equation :eq:`max.equation1` and calling the
+displacement current as
+:math:`\mathbf{J_D}=\epsilon_0 \frac{\partial \mathbf{E}}{\partial t}`
+
+.. math::
+   :label: globalcharge.equation1
+
+   \begin{aligned}
+   \nabla \cdot (\nabla \times \mathbf{B})&= \mu_0 \nabla \cdot \mathbf{J}  +\mu_0 \nabla \cdot \left( \epsilon_0  \frac{\partial \mathbf{E}}{\partial t} \right) \label{max.equation2}\\
+   0 &=\nabla \cdot \mathbf{J} + \nabla \cdot \mathbf{J}_D, \label{globalcharge.equation1}
+   \end{aligned}
+
+where the conduction current
+:math:`\mathbf{J}=\mathbf{J}_i + \mathbf{J}_e` is the sum of the
+contributions from the ion current :math:`\mathbf{J}_i` and the electron
+current :math:`\mathbf{J}_e`.
+Equation :eq:`globalcharge.equation1` can
+equivalently be expressed as
+
+.. math::
+
+   \begin{aligned}
+    \nabla \cdot (\mathbf{J}_e + \mathbf{J}_i  + \mathbf{J}_D)&=0 \label{globalcharge.equation2}
+   \end{aligned}
+
+or using its integral form,
+
+.. math::
+   :label: displacemen.equation1
+
+   \begin{aligned}
+   \int_V \nabla \cdot (\mathbf{J}_e + \mathbf{J}_i  + \mathbf{J}_D) dV&= 0  \label{displacemen.equation1}
+   \end{aligned}
+
+In the presence of volumetric source :math:`G` and loss :math:`L` terms,
+equation :eq:`displacemen.equation1` becomes
+
+.. math::
+   :label: displacemen.equation2
+
+   \begin{aligned}
+   \int_V \nabla \cdot (\mathbf{J}_e + \mathbf{J}_i  + \mathbf{J}_D) dV&= G-L \label{displacemen.equation2}
+   \end{aligned}
+
+The Boltzmann electron model described in
+equation :eq:`botlzmann.equation1` implicitly
+assumes the electron distribution is at a Maxwellian thermal
+equilibrium. For a Maxwellian thermal distribution, with a mean thermal
+electron velocity :math:`\mathbf{u_e}=\sqrt{\frac{8 K_b T_e}{\pi m_e}}`,
+the current density at the location :math:`\mathbf{x}` can,
+as in `Chen <https://doi.org/10.1007/978-3-319-22309-4_1>`_,
+be expressed as
+
+.. math::
+   :label: boundaryflux
+
+   \begin{aligned}
+   \mathbf{J}_e(\mathbf{x})=-e \boldsymbol{\Gamma}_e(\mathbf{x})=-e n_0 \mathbf{u}_e \exp(e\Phi(\mathbf{x})/T_e) \label{boundaryflux}
+   \end{aligned}
+
+By substituting Equation :eq:`boundaryflux` into
+Equation :eq:`displacemen.equation2` and
+solving for :math:`n_0`, immediately yields an expression for the
+reference Boltzmann electron density :math:`n_0`
+
+.. math::
+   :label: density_update
+
+   \begin{aligned}
+   n_0= \frac{\int_V \nabla \cdot (\mathbf{J}_i  + \mathbf{J}_D) dV - G + L }{\int_V \nabla \cdot e \mathbf{u}_e \exp(e\Phi(\mathbf{x})/T_e) dV}
+   \label{density_update}
+   \end{aligned}
+
+Equation :eq:`density_update` can be directly used to
+enforce global charge conservation in explicit PIC schemes with
+Boltzmann electrons. An example algorithm is discussed hereafter.
+
+A simple explicit algorithm implementing
+Equation :eq:`density_update` for updating the
+Boltzmann density :math:`n_0` from time step :math:`t^{k}` to time step
+:math:`t^{k+1}` is as follows.
+
+#. Calculate ion density :math:`n_i^{k+1}` using the plasma potential
+   :math:`\phi^k` at the previous time step, using the classical
+   explicit PIC scheme;
+
+#. Calculate reference Boltzmann electron density at :math:`n_0^{k+1}`
+   at time step :math:`t^{k+1}` using
+   equation :eq:`density_update` and boundary
+   conditions for :math:`\phi^{k+1}`;
+
+   .. math::
+
+      \begin{aligned}
+          n_0^{k+1}= \frac{\int_V \nabla \cdot (\mathbf{J}_i^{k+1} + \mathbf{J}_D^{k}) dV - G^{k+1} + L^{k+1} }{\int_V \nabla \cdot e \mathbf{u_e} \exp(e\phi^{k+1}/T_e) dV}
+          \label{density_update1}
+
+      \end{aligned}
+
+#. Solve the plasma potential :math:`\phi^{k+1}` using ion density
+   :math:`n_i^{k+1}`, boundary conditions for :math:`\phi^{k+1}`, the
+   Poisson equation and reference Boltzmann electron reference density
+   :math:`n_0^{k+1}`.
+
+The algorithm can be equally applied to plasma domains of arbitrary
+dimensionality in 1D, 2D or 3D without any loss of accuracy. However,
+the conventional Courant–Friedrichs–Lewy (CFL) condition on the time
+step remains necessary to ensure accuracy on the particle pusher, and to
+resolve ion-timescale phenomena. In the next section we apply this
+algorithm to two cases, a steady-state plasma sheath and a
+radio-frequency plasma sheath.
+
 Euler fluid
 ------------
 
