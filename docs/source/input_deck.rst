@@ -1066,7 +1066,9 @@ This is commensurate with the full orbit particle velocity tracking strategy.
        charge_number = #<integer>
        gamma = #<float>
        order = #<integer>
+       piecewise_constant_initial_condition = #<boolean (false)>
        riemann_solver = #<options below>
+       limiter = #<options below>
        initial_condition = #<options below>
            [species.<string>.type_params.initial_condition_params]
            #<options specific to initial condition type>
@@ -1098,6 +1100,13 @@ for diatomic species (which approximates air), 7/5 is appropriate.
 To some extent, solution fidelity can be maintained in coarse meshes by
 compensating with a higher polynomial order.
 
+``piecewise_constant_initial_condition``
+: If true, the initial condition is evaluated at element centroids,
+and the fluid is set to this constant value throughout the element.
+Otherwise, the initial condition is evaluated at the FEM degrees of freedom,
+which is smoother for high-order finite elements.
+Piecewise-constant initial conditions are useful for shock tube problems.
+
 ``riemann_solver``
 : Numerical fluxes at element interfaces are computed by approximately solving
 a Riemann problem.
@@ -1114,6 +1123,23 @@ The table below lists the options and some notes.
    * - ``"hll"``
      - Harten-Lax-van Leer. Sometimes more accurate than Rusanov.
 
+``limiter``
+: Slope limiter used to stabilize solution.
+In the presence of shocks, the DG discretization of the Euler equations
+is extremely unstable.
+Slope limiters interrogate the fluid solution to determine whether
+any elements are at risk of going unstable.
+The table below lists the options and some notes.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Limiter
+     - Description
+   * - ``"none"``
+     - No limiter is applied. Default.
+   * - ``"moe"``
+     - Limiter from Moe et al. Suitable for most problems.
 
 ``initial_condition``
 : Specifies the initial fluid state throughout the computational domain.
