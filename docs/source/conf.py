@@ -16,8 +16,11 @@ extensions = [
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
+    'sphinx.ext.autosectionlabel',
     'sphinx.ext.intersphinx'
 ]
+
+autosectionlabel_prefix_document = True
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),

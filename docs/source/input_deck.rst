@@ -1157,8 +1157,8 @@ It is not necessary to have any sources, and the array can be completely
 omitted if no sources are desired.
 Options will be described in subsequent sections.
 
-Uniform beam initial condition
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Constant fluid initial condition
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Like the uniform beam initial condition for full orbit particles,
 this sets the initial state to have uniform density,
@@ -1253,7 +1253,7 @@ in the TOML spec:
        // function_body here
    """
 
-Reflecting boundary condition
+Wall boundary condition
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Models an impermeable wall.
