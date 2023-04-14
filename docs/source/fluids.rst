@@ -21,6 +21,7 @@ Parallelism is therefore relatively easy with DG methods.
 Note that the Euler equations can be written in conservative form
 
 .. math::
+    :label: fluids:conservation
 
     \frac{\partial u}{\partial t} + \nabla \cdot \vec{F} = G,
 
@@ -47,7 +48,20 @@ Define
 
 where :math:`H^s(T)` is a Sobolev space of order :math:`s > 1/2`
 on the mesh element :math:`T`.
-The
+The weak form of :eq:`fluids:conservation`
+are essentially derived by choosing an element :math:`T \in \mathcal{T}_h`,
+multiplying both sides by some :math:`\psi \in H^2(T)`,
+and integrating by parts over :math:`T` to yield
+
+.. math::
+
+    \frac{\mathrm{d}}{\mathrm{d} t} \int_T u \psi \, \mathrm{d} V +
+    \int_{\partial T} \vec{F} \cdot \hat{n} \psi \, \mathrm{d} A -
+    \int_T \vec{F} \cdot \nabla \psi \, \mathrm{d} V =
+    \int_T G \psi \mathrm{d} V,
+
+where :math:`\hat{n}` is the outward-facing unit normal on
+:math:`\partial T`.
 
 Runge-Kutta Time Stepping and Sub-stepping
 ------------------------------------------
