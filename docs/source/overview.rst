@@ -21,7 +21,8 @@ More generally, the distribution's arguments can range over internal degrees
 of freedom, such as vibrational modes,
 but we are primarily concerned with translational degrees of freedom.
 
-The time evolution of the distribution is given by the Boltzmann equation
+The time evolution of the distribution is given by the Boltzmann equation 
+:cite:t:`fitzpatrick2014plasma`,
 
 .. math::
 
@@ -104,3 +105,6 @@ where the sum is over species.
 
 Types of problems hPIC2 can solve
 ----------------------------------
+
+.. bibliography::
+    :all:
