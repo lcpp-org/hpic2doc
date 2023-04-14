@@ -345,7 +345,7 @@ Similar treatment at right boundary gives,
 Therefore the :math:`A\vec x = \vec b` system of equations will be, 
 
 .. math::
-    :label: eq_2nddev24
+    :label: `eq_2nddev24`
 
     \begin{vmatrix}
     -2&2&0&0&..&..&..&0\\
@@ -429,25 +429,64 @@ Considering, :math:`\delta \vec x = \vec x^n - \vec x^{n+1}`, the equation becom
 Applying this treatment on equation :eq:`eq_boltzmann_nonlinear` for :math:`i^{th}` term of potential, we can write, 
 
 .. math::
-    :label: 'eq_boltz_elec'
+    :label: `eq_boltz_elec`
 
     (\frac{2r^2}{r+1})\delta \phi_{i-1}-2r\delta \phi_i+(\frac{2r}{r+1})\delta \phi_{i+1} - \frac{n_0 e^2}{\epsilon_0 k_B T_e} (\Delta x_i)^2 \delta \phi_i \ exp\ (\frac{e\phi^n_i}{k_B T_e}) = \notag \\ (\frac{2r^2}{r+1})\phi^n_{i-1}-2r\phi^n_i+(\frac{2r}{r+1})\phi^n_{i+1} + (\frac{\rho}{\epsilon_0})_i (\Delta x_i)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_i)^2 \ exp\ (\frac{e\phi^n_i}{k_B T_e})
 
 Solving this equation for :math:`\delta \vec \phi` for all nodes and computing :math:`\vec \phi^{n+1} = \vec \phi^n - \delta \vec \phi` for consecutive iteration 
 we can solve for :math:`\vec \phi` for a required tolerance. 
 
- The Dirichlet boundary condition at each time steps for the left boundary can be applied as,
+The Dirichlet boundary condition at each time steps for the left boundary can be applied as,
 
  .. math::
-     :label: 'eq_dirichlet'
+     :label: `eq_dirichlet`
 
      \delta \phi_0 = \phi^n_0 - left\ boundary\ value \notag \\
      \implies \delta \phi_0 = \phi^n_0 - C
 
- Where :math:`C` is the left boundary value.
- Similar condition is also applicable for Dirichlet right boundary.
+Where :math:`C` is the left boundary value.
+Similar condition is also applicable for Dirichlet right boundary.
 
+If the Neumann boundary condition for left boundary is :math:`g`, then using central difference and one uniform distance ghost node, we can write, 
 
+.. math::
+
+    \frac{\phi^n_{-1} - \phi^n_1}{2\Delta x_0} = g \notag \\
+    \implies \phi^n_{-1} - \phi^n_1 = 2\Delta x_0\ g
+ 
+Similarly for next iteration, 
+ 
+.. math:: 
+    
+   \phi^{n+1}_{-1} - \phi^{n+1}_1 = 2\Delta x_0\ g
+ 
+Subtracting previous two equation, we can write, 
+
+.. math::
+
+    (\phi^n_{-1} - \phi^{n+1}_{-1}) - (\phi^n_1 - \phi^{n+1}_1) &= 0 \notag \\
+    \implies \delta \phi_{-1} - \delta \phi_1 &= 0 \notag \\
+    \implies \delta \phi_{-1} &= \delta \phi_1
+
+Substituting :math:`\delta \phi_{-1}` for :math:`\delta \phi_1` in equation :eq:`eq_boltz_elec`, for left boundary node :math:`i = 0` we can write, 
+
+.. math::
+
+   ()\frac{2r^2}{r+1})\delta \phi_{1}-2r\delta \phi_0+(\frac{2r}{r+1})\delta \phi_{1} - \frac{n_0 e^2}{\epsilon_0 k_B T_e} (\Delta x_0)^2 \delta \phi_0 \ exp\ (\frac{e\phi^n_0}{k_B T_e}) = \notag \\ (\frac{2r^2}{r+1})\phi^n_{-1}-2r\phi^n_0+(\frac{2r}{r+1})\phi^n_{1} + (\frac{\rho}{\epsilon_0})_0 (\Delta x_0)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_0)^2 \ exp\ (\frac{e\phi^n_0}{k_B T_e})
+
+Since we consider ghost node equidistant, for boundary node we have :math:`r = 1`, and substituting :math:`\phi^n_{-1} = \phi^n_1 + 2 \Delta x_0\ g`, we can simplify equation as, 
+
+.. math::
+
+    \delta \phi_{1}-2\delta \phi_0+\delta \phi_{1} - \frac{n_0 e^2}{\epsilon_0 k_B T_e} (\Delta x_0)^2 \delta \phi_0 \ exp\ (\frac{e\phi^n_0}{k_B T_e}) = \notag \\ \phi^n_{1} + 2 \Delta x_0\ g  -2\phi^n_0+\phi^n_{1} + (\frac{\rho}{\epsilon_0})_0 (\Delta x_0)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_0)^2 \ exp\ (\frac{e\phi^n_0}{k_B T_e}) \notag \\
+    \implies -2\delta \phi_0 + 2\delta \phi_{1} - \frac{n_0 e^2}{\epsilon_0 k_B T_e} (\Delta x_0)^2 \delta \phi_0 \ exp\ (\frac{e\phi^n_0}{k_B T_e}) = \notag \\ -2\phi^n_0 + 2 \phi^n_{1} + 2 \Delta x_0\ g + (\frac{\rho}{\epsilon_0})_0 (\Delta x_0)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_0)^2 \ exp\ (\frac{e\phi^n_0}{k_B T_e})
+
+For right Neumann boundary condition (at :math:`x = x_{n-1}`), similar treatement will give, 
+
+.. math::
+
+    -2\delta \phi_{n-1} + 2\delta \phi_{n-2} - \frac{n_0 e^2}{\epsilon_0 k_B T_e} (\Delta x_{n-1})^2 \delta \phi_{n-1} \ exp\ (\frac{e\phi^n_{n-1}}{k_B T_e}) = \notag \\ -2\phi^n_{n-1} + 2 \phi^n_{n-2} + 2 \Delta x_{n-1}\ g + (\frac{\rho}{\epsilon_0})_{n-1} (\Delta x_{n-1})^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_{n-1})^2 \ exp\ (\frac{e\phi^n_{n-1}}{k_B T_e})
+ 
 
 
 
