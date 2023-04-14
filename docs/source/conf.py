@@ -17,10 +17,13 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.autosectionlabel',
+    'sphinxcontrib.bibtex',
     'sphinx.ext.intersphinx'
 ]
 
 autosectionlabel_prefix_document = True
+
+bibtex_bibfiles = ['refs.bib']
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
