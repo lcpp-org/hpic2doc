@@ -307,6 +307,88 @@ Therefore the :math:`A \vec x = \vec b` system of equations will be,
 
 This is for Dirichlet boundary condition on both ends. 
 
+1D Full Poisson problem: Neumann boundary condition
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Let's consider the Neumann boundary condition on left boundary,
+
+.. math::
+
+    \frac{\partial \phi}{\partial x} = g
+
+Where, :math:`g` is the value of the derivative at the boundary.
+
+Now, to deal the boundary simply, we consider a ghost node at the left of :math:`x_0` so that, :math:`x_0 - x_{-1} = x_1 - x_0`, that is, 
+even though our mesh is nonuniform (graded), we consider uniform grid for ghost node. This will make calculation easier for boundary condition. 
+So, now using central difference scheme on the boundary node and considering direction as towards left, this equation can be written as, 
+
+.. math::
+
+    \frac{\phi_{-1} - \phi_1}{2\Delta x_0} = g \notag \\
+    \implies \phi_{-1} = 2 \Delta x_0 g + \phi_1
+
+Considering a ghost node at :math:`x_{-1}` and uniform mesh for first three nodes, at the boundary node we can write,
+
+.. math::
+
+    \frac{\phi_{-1} - 2\phi_0 + \phi_1}{(\Delta x_0)^2} = (-(\frac{\rho}{\epsilon_0})|_0) \notag    \\
+    \implies \phi_{-1} - 2\phi_0 + \phi_1 = \Delta x_0^2 (-(\frac{\rho}{\epsilon_0})|_0)  \notag    \\
+    \implies 2\Delta x_0 g + \phi_1 -2\phi_0 + \phi_1 = \Delta x_0^2 (-(\frac{\rho}{\epsilon_0})|_0) \notag \\
+    \implies -2 \phi_0 + 2\phi_1 = \Delta x_0^2 (-(\frac{\rho}{\epsilon_0})|_0) - 2\Delta x_0\ g     
+
+Similar treatment at right boundary gives,
+
+.. math::
+
+    2x_{n-2} - 2x_{n-1} = \Delta x_{n-2}^2 (-(\frac{\rho}{\epsilon_0})|_{n-1}) - 2\Delta x_{n-2}\ g 
+
+Therefore the :math:`A\vec x = \vec b` system of equations will be, 
+
+.. math::
+    :label: eq_2nddev24
+
+    \begin{vmatrix}
+    -2&2&0&0&..&..&..&0\\
+    \frac{2r^2}{(r+1)}&-2r&\frac{2r}{r+1}&0&0&..&..&..\\
+    0&\frac{2r^2}{(r+1)}&-2r&\frac{2r}{r+1}&0&..&..&..\\
+    ..&..&..&..&..&..&..&..\\
+    ..&..&..&..&..&..&..&..\\
+    0&..&..&..&..&\frac{2r^2}{(r+1)}&-2r&\frac{2r}{r+1}\\
+    0&0&..&..&..&..&2&-2\\
+    \end{vmatrix} 
+    \begin{vmatrix}
+    \phi_0\\
+    \phi_1\\
+    \phi_2\\
+    ..\\
+    ..\\
+    \phi_{n-2}\\
+    \phi_{n-1}
+    \end{vmatrix} = \begin{vmatrix}
+    -((\Delta x_0)^2 (\frac{\rho}{\epsilon_0})_0) - 2g\Delta x_0\\
+    -((\Delta x_1)^2 (\frac{\rho}{\epsilon_0})_1)\\
+    -((\Delta x_2)^2 (\frac{\rho}{\epsilon_0})_2)\\
+    ..\\
+    ..\\
+    -((\Delta x_{n-2})^2 (\frac{\rho}{\epsilon_0})_{n-2})\\
+    -((\Delta x_{n-2})^2 (\frac{\rho}{\epsilon_0})_{n-1}) - 2g\Delta x_{n-2}
+    \end{vmatrix}
+
+This is for Neumann boundary condition on both ends. 
+Please note that, we can't set both the boundaries as Neumann in the implementation at the moment. 
+At least one should be Dirichlet for now. 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Finite element method Poisson equation
