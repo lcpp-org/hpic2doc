@@ -488,7 +488,8 @@ For right Neumann boundary condition (at :math:`x = x_{n-1}`), similar treatemen
     -2\delta \phi_{n-1} + 2\delta \phi_{n-2} - \frac{n_0 e^2}{\epsilon_0 k_B T_e} (\Delta x_{n-1})^2 \delta \phi_{n-1} \ exp\ (\frac{e\phi^n_{n-1}}{k_B T_e}) = \notag \\ -2\phi^n_{n-1} + 2 \phi^n_{n-2} + 2 \Delta x_{n-1}\ g + (\frac{\rho}{\epsilon_0})_{n-1} (\Delta x_{n-1})^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_{n-1})^2 \ exp\ (\frac{e\phi^n_{n-1}}{k_B T_e})
  
 
-
+2D non-uniform mesh stencil for Poisson solver
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
