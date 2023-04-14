@@ -16,12 +16,12 @@ extensions = [
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
+    'sphinxcontrib.bibtex',
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.intersphinx'
 ]
-#     'sphinxcontrib.bibtex',
 
-# bibtex_bibfiles = ['refs.bib']
+bibtex_bibfiles = ['refs.bib']
 
 autosectionlabel_prefix_document = True
 
