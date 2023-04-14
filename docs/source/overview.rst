@@ -104,6 +104,3 @@ where the sum is over species.
 
 Types of problems hPIC2 can solve
 ----------------------------------
-
-.. bibliography::
-    :all:
