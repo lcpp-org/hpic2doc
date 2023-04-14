@@ -389,10 +389,63 @@ For Boltzmann electrons, equation :eq:`eq_2nddev1` will be,
 
 Where :math:`n_0` is the electron density, :math:`e` is the elementary charge, :math:`k_B` is the Boltzmann constant and :math:`T_e` is the electron temperature. 
 
+Following similar treatment for nonuniform mesh, using equation :eq:`eq_2nddev11` we can write, 
+
+.. math::
+
+    \frac{\partial^2\phi}{\partial x^2}|_i = \frac{(\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1}}{(\Delta x_i)^2} = -(\frac{\rho}{\epsilon_0})_i + \frac{n_0 e}{\epsilon_0}\ exp\ (\frac{e\phi_i}{k_B T_e}) \notag \\
+    \implies (\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1} = -(\frac{\rho}{\epsilon_0})_i (\Delta x_i)^2 + \frac{n_0 e}{\epsilon_0} (\Delta x_i)^2 \ exp\ (\frac{e\phi_i}{k_B T_e}) \notag \\
+    \implies (\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1} + (\frac{\rho}{\epsilon_0})_i (\Delta x_i)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_i)^2 \ exp\ (\frac{e\phi_i}{k_B T_e}) = 0 \notag  \\
+    \implies F(\phi_i) =  (\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1} + (\frac{\rho}{\epsilon_0})_i (\Delta x_i)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_i)^2 \ exp\ (\frac{e\phi_i}{k_B T_e}) = 0 \notag 
+
+Considering :math:`\vec \phi = (\phi_0, \phi_1, ....., \phi_{n-1})^t`, we need to solve the following equation for :math:`\phi_i`, 
+
+.. math::
+    :label: `eq_boltzmann_nonlinear`
+
+    F_i(\vec{\phi}) =  (\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1} + (\frac{\rho}{\epsilon_0})_i (\Delta x_i)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_i)^2 \ exp\ (\frac{e\phi_i}{k_B T_e})
+
+This is a nonlinear problem and we can solve it using Newton-Raphson method. With some initial guess :math:`x^0`, accoding to Newton-Raphson method, consecutive iterative solution will be, 
+
+.. math::
+
+    x^{n+1} = x^{n} - \frac{f(x^{n})}{f^{'}(x^{n})}
+    \implies f^{'}(x^{n}) (x^{n} - x^{n+1}) = f(x^{n})
+
+For system of equations :math:`f(\vec x) = \vec(0)`, this equation becomes, 
+
+.. math::
+
+    f^{'}(\vec x^n) (\vec x^n - \vec x^{n+1}) = f(\vec x^n)
+
+Considering, :math:`\delta \vec x = \vec x^n - \vec x^{n+1}`, the equation becomes, 
+
+.. math::
+
+    f^{'}(\vec x^n) \delta \vec x = f(\vec x^n) \notag \\
+    \implies \frac{\partial f(\vec x^n)}{\partial \vec x^n} \delta \vec x = f(\vec x^n)
 
 
+Applying this treatment on equation :eq:`eq_boltzmann_nonlinear` for :math:`i^{th}` term of potential, we can write, 
 
+.. math::
+    :label: 'eq_boltz_elec'
 
+    (\frac{2r^2}{r+1})\delta \phi_{i-1}-2r\delta \phi_i+(\frac{2r}{r+1})\delta \phi_{i+1} - \frac{n_0 e^2}{\epsilon_0 k_B T_e} (\Delta x_i)^2 \delta \phi_i \ exp\ (\frac{e\phi^n_i}{k_B T_e}) = \notag \\ (\frac{2r^2}{r+1})\phi^n_{i-1}-2r\phi^n_i+(\frac{2r}{r+1})\phi^n_{i+1} + (\frac{\rho}{\epsilon_0})_i (\Delta x_i)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_i)^2 \ exp\ (\frac{e\phi^n_i}{k_B T_e})
+
+Solving this equation for :math:`\delta \vec \phi` for all nodes and computing :math:`\vec \phi^{n+1} = \vec \phi^n - \delta \vec \phi` for consecutive iteration 
+we can solve for :math:`\vec \phi` for a required tolerance. 
+
+ The Dirichlet boundary condition at each time steps for the left boundary can be applied as,
+
+ .. math::
+     :label: 'eq_dirichlet'
+
+     \delta \phi_0 = \phi^n_0 - left\ boundary\ value \notag \\
+     \implies \delta \phi_0 = \phi^n_0 - C
+
+ Where :math:`C` is the left boundary value.
+ Similar condition is also applicable for Dirichlet right boundary.
 
 
 
