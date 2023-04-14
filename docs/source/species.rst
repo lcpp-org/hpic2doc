@@ -38,7 +38,7 @@ approximation be described simply considering a balance between
 electrostatic forces and pressure forces on an isothermal fluid:
 :math:`-k_B T_e \nabla n_e + e n_e\nabla \phi \approx 0`, with usual
 meaning of symbols as in
-`Chen <https://doi.org/10.1007/978-3-319-22309-4_1>`_.
+Chen.
 Integrating the balance of forces leads to a relation between the
 electron particle density and the plasma potential in the form of
 equation
@@ -84,8 +84,8 @@ self-consistent numerical scheme to calculate :math:`n_0^{k+1}` is
 required to maintain charge conservation. Breaking charge conservation
 leads to numerical oscillations and simulation divergence.
 
-The adoption of Boltzmann electrons always require to enforce 
-charge conservation through a dedicated scheme. 
+The adoption of Boltzmann electrons always require to enforce
+charge conservation through a dedicated scheme.
 Details of the charge conservation scheme are described in the
 paper `Elias and Curreli <https://doi.org/10.1016/j.jcp.2020.109320>`_,
 and are briefly described below.
@@ -152,7 +152,7 @@ assumes the electron distribution is at a Maxwellian thermal
 equilibrium. For a Maxwellian thermal distribution, with a mean thermal
 electron velocity :math:`\mathbf{u_e}=\sqrt{\frac{8 K_b T_e}{\pi m_e}}`,
 the current density at the location :math:`\mathbf{x}` can,
-as in `Chen <https://doi.org/10.1007/978-3-319-22309-4_1>`_,
+as in Chen,
 be expressed as
 
 .. math::

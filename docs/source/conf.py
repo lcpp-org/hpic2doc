@@ -19,6 +19,9 @@ extensions = [
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.intersphinx'
 ]
+#     'sphinxcontrib.bibtex',
+
+# bibtex_bibfiles = ['refs.bib']
 
 autosectionlabel_prefix_document = True
 
