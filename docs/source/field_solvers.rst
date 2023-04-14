@@ -378,6 +378,16 @@ This is for Neumann boundary condition on both ends.
 Please note that, we can't set both the boundaries as Neumann in the implementation at the moment. 
 At least one should be Dirichlet for now. 
 
+1D Boltzmann electron problem
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For Boltzmann electrons, equation :eq:`eq_2nddev1` will be, 
+
+.. math::
+    
+    \Delta^2 \phi (x) = -\frac{\rho}{\epsilon_0} + \frac{n_0 e}{\epsilon_0}\ exp\ (\frac{e\phi}{k_B T_e})
+
+Where :math:`n_0` is the electron density, :math:`e` is the elementary charge, :math:`k_B` is the Boltzmann constant and :math:`T_e` is the electron temperature. 
 
 
 
