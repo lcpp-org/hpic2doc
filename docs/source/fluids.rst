@@ -112,7 +112,7 @@ so that
 
 .. math::
 
-    u_h|_T = \sum_{i=1}^N u_i \psi_i,
+    u_h|_T (\vec{x}, t) = \sum_{i=1}^N u_i(t) \psi_i(\vec{x}),
 
 for some :math:`u_i \in \mathbb{R}`.
 :eq:`fluids:dg_weak_form` becomes
@@ -147,16 +147,17 @@ be the nonlinear maps defined by
     K_{\mathrm{flux}, j} (\vec{y}) =
     \int_T \vec{F}\left( \sum_{i=1}^N y_i \psi_i \right) \cdot \nabla \psi_j \, \mathrm{d} V
 
-    K_{\mathrm{source}, j} (\vec{y}) =
+    K_{\mathrm{source}, j} (\vec{y}, t) =
     \int_T G\left( \sum_{i=1}^N y_i \psi_i \right) \psi_j \mathrm{d} V
 
-Then, with :math:`\vec{u} = (u_1, \ldots, u_N)^t`,
+Then, with :math:`\vec{u} = (u_1, \ldots, u_N)^t`
+and :math:`R = M^{-1} (K_{\mathrm{face}} + K_{\mathrm{flux}} + K_{\mathrm{source}})`,
 :eq:`fluids:finite_weak_form` can be written as
 
 .. math::
 
     \frac{\mathrm{d} \vec{u}}{\mathrm{d} t} =
-    M^{-1} (K_{\mathrm{face}} + K_{\mathrm{flux}} + K_{\mathrm{source}}) (\vec{u}).
+    R (\vec{u}, t).
 
 Since the basis functions are usually taken to be polynomials,
 these integrals are typically computed using Gaussian quadrature.
