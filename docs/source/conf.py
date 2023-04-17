@@ -9,6 +9,10 @@ author = 'lcpp'
 release = '0.1'
 version = '0.1.0'
 
+# Custom style
+def setup(app):
+    app.add_stylesheet('css/custom.css')
+
 # -- General configuration
 
 extensions = [
