@@ -159,6 +159,7 @@ and :math:`R = M^{-1} (K_{\mathrm{face}} + K_{\mathrm{flux}} + K_{\mathrm{source
 :eq:`fluids:finite_weak_form` can be written as
 
 .. math::
+    :label: fluids:ode
 
     \frac{\mathrm{d} \vec{u}}{\mathrm{d} t} =
     R (\vec{u}, t).
@@ -254,7 +255,7 @@ Fluids are associated with a signal speed timescale that goes as
 
 .. math::
 
-    t_{\text{signal}} = \frac{h}{c + u},
+    t_{\text{s}} = \frac{h}{c + u},
 
 where :math:`h` is a characteristic length scale of the system
 (usually the size of a mesh element),
@@ -299,6 +300,44 @@ In fluid solvers, the time step is usually chosen to be
 where :math:`C > 0` is called the Courant-Friedrichs-Lewy (CFL) number
 and :math:`t_{\text{min}}` is the minimum timescale in the simulation.
 Most explicit RK methods require :math:`C \leq 1`.
+Implicit methods may permit much large CFL numbers.
+
+Fluids in plasmas are associated with widely varying timescales.
+In most problems, :math:`t_{\text{p}} \ll t_{\text{c}} \ll t_{\text{s}}`.
+In this case, we say that the stiffest timescale is associated with the
+Lorentz force source term.
+It is possible to implicitly evolve the stiff terms while explicitly
+evolving the non-stiff ones.
+This means that the time step is no longer constrained by the stiff timescales,
+but the non-stiff terms are still efficiently evolved explicitly.
+Such methods are called IMplicit-EXplicit (IMEX).
+Suppose that we can write the operator in :eq:`fluids:ode` as
+
+.. math::
+
+    R = R_{\text{E}} + R_{\text{I}},
+
+where :math:`R_{\text{E}} = R_{\text{E}}(\vec{u}, t)`
+contains the terms to be evolved explicitly and
+:math:`R_{\text{I}} = R_{\text{I}} (\vec{u}, t)`
+contains the terms to be evolved implicitly.
+(This is indeed possible for the Euler equations coupled to the
+Lorentz force.)
+IMEX methods proceed as
+
+.. math::
+
+    \vec{u}^{n+1} = \vec{u}^n + \Delta t \sum_{i=1}^s b_i \vec{k}_i + \Delta t \sum_{i=1}^s \hat{b}_i \hat{k}_i,
+
+where
+
+.. math::
+
+    \vec{k}_i = R_{\text{I}}(\vec{u}^n + \Delta t \sum_{j=1}^s a_{ij} \vec{k}_j, t^n + c_i \Delta t),
+
+    \hat{k}_i = R_{\text{E}}(\vec{u}^n + \Delta t \sum_{j=1}^{i-1} \hat{a}_{ij} \hat{k}_j, t^n + \hat{c}_i \Delta t),
+
+and the hatted RK constants form a lower triangular Butcher tableau.
 
 Riemann solvers
 ---------------
