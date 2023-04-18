@@ -491,8 +491,92 @@ For right Neumann boundary condition (at :math:`x = x_{n-1}`), similar treatemen
 2D non-uniform mesh stencil for Poisson solver
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
+This section has not been written yet.
 
 
 Finite element method Poisson equation
 ---------------------------------------
+
+In hPIC2 the electric field acting on charged particles 
+can be evaluated from a finite-element solution of the 
+electrostatic Poisson equation,
+
+.. math::
+   :label: EqField001
+   
+   \nabla^{2}\phi = -\rho/\epsilon_{0} 
+   
+
+.. math::
+   :label: EqField001bc1
+
+   \phi = V_{i} \quad \text{on} \quad \Gamma_{1,i}
+   
+.. math::
+   :label: EqField001bc1
+   
+   \frac{\partial \phi}{\partial n} = g \quad \text{on} \quad \Gamma_{2} 
+
+where 
+:math:`\phi` is the electric potential, 
+:math:`\rho` the charge density 
+
+.. math::
+   :label: EqChargeDenssdfasfd
+
+   \rho = \sum_s e Z_s n_s
+
+and the two boundary conditions are either Dirichlet, Neumann,
+or combinations of them imposed on the domain boundary :math:`\Gamma`. 
+
+The weak formulation of the electrostatic problem of
+Eq. :eq:`EqField001`, with the conditions
+Eq. `[EqField001bc1] <#EqField001bc1>`__ and
+`[EqField001bc2] <#EqField001bc2>`__ at the boundaries, is obtained
+using standard variational methods and Green’s formulas:
+
+.. math::
+   :label: EqField002 
+
+   -\int_{\Omega} \nabla \phi \cdot \nabla \psi dV   +   \int_{\Gamma} \frac{\partial \phi}{\partial n} \psi dS + \int_{\Omega}\frac{\rho}{\epsilon_0} \psi dV = 0
+
+where :math:`\psi` is the test function, :math:`\Omega` is the domain
+volume and :math:`\Gamma` is the boundary of :math:`\Omega`. In the
+finite-element approach, the solution space is replaced by a sequence of
+finite-dimensional subspaces, and the approximated solution
+:math:`\phi^{s}`, where the upper script :math:`s` is the number of
+subspaces, is evaluated as a linear combination of the basis functions
+:math:`\xi`,
+
+.. math::
+   :label: EqField003
+
+   \phi^{s} = \sum_{j=1}^{N_{b}} \alpha_{j} \xi_{j}^{s}
+
+where :math:`\alpha_{j}` are the coefficients of the combination, and
+:math:`N_{b}` is the number of degree of freedom of the basis functions.
+The approximated solution (Eq. `[EqField003] <#EqField003>`__) of the
+weak electrostatic problem (Eq. `[EqField002] <#EqField002>`__) requires
+the evaluation of the coefficients :math:`\alpha_{j}`, obtained by the
+inversion of the matrix equation
+
+.. math:: \textbf{S} \alpha = \textbf{y}
+
+where the matrix :math:`\textbf{S}` and the source vector
+:math:`\textbf{y}` are:
+
+.. math::
+
+   \begin{aligned}
+   & S_{ij} = \int_{\Omega} \nabla \xi_{i}^{s} \cdot \nabla \xi_{j}^{s} d V\\
+   & y_{i}  = \int_{\Omega} \rho \xi_{i}^{s} dV
+   \end{aligned}
+
+The finite-element solution :math:`\phi^{s}` approximates directly the
+solution :math:`\phi`, an approach substantially different than Finite
+Differences, where the discretization procedure involves the
+differential operator. Furthermore, thanks to the weak formulation, the
+boundary conditions are included inside the formulation itself.
+Eq. `[EqField002] <#EqField002>`__ has been solved using Galerkin
+discretization, by means of first-order basis functions, on the same
+nodes of the 2D mesh of tetrahedra used for particles.
