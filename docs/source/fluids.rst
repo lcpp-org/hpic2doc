@@ -3,6 +3,10 @@ Fluids
 
 This page desecribes the numerical methods used to solve the Euler
 equations described in the :ref:`species:Euler fluid` section.
+The fluid equations are solved broadly using the method of lines,
+in which the system is first partially discretized in space,
+and the resulting system of ordinary differential equations
+is then discretized in time.
 
 Discontinuous Galerkin spatial
 ------------------------------
@@ -164,6 +168,137 @@ these integrals are typically computed using Gaussian quadrature.
 
 Runge-Kutta Time Stepping and Sub-stepping
 ------------------------------------------
+
+Now that we have reduced our problem to a coupled system of ordinary
+differential equations,
+we may use one of a number of numerical methods for discretizing in time.
+Runge-Kutta (RK) methods compute approximate solutions at intermediate
+stages between the current simulation time step and the next time step,
+then evaluate the solution at the next time step as a weighted average
+of the estimates at the stages.
+This is in contrast to linear multistep methods,
+which use the solution from perhaps several previous time steps to
+evaluate the solution at the next time step.
+RK methods have the distinct advantage that initial conditions are simpler to
+specify.
+
+Throughout this section,
+let :math:`\vec{u}^n = \vec{u}(t_0 + n \Delta t)`
+and :math:`t^n = t_0 + n \Delta t`,
+where :math:`t_0` is the initial time
+and :math:`\Delta t` is the time step size.
+Generally, RK methods proceed as
+
+.. math::
+
+    \vec{u}^{n+1} = \vec{u}^n + \Delta t \sum_{i=1}^s b_i \vec{k}_i,
+
+where
+
+.. math::
+
+    \vec{k}_i = R(\vec{u}^n + \Delta t \sum_{j=1}^s a_{ij} \vec{k}_j, t^n + c_i \Delta t)
+
+for real :math:`c_i`, :math:`a_{ij}`, and :math:`b_i`.
+An RK method is uniquely specified by the choices of these constants,
+which are often presented in a Butcher tableau
+
+.. math::
+    :nowrap:
+
+    \begin{array}{c|cccc}
+    c_1 & a_{11} & a_{12} & \cdots & a_{1s} \\
+    c_2 & a_{21} & a_{22} & \cdots & a_{2s} \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    c_s & a_{s1} & a_{s2} & \cdots & a_{ss} \\
+    \hline
+        & b_1 & b_2 & \cdots & b_s
+    \end{array}
+
+The subset of explicit RK methods is particularly important for fluid solvers
+in plasma physics.
+For explicit methods, the stages are of the form
+
+.. math::
+
+    \vec{k}_i = R(\vec{u}^n + \Delta t \sum_{j=1}^{i-1} a_{ij} \vec{k}_j, t^n + c_i \Delta t),
+
+*i.e.*, a given stage depends only on previous stages.
+Butcher tableaus for explicit RK methods therefore appear lower triangular
+
+.. math::
+    :nowrap:
+
+    \begin{array}{c|cccc}
+    c_1 \\
+    c_2 & a_{21} \\
+    \vdots & \vdots & \ddots \\
+    c_s & a_{s1} & \cdots & a_{s,s-1} \\
+    \hline
+        & b_1 & \cdots & b_{s-1} & b_s
+    \end{array}
+
+RK methods that are not explicit are implicit.
+Implicit methods require the solution of systems of equations at at least
+some stages,
+which, in the case of the Euler equations, will be nonlinear.
+However, explicit methods tend to have much smaller regions of
+numerical stability than implicit methods;
+that is, explicit methods typically demand a smaller time step for stability.
+
+While different explicit RK methods have different regions of stability,
+the stable time step is typically a linear function of the characteristic
+timescales of the system.
+We shall simply state them here.
+Fluids are associated with a signal speed timescale that goes as
+
+.. math::
+
+    t_{\text{signal}} = \frac{h}{c + u},
+
+where :math:`h` is a characteristic length scale of the system
+(usually the size of a mesh element),
+:math:`c` is the sound speed,
+and :math:`u` is the bulk or advection speed of the fluid.
+Generally, the sound speed can be computed as
+
+.. math::
+
+    c = \sqrt{\frac{\partial p}{\partial (mn)}},
+
+where the derivative is computed assuming constant entropy.
+For the ideal gas law EOS presented in the :ref:`species:Euler fluid` section,
+this reduces to
+
+.. math::
+
+    c = \sqrt{\gamma \frac{p}{mn}}.
+
+The source terms :math:`G` in the Euler equations may introduce additional
+timescales.
+For example, the timescale associated with the electric field acceleration
+in the Lorentz force term is the plasma oscillation period
+
+.. math::
+
+    t_{\text{p}} = 2 \pi \sqrt{\frac{m \epsilon_0}{n q^2}}.
+
+Similarly, the timescale associated with the magnetic field
+in the Lorentz force term is the cyclotron period
+
+.. math::
+
+    t_{\text{c}} = \frac{2 \pi m}{q B}.
+
+In fluid solvers, the time step is usually chosen to be
+
+.. math::
+
+    \Delta t = C t_{\text{min}},
+
+where :math:`C > 0` is called the Courant-Friedrichs-Lewy (CFL) number
+and :math:`t_{\text{min}}` is the minimum timescale in the simulation.
+Most explicit RK methods require :math:`C \leq 1`.
 
 Riemann solvers
 ---------------
