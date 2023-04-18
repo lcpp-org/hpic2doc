@@ -463,5 +463,60 @@ A typical choice is :cite:`davis1988simplified`
 Boundary Conditions
 -------------------
 
+Boundary conditions are typically applied by considering a "ghost" fluid state
+just on the outside of the domain and computing the resulting numerical flux
+in :eq:`fluids:numerical_flux`.
+Some examples are described below.
+
+Wall boundary conditions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+An impermeable wall boundary condition can be modeled by making the ghost
+fluid state equal to the inner state,
+but with a bulk velocity that has been reversed normal to the boundary.
+That is, if the state just inside of the wall is
+
+.. math::
+
+    u^- =
+    \begin{Bmatrix}
+    mn^- \\
+    mn\vec{u}^- \\
+    nmE^-
+    \end{Bmatrix},
+
+the state just outside of the wall should be set to
+
+.. math::
+
+    u^+ =
+    \begin{Bmatrix}
+    mn^- \\
+    mn\vec{u}^- - 2 \hat{n} ( mn \vec{u} \cdot \hat{n}) \\
+    m n E^-
+    \end{Bmatrix}.
+
+This ensures that the boundary effectively acts as a wall.
+
+Copy-out boundary conditions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Outflow boundary conditions are notoriously difficult to impose for
+Euler fluids.
+A crude approximation is to simply copy the inner fluid state to the ghost
+state and compute the resulting numerical flux;
+that is, :math:`u^+ = u^-`.
+This is perfectly adequate for supersonic flows normal to the boundary,
+whose characteristics all extend out of the domain.
+For subsonic flows, this type of boundary will spuriously reflect some waves.
+
+Far-field boundary conditions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Another possible method for handling outflow boundaries is to specify that
+the ghost state has zero density, momentum density, and total energy density.
+If generalized to possibly nonzero ghost states,
+this boundary condition approximates contact with a static fluid reservoir.
+
 Slope limiters
 --------------
