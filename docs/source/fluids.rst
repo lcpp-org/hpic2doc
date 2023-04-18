@@ -8,8 +8,8 @@ in which the system is first partially discretized in space,
 and the resulting system of ordinary differential equations
 is then discretized in time.
 
-Discontinuous Galerkin spatial
-------------------------------
+Discontinuous Galerkin spatial discretization
+----------------------------------------------
 
 Discontinuous Galerkin (DG) methods can be thought of as finite element
 methods that incorporate aspects of the finite volume method.
@@ -72,6 +72,7 @@ arising from the solution to the Riemann problem on that face,
 so that
 
 .. math::
+    :label: fluids:numerical_flux
 
     \int_{\partial T} \vec{F} \cdot \hat{n} \psi \, \mathrm{d} A \approx
     \int_{\partial T} h(u^-, u^+) \psi \, \mathrm{d} A,
@@ -355,6 +356,86 @@ interleaved PIC-fluid time stepper.
 
 Riemann solvers
 ---------------
+
+As desecribed in the `Discontinuous Galerkin spatial discretization`_ section,
+the numerical flux through interfaces is approximated in
+:eq:`fluids:numerical_flux`
+as the solution to a Riemann problem.
+Exact solutions to Riemann problems for the Euler equations can be difficult
+to compute,
+so a vast body of literature has been dedicated to approximate Riemann solvers
+:cite:`toro2013riemann`.
+Such Riemann solvers are used throughout the field of computational
+fluid dynamics,
+and the choice of Riemann solver can mean the difference between a
+well resolved, stable solution and numerical catastrophes.
+
+A Riemann problem is an initial value problem for a conservation equation
+with piecewise constant inital conditions consisting of a
+single discontinuity at the origin.
+Consider :eq:`fluids:conservation` in an infinite domain with
+initial data
+
+.. math::
+
+    u(\vec{x}, 0) =
+    \begin{cases}
+        u_{\text{L}} & \text{if} & x < 0, \\
+        u_{\text{R}} & \text{if} & x > 0.
+    \end{cases}
+
+We are interested in the solution at the origin at some later time :math:`t>0`.
+In fact, in :eq:`fluids:numerical_flux`,
+we only need the *flux* of the solution at the origin.
+Many Riemann solvers return the approximate flux solution without
+stating the solution itself.
+
+Some examples of Riemann solvers are described below.
+
+Harten-Lax-van Leer solver
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Harten-Lax-van Leer (HLL) solver estimates the state as
+
+.. math::
+
+    u(\vec{x}, t) =
+    \begin{cases}
+        u_{\text{L}} & \text{if} & \frac{x}{t} \leq s_{\text{L}}, \\
+        u_{\text{HLL}} & \text{if} & s_{\text{L}} \leq \frac{x}{t} \leq s_{\text{R}}, \\
+        u_{\text{R}} & \text{if} & \frac{x}{t} \geq s_{\text{R}},
+    \end{cases}
+
+where the :math:`s_{\cdot}` are signal speeds on either side of the
+discontinuity and
+
+.. math::
+
+    u_{\text{HLL}} = \frac{s_{\text{R}} u_{\text{R}} - s_{\text{L}} u_{\text{L}} + F_x(u_\text{L}) - F_x(u_\text{R})}{s_{\text{R}} - s_{\text{L}}}.
+
+By using the Rankine-Hugoniot conditions, we can compute the
+corresponding fluxes for use as the numerical DG flux as
+
+.. math::
+
+    h_{\text{HLL}} (u^-, u^+) =
+    \begin{cases}
+        \vec{F}(u^-) \cdot \hat{n} & \text{if} & 0 \leq s^-, \\
+        \frac{\left[ s^+ \vec{F}(u^-) - s^- \vec{F}(u^+) \right] \cdot \hat{n} + s^- s^+ (u^+ - u^-)}{s^+ - s^-} & \text{if} & s^- \leq 0 \leq s^+, \\
+        \vec{F}(u^+) \cdot \hat{n} & \text{if} & 0 \geq s^+.
+    \end{cases}
+
+There are a number of possible estimates for the signal speeds.
+A simple choice is :cite:`davis1988simplified`
+
+.. math::
+
+    s^- = \vec{u}^- \cdot \hat{n} - c^-,
+
+    s^+ = \vec{u}^+ \cdot \hat{n} + c^+,
+
+where :math:`\vec{u}^{\cdot}` and :math:`c^{\cdot}`
+are the advection velocity and sound speed, respectively.
 
 Boundary Conditions
 -------------------
