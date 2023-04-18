@@ -437,6 +437,29 @@ A simple choice is :cite:`davis1988simplified`
 where :math:`\vec{u}^{\cdot}` and :math:`c^{\cdot}`
 are the advection velocity and sound speed, respectively.
 
+Rusanov solver
+~~~~~~~~~~~~~~
+
+The Rusanov solver :cite:`rusanov1961calculation`,
+also known as the local Lax-Friedrichs (LLF) solver,
+is an extremely robust though overly diffusive solver
+that can be considered a special case of the HLL solver
+for certain choices of signal speeds.
+The numerical DG flux is given by
+
+.. math::
+
+    h_{\text{LLF}} (u^-, u^+) =
+    \frac{1}{2} \left[ \vec{F}(u^-) + \vec{F}(u^+) \right] \cdot \hat{n} -
+    \frac{1}{2} s^* (u^+ - u^-),
+
+where :math:`s^*` is a single signal speed.
+A typical choice is :cite:`davis1988simplified`
+
+.. math::
+
+    s^* = \max \{ |\vec{u}^-| + c^-, |\vec{u}^+| + c^+ \}.
+
 Boundary Conditions
 -------------------
 
