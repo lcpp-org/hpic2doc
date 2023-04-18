@@ -339,6 +339,20 @@ where
 
 and the hatted RK constants form a lower triangular Butcher tableau.
 
+The use of an RK method allows us to adaptively change the time step
+during the simulation.
+If enabled, hPIC2 will perform a reduction over all fluid degrees of freedom
+across the entire domain to determine the minimum numerical timescale,
+and thence a suitable time step.
+hPIC2 will then choose the minimum between this suitable fluid time step
+and the overall PIC time step.
+If the fluid's suitable time step is less than the PIC time step,
+this process will continue until the fluid reaches the next PIC time step.
+This process is called adaptive sub-stepping.
+
+LTM after limiters are described, draw a diagram depicting the
+interleaved PIC-fluid time stepper.
+
 Riemann solvers
 ---------------
 
