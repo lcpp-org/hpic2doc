@@ -300,7 +300,7 @@ In fluid solvers, the time step is usually chosen to be
 where :math:`C > 0` is called the Courant-Friedrichs-Lewy (CFL) number
 and :math:`t_{\text{min}}` is the minimum timescale in the simulation.
 Most explicit RK methods require :math:`C \leq 1`.
-Implicit methods may permit much large CFL numbers.
+Implicit methods may permit much larger CFL numbers.
 
 Fluids in plasmas are associated with widely varying timescales.
 In most problems, :math:`t_{\text{p}} \ll t_{\text{c}} \ll t_{\text{s}}`.
