@@ -486,9 +486,33 @@ and the overall PIC time step.
 If the fluid's suitable time step is less than the PIC time step,
 this process will continue until the fluid reaches the next PIC time step.
 This process is called adaptive sub-stepping.
+The algorithm is shown below for an explicit RK method.
 
-LTM after limiters are described, draw a diagram depicting the
-interleaved PIC-fluid time stepper.
+.. pcode::
+    :linenos:
+
+    \begin{algorithm}
+    \caption{Fluid-PIC time stepping, step $n$ to $n+1$}
+    \begin{algorithmic}
+        \state Push particles: $\rho_{\text{PIC}}^n \rightarrow \rho_{\text{PIC}}^{n+1}$
+        \state $t^* \gets t^n$
+        \state $\vec{u}^* \gets \vec{u}^n$
+        \while{$t^* < t^{n+1}$}
+            \state Determine a good fluid time step $\Delta t$
+            \state $\Delta t \gets \min \{ \Delta t, t^{n+1} - t^* \}$
+            \for{$i \gets 1$ \TO $s$}
+                \state $\vec{u}_i \gets \vec{u}^* + \Delta t \sum_{j=1}^{i-1} a_{ij} \vec{k}_j$
+                \state $\tilde{u}_i \gets L(\vec{u}_i)$
+                \state Solve for stage potential: $- \epsilon_0 \Delta \phi_i = \rho_{\text{PIC}}^{n+1} + \tilde{\rho}_{\text{fluid},i}$
+                \state $\vec{k}_i \gets R(\tilde{u}_i, t^* + c_i \Delta t)$ using stage potential $\phi_i$
+            \endfor
+            \state $\vec{u}^* \gets L \left( \vec{u}^* + \Delta t \sum_{i=1}^s b_i \vec{k}_i \right)$
+            \state $t^* \gets t^* + \Delta t$
+        \endwhile
+        \state $\vec{u}^{n+1} \gets \vec{u}^*$
+        \state Solve for step potential: $- \epsilon_0 \Delta \phi^{n+1} = \rho_{\text{PIC}}^{n+1} + \rho_{\text{fluid}}^{n+1}$
+    \END{ALGORITHMIC}
+    \END{ALGORITHM}
 
 Riemann solvers
 ---------------

@@ -7,3 +7,4 @@ build:
   jobs:
     post_create_environment:
       - pip install sphinxcontrib-bibtex
+      - pip install sphinxcontrib-pseudocode
