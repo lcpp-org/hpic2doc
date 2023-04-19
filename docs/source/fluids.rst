@@ -194,6 +194,8 @@ Limiters reduce either the fluxes (flux limiters) or the states themselves
 Limiters are generally difficult to extend to high-order DG spatial
 discretizations,
 but recent research has expanded the number of options.
+Throughout this page, we will denote the action of the limiter as :math:`L`,
+so that a limited solution is given by :math:`\tilde{u} = L(\vec{u})`.
 
 Moe limiter
 ~~~~~~~~~~~~
@@ -309,12 +311,14 @@ and :math:`\Delta t` is the time step size.
 Generally, RK methods proceed as
 
 .. math::
+    :label: fluids:rk_next_step
 
     \vec{u}^{n+1} = \vec{u}^n + \Delta t \sum_{i=1}^s b_i \vec{k}_i,
 
 where
 
 .. math::
+    :label: fluids:stages
 
     \vec{k}_i = R(\vec{u}^n + \Delta t \sum_{j=1}^s a_{ij} \vec{k}_j, t^n + c_i \Delta t)
 
@@ -456,6 +460,21 @@ where
     \hat{k}_i = R_{\text{E}}(\vec{u}^n + \Delta t \sum_{j=1}^{i-1} \hat{a}_{ij} \hat{k}_j, t^n + \hat{c}_i \Delta t),
 
 and the hatted RK constants form a lower triangular Butcher tableau.
+
+When limiters are used, it is actually more common to use limited values
+in the stages, so that :eq:`fluids:stages` becomes
+
+.. math::
+
+    \vec{k}_i = R\left( L \left( \vec{u}^n + \Delta t \sum_{j=1}^s a_{ij} \vec{k}_j \right) , t^n + c_i \Delta t \right)
+
+and :eq:`fluids:rk_next_step` becomes
+
+.. math::
+
+    \vec{u}^{n+1} = L \left( \vec{u}^n + \Delta t \sum_{i=1}^s b_i \vec{k}_i \right),
+
+for some choice of limiter :math:`L`.
 
 The use of an RK method allows us to adaptively change the time step
 during the simulation.
