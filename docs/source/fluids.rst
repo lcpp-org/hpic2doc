@@ -168,6 +168,123 @@ and :math:`R = M^{-1} (K_{\mathrm{face}} + K_{\mathrm{flux}} + K_{\mathrm{source
 Since the basis functions are usually taken to be polynomials,
 these integrals are typically computed using Gaussian quadrature.
 
+Slope limiters
+--------------
+
+Godunov's theorem :cite:`godunov1959finite` states that a linear, monotone
+scheme for partial differential equations can be at most first-order accurate.
+The contrapositive of this statement is that linear high-order schemes
+necessarily introduce spurious oscillations,
+Gibbs phenomena, that do not appear in the exact solutions.
+Though the RKDG discretization of the Euler equations is far from linear,
+the specter of Godunov's theorem haunts us still:
+the scheme suffers from Gibbs phenomena near discontinuities.
+
+Many techniques have been introduced throughout the computational fluid
+dynamics literature to reduce these oscillations.
+Artificial viscosity introduces non-physical diffusive terms to the Euler
+equations that are mostly quiescent in smooth regions but gradually
+turn on near discontinuities in order to spread out shocks
+:cite:`vonneumann1950method`.
+Weighted essentially non-oscillatory schemes modify the polynomial interpolation
+stencil in areas near discontinuities in order to reduce oscillations
+:cite:`liu1994weighted`.
+Limiters reduce either the fluxes (flux limiters) or the states themselves
+(slope limiters) to reasonable values where gradients are great.
+Limiters are generally difficult to extend to high-order DG spatial
+discretizations,
+but recent research has expanded the number of options.
+
+Moe limiter
+~~~~~~~~~~~~
+
+The limiter due to Moe *et al.* is simple to implement and generalizable
+to RKDG schemes of arbitrary order :cite:`moe2015simple`.
+The procedure is as follows:
+
+#. Select a set of variables to use for checking gradients, :math:`w`.
+   The authors suggest using primitive variables in fluid dynamics
+   because of their Galilean invariance.
+   For the Euler equations, the primitive variables are the mass density
+   :math:`mn`,
+   the bulk velocity :math:`\vec{u}`,
+   and the pressure :math:`p`.
+   Also, for each element :math:`i`, select points :math:`\chi_i` at which
+   :math:`w` will be interpolated to check cell extrema.
+   The authors suggest using corners and both internal and edge quadrature
+   points,
+   *i.e.*, the points used for the numerical integration of the integrals
+   in :eq:`fluids:dg_weak_form`.
+
+#. For each mesh element :math:`i` and each component :math:`l` of :math:`w`,
+   compute the cell-local extrema of :math:`w` as
+
+   .. math::
+
+      w_{M_i}^l = \max_{\vec{x} \in \chi_i} \left\{ w^l(\vec{x}) \right\},
+
+      w_{m_i}^l = \min_{\vec{x} \in \chi_i} \left\{ w^l(\vec{x}) \right\}.
+
+#. For each mesh element :math:`i` and each component :math:`l` of :math:`w`,
+   compute extrema over the set of neighbors :math:`N_i`, excluding
+   the element :math:`i` itself, as
+
+   .. math::
+
+      M_i^l = \max \left\{ \bar{w}_i^l + \alpha(h), \max_{j \in N_i} \left\{ w_{M_j}^l \right\} \right\},
+
+      m_i^l = \min \left\{ \bar{w}_i^l - \alpha(h), \min_{j \in N_i} \left\{ w_{m_j}^l \right\} \right\},
+
+   where :math:`\bar{w}_i^l` is the element average of :math:`w^l`
+   in element :math:`i`
+   and :math:`\alpha` is a function that adds a tolerance that decreases
+   with characteristic element size :math:`h`.
+   The authors generally suggest the use of
+
+   .. math::
+
+      \alpha(h) = 500 h^{3/2},
+
+   but in examples with extreme gradients, they reduce the constant
+   in front while maintaining the :math:`h^{3/2}` dependence.
+   The authors also suggest defining :math:`N_i` to be the set of elements
+   that share a common edge with element :math:`i` for Cartesian grids
+   and the set of elements that share a common vertex with element :math:`i`
+   for unstructured meshes.
+   However, the additional coding difficulty of identifying elements sharing
+   a common vertex means that hPIC2 simply always looks for common edges.
+   The authors warn that the results are more diffusive,
+   which is acceptable.
+
+#. For each element :math:`i`, compute
+
+   .. math::
+
+      \theta_{M_i} = \min_l \left\{ \phi \left( \frac{M_i^l - \bar{w}_i^l}{w_{M_i}^l - \bar{w}_i^l} \right) \right\},
+
+      \theta_{m_i} = \min_l \left\{ \phi \left( \frac{m_i^l - \bar{w}_i^l}{w_{m_i}^l - \bar{w}_i^l} \right) \right\},
+
+   where :math:`\phi` is a cutoff function.
+   The authors suggest the use of the function
+
+   .. math::
+
+      \phi(y) = \min \left\{ \frac{y}{1.1}, 1 \right\}.
+
+#. For each element :math:`i`, compute
+
+   .. math::
+
+      \theta_i = \min \{ 1, \theta_{m_i}, \theta_{M_i} \}.
+
+#. For each element :math:`i`,
+   limit the finite element solution of the conservative variables
+   :math:`u_h` as
+
+   .. math::
+
+      \tilde{u}_h|_{T_i} (\vec{x}, t) = \bar{u}_i + \theta_i \left( u_h|_{T_i} ( \vec{x}, t) - \bar{u}_i \right).
+
 Runge-Kutta Time Stepping and Sub-stepping
 ------------------------------------------
 
@@ -517,120 +634,3 @@ Another possible method for handling outflow boundaries is to specify that
 the ghost state has zero density, momentum density, and total energy density.
 If generalized to possibly nonzero ghost states,
 this boundary condition approximates contact with a static fluid reservoir.
-
-Slope limiters
---------------
-
-Godunov's theorem :cite:`godunov1959finite` states that a linear, monotone
-scheme for partial differential equations can be at most first-order accurate.
-The contrapositive of this statement is that linear high-order schemes
-necessarily introduce spurious oscillations,
-Gibbs phenomena, that do not appear in the exact solutions.
-Though the RKDG discretization of the Euler equations is far from linear,
-the specter of Godunov's theorem haunts us still:
-the scheme suffers from Gibbs phenomena near discontinuities.
-
-Many techniques have been introduced throughout the computational fluid
-dynamics literature to reduce these oscillations.
-Artificial viscosity introduces non-physical diffusive terms to the Euler
-equations that are mostly quiescent in smooth regions but gradually
-turn on near discontinuities in order to spread out shocks
-:cite:`vonneumann1950method`.
-Weighted essentially non-oscillatory schemes modify the polynomial interpolation
-stencil in areas near discontinuities in order to reduce oscillations
-:cite:`liu1994weighted`.
-Limiters reduce either the fluxes (flux limiters) or the states themselves
-(slope limiters) to reasonable values where gradients are great.
-Limiters are generally difficult to extend to high-order DG spatial
-discretizations,
-but recent research has expanded the number of options.
-
-Moe limiter
-~~~~~~~~~~~~
-
-The limiter due to Moe *et al.* is simple to implement and generalizable
-to RKDG schemes of arbitrary order :cite:`moe2015simple`.
-The procedure is as follows:
-
-#. Select a set of variables to use for checking gradients, :math:`w`.
-   The authors suggest using primitive variables in fluid dynamics
-   because of their Galilean invariance.
-   For the Euler equations, the primitive variables are the mass density
-   :math:`mn`,
-   the bulk velocity :math:`\vec{u}`,
-   and the pressure :math:`p`.
-   Also, for each element :math:`i`, select points :math:`\chi_i` at which
-   :math:`w` will be interpolated to check cell extrema.
-   The authors suggest using corners and both internal and edge quadrature
-   points,
-   *i.e.*, the points used for the numerical integration of the integrals
-   in :eq:`fluids:dg_weak_form`.
-
-#. For each mesh element :math:`i` and each component :math:`l` of :math:`w`,
-   compute the cell-local extrema of :math:`w` as
-
-   .. math::
-
-      w_{M_i}^l = \max_{\vec{x} \in \chi_i} \left\{ w^l(\vec{x}) \right\},
-
-      w_{m_i}^l = \min_{\vec{x} \in \chi_i} \left\{ w^l(\vec{x}) \right\}.
-
-#. For each mesh element :math:`i` and each component :math:`l` of :math:`w`,
-   compute extrema over the set of neighbors :math:`N_i`, excluding
-   the element :math:`i` itself, as
-
-   .. math::
-
-      M_i^l = \max \left\{ \bar{w}_i^l + \alpha(h), \max_{j \in N_i} \left\{ w_{M_j}^l \right\} \right\},
-
-      m_i^l = \min \left\{ \bar{w}_i^l - \alpha(h), \min_{j \in N_i} \left\{ w_{m_j}^l \right\} \right\},
-
-   where :math:`\bar{w}_i^l` is the element average of :math:`w^l`
-   in element :math:`i`
-   and :math:`\alpha` is a function that adds a tolerance that decreases
-   with characteristic element size :math:`h`.
-   The authors generally suggest the use of
-
-   .. math::
-
-      \alpha(h) = 500 h^{3/2},
-
-   but in examples with extreme gradients, they reduce the constant
-   in front while maintaining the :math:`h^{3/2}` dependence.
-   The authors also suggest defining :math:`N_i` to be the set of elements
-   that share a common edge with element :math:`i` for Cartesian grids
-   and the set of elements that share a common vertex with element :math:`i`
-   for unstructured meshes.
-   However, the additional coding difficulty of identifying elements sharing
-   a common vertex means that hPIC2 simply always looks for common edges.
-   The authors warn that the results are more diffusive,
-   which is acceptable.
-
-#. For each element :math:`i`, compute
-
-   .. math::
-
-      \theta_{M_i} = \min_l \left\{ \phi \left( \frac{M_i^l - \bar{w}_i^l}{w_{M_i}^l - \bar{w}_i^l} \right) \right\},
-
-      \theta_{m_i} = \min_l \left\{ \phi \left( \frac{m_i^l - \bar{w}_i^l}{w_{m_i}^l - \bar{w}_i^l} \right) \right\},
-
-   where :math:`\phi` is a cutoff function.
-   The authors suggest the use of the function
-
-   .. math::
-
-      \phi(y) = \min \left\{ \frac{y}{1.1}, 1 \right\}.
-
-#. For each element :math:`i`, compute
-
-   .. math::
-
-      \theta_i = \min \{ 1, \theta_{m_i}, \theta_{M_i} \}.
-
-#. For each element :math:`i`,
-   limit the finite element solution of the conservative variables
-   :math:`u_h` as
-
-   .. math::
-
-      \tilde{u}_h|_{T_i} (\vec{x}, t) = \bar{u}_i + \theta_i \left( u_h|_{T_i} ( \vec{x}, t) - \bar{u}_i \right).
