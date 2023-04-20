@@ -56,6 +56,24 @@ the source particle's trajectory may simply be skewed to reflect the collision.
 RustBCA coupling
 ------------------
 
+The binary-collision approximation (BCA) method
+is a way of modeling plasma-material interactions.
+BCA considers the collision cascade undergone by ions incident on a material
+surface as a sequence of elastic, binary collisions,
+together with inelastic electronic stopping.
+This is a good approximation for modeling
+implantation, sputtering, and reflection with incident ion energies
+on the order of \~ :math:`1 - 10^8` eV.
+
+`RustBCA <https://github.com/lcpp-org/RustBCA>`_ :cite:`drobny2021rustbca`
+is a BCA code that enables in-memory coupling to other codes, such as hPIC2.
+The workflow for the PIC-BCA coupling used by hPIC2 is illustrated in the
+figure below.
+
+.. figure:: figures/rustbca_coupling.jpg
+  :width: 100%
+  :align: center
+
 Coulomb collision force
 ----------------------------
 
