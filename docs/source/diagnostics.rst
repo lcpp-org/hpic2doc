@@ -6,6 +6,49 @@ This page describes possible outputs from hPIC2.
 Moments of distribution functions
 ---------------------------------
 
+For a distribution :math:`f`, define
+
+.. math::
+
+    M_{ijk} (\vec{x}, t) = \int_{\mathbb{R}^3} m v_1^i v_2^j v_3^k f \, \mathrm{d} \vec{v}
+
+as the generalized moment corresponding to the multiindex :math:`(i,j,k)`,
+where :math:`m` is the mass of the species.
+Note that a number of macroscopic physical quantities can be written in terms of
+generalized moments,
+such as the mass density
+
+.. math::
+
+    nm = M_{000},
+
+the momentum density
+
+.. math::
+
+    nm \vec{u} = (M_{100}, M_{010}, M_{001})^t,
+
+and the total energy density for species with no internal degrees of freedom
+
+.. math::
+
+    nmE = \frac{1}{2} (M_{200} + M_{020} + M_{002}).
+
+Similarly, with :math:`\vec{w} = \vec{v} - \vec{u}` as the peculiar velocity,
+define the rest-frame moments as
+
+.. math::
+
+    \hat{M}_{ijk} (\vec{x}, t) = \int_{\mathbb{R}^3} m w_1^i w_2^j w_3^k f \, \mathrm{d} \vec{v}.
+
+Again, many typical macroscopic physical quantities can be written in terms of
+rest-frame moments,
+such as the scalar pressure
+
+.. math::
+
+    p = \frac{1}{3} (\hat{M}_{200} + \hat{M}_{020} + \hat{M}_{002}).
+
 Engery-angle at boundaries
 --------------------------
 
