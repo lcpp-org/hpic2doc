@@ -53,5 +53,8 @@ the collision may spawn a new electron and a new ion;
 if the collision models elastic scattering events,
 the source particle's trajectory may simply be skewed to reflect the collision.
 
+RustBCA coupling
+------------------
+
 Coulomb collision force
 ----------------------------
