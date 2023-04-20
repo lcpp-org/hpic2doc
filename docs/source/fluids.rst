@@ -98,7 +98,7 @@ for all :math:`T \in \mathcal{T}_h`
 and for all :math:`\psi \in H^s(\mathcal{T}_h)`.
 
 It is obviously impossible to verify a potential solution :math:`u`
-against every :math:`psi` in an infinite-dimensional space.
+against every :math:`\psi` in an infinite-dimensional space.
 We therefore constrain our attention to a finite-dimensional subspace
 :math:`V_h \in H^s(\mathcal{T}_h)`,
 for which there exists a finite basis.
