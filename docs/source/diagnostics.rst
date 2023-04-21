@@ -74,6 +74,38 @@ and similarly for the other types of moments.
 These moments are computed differently for each species.
 The sections below describe their computation.
 
+PIC moments
+~~~~~~~~~~~~
+
+The distribution for a PIC species comprising :math:`N` particles
+is assumed to be
+
+.. math::
+
+    f(\vec{x}, \vec{v}, t) = \sum_{\alpha=1}^N W_\alpha \delta (\vec{x} - \vec{x}_\alpha) \delta (\vec{v} - \vec{v}_\alpha),
+
+where :math:`\vec{x}_\alpha = \vec{x}_\alpha(t)`
+and :math:`\vec{v}_\alpha = \vec{v}_\alpha(t)`
+are the position and velocity of particle :math:`\alpha` at time :math:`t`,
+respectively,
+and :math:`W_\alpha` is the weight of particle :math:`\alpha`.
+Hence
+
+.. math::
+
+    \bar{M}_{ijk}^T = \frac{1}{V} \int_T \int_{\mathbb{R}^3} m v_1^i v_2^j v_3^k \sum_{\alpha=1}^N \delta (\vec{x} - \vec{x}_\alpha) \delta (\vec{v} - \vec{v}_\alpha) \, \mathrm{d} \vec{v} \, \mathrm{d} \vec{x}
+    = \frac{1}{V} \sum_{\alpha, \vec{x}_\alpha \in T} m W_\alpha v_{\alpha,1}^i v_{\alpha,2}^j v_{\alpha,3}^k.
+
+Similarly,
+
+.. math::
+
+    \bar{\hat{M}}_{ijk}^T = \frac{1}{V} \sum_{\alpha, \vec{x}_\alpha \in T} m W_\alpha w_{\alpha,1}^i w_{\alpha,2}^j w_{\alpha,3}^k,
+
+    \bar{M}_{\hat{n},ijk}^T = \frac{1}{V} \sum_{\alpha, \vec{x}_\alpha \in T, v_\alpha \cdot \hat{n} > 0} m W_\alpha v_{\alpha,1}^i v_{\alpha,2}^j v_{\alpha,3}^k \vec{v}_\alpha \cdot \hat{n},
+
+    \bar{\hat{M}}_{\hat{n},ijk}^T = \frac{1}{V} \sum_{\alpha, \vec{x}_\alpha \in T, w_\alpha \cdot \hat{n} > 0} m W_\alpha w_{\alpha,1}^i w_{\alpha,2}^j w_{\alpha,3}^k \vec{w}_\alpha \cdot \hat{n}.
+
 Engery-angle at boundaries
 --------------------------
 
