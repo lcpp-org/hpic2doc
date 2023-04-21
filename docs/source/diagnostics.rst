@@ -82,7 +82,7 @@ is assumed to be
 
 .. math::
 
-    f(\vec{x}, \vec{v}, t) = \sum_{\alpha=1}^N W_\alpha \delta (\vec{x} - \vec{x}_\alpha) \delta (\vec{v} - \vec{v}_\alpha),
+    f = \sum_{\alpha=1}^N W_\alpha \delta (\vec{x} - \vec{x}_\alpha) \delta (\vec{v} - \vec{v}_\alpha),
 
 where :math:`\vec{x}_\alpha = \vec{x}_\alpha(t)`
 and :math:`\vec{v}_\alpha = \vec{v}_\alpha(t)`
@@ -105,6 +105,58 @@ Similarly,
     \bar{M}_{\hat{n},ijk}^T = \frac{1}{V} \sum_{\alpha, \vec{x}_\alpha \in T, v_\alpha \cdot \hat{n} > 0} m W_\alpha v_{\alpha,1}^i v_{\alpha,2}^j v_{\alpha,3}^k \vec{v}_\alpha \cdot \hat{n},
 
     \bar{\hat{M}}_{\hat{n},ijk}^T = \frac{1}{V} \sum_{\alpha, \vec{x}_\alpha \in T, w_\alpha \cdot \hat{n} > 0} m W_\alpha w_{\alpha,1}^i w_{\alpha,2}^j w_{\alpha,3}^k \vec{w}_\alpha \cdot \hat{n}.
+
+Boltzmann electron moments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The distribution for Boltzmann electrons is given by
+
+.. math::
+
+    f = n_0 \left( \frac{m}{2 \pi k T} \right)^{3/2} \exp \left( \frac{e \phi}{kT} \right) \exp \left( - \frac{m v^2}{2 k T} \right),
+
+where :math:`n_0` is the reference density described in
+the section on :ref:`species:Boltzmann electrons`.
+Using the fact that
+
+.. math::
+
+    \int_{\mathbb{R}} \xi^p \frac{1}{\sigma \sqrt{2 \pi}} \exp \left( - \frac{\xi^2}{2 \sigma^2} \right) \, \mathrm{d} \xi
+    = \begin{cases}
+        0 & \text{if} & p \text{ is odd}, \\
+        \sigma^p (p-1)!! & \text{if} & p \text{ is even},
+    \end{cases}
+
+we can deduce
+
+.. math::
+
+    \bar{M}_{ijk}^T =
+    \begin{cases}
+        \frac{1}{V} n_0 (i-1)!! (j-1)!! (k-1)!! \int_T \left( \frac{kT}{m} \right)^{i+j+k} \exp \left( \frac{e \phi}{kT} \right) \, \mathrm{d} \vec{x} & \text{if } i,j,k \text{ are all even}, \\
+        0 & \text{otherwise}.
+    \end{cases}
+
+Note that the temperature :math:`T` and potential :math:`\phi`
+are both space-dependent.
+The integral over the element is computed differently depending on whether
+the field solver uses the finite difference method or the finite element method.
+In the FDM case, the integral is taken to be the sum of the value at the nodes
+times the node covolumes.
+In the FEM case, the integral is approximated using the same quadrature
+rule as in the field solver.
+
+Since the Boltzmann electrons have zero bulk velocity,
+the rest-frame moments are identical to the lab-frame moments,
+so that
+
+.. math::
+
+    \bar{\hat{M}}_{ijk}^T = \bar{M}_{ijk}^T.
+
+Directional moments have not yet been implemented,
+although they can be expressed analytically
+`with great difficulty <https://github.com/lcpp-org/hpic2/issues/253>`_.
 
 Engery-angle at boundaries
 --------------------------
