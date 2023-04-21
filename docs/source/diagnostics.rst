@@ -234,6 +234,26 @@ Engery-angle at boundaries
 Point-like probes
 -----------------
 
+Fields at points in the domain can be interpolated and output.
+The interpolation algorithm is dependent on whether the solver uses the
+finite difference method or the finite element method.
+In the FDM case, fields are linearly (bilinearly) interpolated from the two
+(four) nearest nodes in 1D (2D).
+In the FEM case, the finite element solution is simply evaluated at the point.
+For example, the potential at a point :math:`\vec{x}` can be evaluated as
+
+.. math::
+
+    \phi_h(\vec{x}) = \sum_{i=1}^N \phi_i \psi_i(\vec{x}),
+
+for an :math:`N`-dimensional finite element space :math:`V_h`
+with basis :math:`\{ \psi_1, \ldots, \psi_N \}`.
+Similarly, the electric field can be evaluated as
+
+.. math::
+
+    \vec{E}_h(\vec{x}) = - \sum_{i=1}^N \phi_i \nabla \psi_i(\vec{x}).
+
 Fields output
 --------------
 
