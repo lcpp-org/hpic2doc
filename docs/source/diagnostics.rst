@@ -133,7 +133,7 @@ we can deduce
 
     \bar{M}_{ijk}^T =
     \begin{cases}
-        \frac{1}{V} n_0 (i-1)!! (j-1)!! (k-1)!! \int_T \left( \frac{kT}{m} \right)^{i+j+k} \exp \left( \frac{e \phi}{kT} \right) \, \mathrm{d} \vec{x} & \text{if } i,j,k \text{ are all even}, \\
+        \frac{1}{V} n_0 m (i-1)!! (j-1)!! (k-1)!! \int_T \sqrt{\frac{kT}{m}}^{i+j+k} \exp \left( \frac{e \phi}{kT} \right) \, \mathrm{d} \vec{x} & \text{if } i,j,k \text{ are all even}, \\
         0 & \text{otherwise}.
     \end{cases}
 
@@ -153,6 +153,51 @@ so that
 .. math::
 
     \bar{\hat{M}}_{ijk}^T = \bar{M}_{ijk}^T.
+
+Directional moments have not yet been implemented,
+although they can be expressed analytically
+`with great difficulty <https://github.com/lcpp-org/hpic2/issues/253>`_.
+
+Euler fluid moments
+~~~~~~~~~~~~~~~~~~~
+
+When deriving the Euler equations, we are careful not to assume too much
+about the distribution.
+However, to compute the moments, we must make some assumption.
+It is safe to assume that the fluid distribution is a drifting Maxwellian,
+
+.. math::
+
+    f = n \left( \frac{m}{2 \pi k T} \right)^{3/2} \exp \left( - \frac{m (\vec{v} - \vec{u})^2}{2 k T} \right),
+
+since that is the minimum-entropy distribution that satisfies
+the Euler fluid hypotheses.
+
+Using the fact that
+
+.. math::
+
+    \int_{\mathbb{R}} \xi^p \frac{1}{\sigma \sqrt{2 \pi}} \exp \left( - \frac{(\xi  - \mu)^2}{2 \sigma^2} \right) \, \mathrm{d} \xi
+    = \left( - \frac{i \sigma}{\sqrt{2}} \right)^p H_p \left( \frac{i \mu}{\sigma \sqrt{2}} \right),
+
+where :math:`H_p` is the physicists' Hermite polynomial of degree :math:`p`,
+we can write
+
+.. math::
+
+    \bar{M}_{ijk}^T = \frac{1}{V} \int_T n m \left( - i \sqrt{\frac{kT}{2m}} \right)^{i+j+k} H_i \left( i u_1 \sqrt{\frac{m}{2kT}} \right) H_j \left( i u_2 \sqrt{\frac{m}{2kT}} \right) H_k \left( i u_3 \sqrt{\frac{m}{2kT}} \right) \, \mathrm{d} \vec{x},
+
+where the integral is approximated with quadrature.
+For rest-frame moments, we can substitute :math:`\vec{u} = \vec{0}`,
+so that
+
+.. math::
+
+    \bar{\hat{M}}_{ijk}^T =
+    \begin{cases}
+        \frac{1}{V} n m (i-1)!! (j-1)!! (k-1)!! \int_T \sqrt{\frac{kT}{m}}^{i+j+k} \, \mathrm{d} \vec{x} & \text{if } i,j,k \text{ are all even}, \\
+        0 & \text{otherwise}.
+    \end{cases}
 
 Directional moments have not yet been implemented,
 although they can be expressed analytically
