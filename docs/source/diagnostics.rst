@@ -228,7 +228,7 @@ Directional moments have not yet been implemented,
 although they can be expressed analytically
 `with great difficulty <https://github.com/lcpp-org/hpic2/issues/253>`_.
 
-Engery-angle at boundaries
+Energy-angle at boundaries
 --------------------------
 
 Point-like probes
