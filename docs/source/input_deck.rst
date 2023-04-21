@@ -1139,7 +1139,7 @@ The table below lists the options and some notes.
    * - ``"none"``
      - No limiter is applied. Default.
    * - ``"moe"``
-     - Limiter from Moe et al. Suitable for most problems.
+     - Limiter from :cite:`moe2015simple`. Suitable for most problems.
 
 ``initial_condition``
 : Specifies the initial fluid state throughout the computational domain.
