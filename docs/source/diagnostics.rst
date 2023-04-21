@@ -49,6 +49,21 @@ such as the scalar pressure
 
     p = \frac{1}{3} (\hat{M}_{200} + \hat{M}_{020} + \hat{M}_{002}).
 
+It is sometimes useful to compute the flux of a moment through a surface
+defined by some unit normal.
+In this case, define
+
+.. math::
+
+    M_{\hat{n}, ijk} (\vec{x}, t) = \int_{\vec{v} \cdot \hat{n} > 0} m v_1^i v_2^j v_3^k (\vec{v} \cdot \hat{n}) f \, \mathrm{d} \vec{v},
+
+    \hat{M}_{\hat{n}, ijk} (\vec{x}, t) = \int_{\vec{w} \cdot \hat{n} > 0} m w_1^i w_2^j w_3^k (\vec{w} \cdot \hat{n}) f \, \mathrm{d} \vec{v},
+
+as the lab-frame and rest-frame directional moments, respectively.
+
+These moments are computed differently for each species.
+The sections below describe their computation.
+
 Engery-angle at boundaries
 --------------------------
 
