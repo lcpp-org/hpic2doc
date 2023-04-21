@@ -61,6 +61,16 @@ In this case, define
 
 as the lab-frame and rest-frame directional moments, respectively.
 
+hPIC2 is capable of computing the element averages of these moments;
+that is, for each element :math:`T` in the mesh, hPIC2 calculates
+
+.. math::
+
+    \bar{M}_{ijk}^T = \frac{1}{V} \int_T M_{ijk} \, \mathrm{d} \vec{x},
+
+where :math:`V` is the volume of element :math:`T`,
+and similarly for the other types of moments.
+
 These moments are computed differently for each species.
 The sections below describe their computation.
 
