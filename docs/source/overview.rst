@@ -103,10 +103,3 @@ Note that the charge density can be computed from every species' distribution as
 
 where the sum is over species.
 
-Types of problems hPIC2 can solve
-----------------------------------
-
-References
------------
-
-.. bibliography::

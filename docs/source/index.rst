@@ -51,6 +51,7 @@ Contents
    utils
    tutorials
    contributing
+   references
 
 Citing
 -------
