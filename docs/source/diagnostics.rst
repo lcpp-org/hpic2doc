@@ -257,6 +257,14 @@ Similarly, the electric field can be evaluated as
 Fields output
 --------------
 
+The instantaneous state of the fields can be output.
+The nature of the output depends on whether the solver uses the
+finite difference or finite element method.
+In the FDM case, the value of the fields at every node is output.
+In the FEM case, the finite element solution,
+along with a description of the finite element space,
+is output in a format that can be read by `ParaView <https://www.paraview.org/>`_.
+
 Particle output
 ----------------
 
