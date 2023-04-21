@@ -203,6 +203,31 @@ Directional moments have not yet been implemented,
 although they can be expressed analytically
 `with great difficulty <https://github.com/lcpp-org/hpic2/issues/253>`_.
 
+Uniform background moments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The distribution is
+
+.. math::
+
+    f = n \sqrt{\frac{m}{2 \pi k T}} \exp \left( - \frac{m v^2}{2 k T} \right),
+
+where the temperature and density are uniform in space.
+From analysis from the previous sections, this means that
+
+.. math::
+
+    \bar{M}_{ijk}^T =
+    \bar{\hat{M}}_{ijk}^T =
+    \begin{cases}
+        n m (i-1)!! (j-1)!! (k-1)!! \sqrt{\frac{kT}{m}}^{i+j+k} & \text{if } i,j,k \text{ are all even}, \\
+        0 & \text{otherwise}.
+    \end{cases}
+
+Directional moments have not yet been implemented,
+although they can be expressed analytically
+`with great difficulty <https://github.com/lcpp-org/hpic2/issues/253>`_.
+
 Engery-angle at boundaries
 --------------------------
 
