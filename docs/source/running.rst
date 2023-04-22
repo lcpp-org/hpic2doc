@@ -4,7 +4,15 @@ Running hPIC2
 Serial
 ------
 
-Don't run serial. Move on to MPI. 
+Don't run serial, move on to MPI. But if you really have to, 
+just run the executable with the ``--i`` option and the path to
+your input deck as an argument. For example, to run your hpic2 
+executable with the input deck ``myinput.toml``,
+
+.. code-block:: sh
+
+   hpic2 --i myinput.toml
+
 
 MPI
 ---
@@ -15,12 +23,17 @@ Typically, running an hPIC2 problem consists of running
 
 .. code-block:: sh
 
-   mpiexec -np n ./hpic2 --i /path/to/input/deck
+   mpiexec -np n <hpic2-executable> --i <path-to-input-deck>
 
 where ``n`` is the number of MPI procs across which to distribute the run.
 hPIC2 reads all the necessary physics information about your problem
 from the input deck;
 the format of these input decks is described in subsequent sections.
+For example, to run your hpic2 executable with 4 MPI processes,
+
+.. code-block:: sh
+
+   mpiexec -np 4 hpic2 --i myinput.toml
 
 As a program that uses both MPI for distributed-memory parallelism
 and Kokkos for shared-memory parallelism,
