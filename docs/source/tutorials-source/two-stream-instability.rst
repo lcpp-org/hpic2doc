@@ -45,7 +45,7 @@ Input File (TOML)
 
 .. literalinclude:: ../../../examples/twostream.toml 
    :language: toml
-   :lines: 1-4
+   .. :lines: 1-4
 
 The mesh used in this example is ``type = "uniform"``.
 The domain size :math:`L` was selected to match the wavelength of interest,
@@ -53,16 +53,8 @@ where :math:`k = 2 \pi/L`.
 :math:`dx` is computed using :math:`dx = v_0 \Delta t`,
 and is represented in the toml file as ``x1_elem_size = 2.97e-6``.
 
-.. literalinclude:: ../../../examples/twostream.toml 
-   :language: toml
-   :lines: 8-13
-
 Time step is computed as :math:`dt = 2\pi/(\omega_p 120)`.
 1800 time steps, or 15 plasma oscillation periods, are simulated: 
-
-.. literalinclude:: ../../../examples/twostream.toml 
-   :language: toml
-   :lines: 15-17
 
 Three species are specified under ``[species]``: two electrons populations, 
 ``"e-_red"`` and ``"e-_blue"``; with a hydrogen background ``"h+"``. 
@@ -71,9 +63,6 @@ and specified using ``num_particles`` block.
 ``mass`` is the species mass. 
 ``type`` is the way which the species is represented or simulated. 
 
-.. literalinclude:: ../../../examples/twostream.toml 
-   :language: toml
-   :lines: 20-48
 
 Running 
 -------
