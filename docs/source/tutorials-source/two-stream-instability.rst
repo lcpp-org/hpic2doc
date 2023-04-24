@@ -1,12 +1,19 @@
 Two-Stream Instability
 ======================
 
+Problem Description
+-------------------
+
 Two-stream instability is one of the classical examples of beam-type instability that occurs in plasma physics. 
 Streaming instabilities are a special case of instability whereby the thermal non-equilibrium
 is caused by relative drift velocities between two plasma species.
 In this problem, we consider the two-stream instability, which occurs when two populations of cold electrons,
 each with number density :math:`n_0/2` and equal but opposite velocities :math:`\vec{v}_0 = \pm v_0 \hat{x}`,
 interact electrostatically with each other and a stationary ion background with number density n0. 
+
+Theory
+------
+
 The dispersion relation for the two-stream instability can be derived using linearized Vlasov-Poisson theory as
 
 .. math::
@@ -22,9 +29,9 @@ and mass :math:`m_e` , and :math:`v_0` is the initial drift speed of the electro
 Simulation Setup
 ----------------
 
-* One-dimensional periodic domain.
+* One-dimensional periodic domain
 
-* Uniform mesh.
+* Uniform mesh
 
 * Plasma density :math:`n_0 = 10^{16} \; [m^{-3}]`
 
@@ -33,9 +40,10 @@ Simulation Setup
 * Beam flow speed: :math:`\vec{v}_0 = 3.2 \times 10^{5} \hat{x} \; [m/s]`
 
 
-TOML Example
-------------
-.. literalinclude:: ../../examples/twostream.toml 
+Input File (TOML)
+-----------------
+
+.. literalinclude:: ../../.../examples/twostream.toml 
    :language: toml
    :lines: 1-4
 
@@ -45,14 +53,14 @@ where :math:`k = 2 \pi/L`.
 :math:`dx` is computed using :math:`dx = v_0 \Delta t`,
 and is represented in the toml file as ``x1_elem_size = 2.97e-6``.
 
-.. literalinclude:: ../../examples/twostream.toml 
+.. literalinclude:: ../../.../examples/twostream.toml 
    :language: toml
    :lines: 8-13
 
 Time step is computed as :math:`dt = 2\pi/(\omega_p 120)`.
 1800 time steps, or 15 plasma oscillation periods, are simulated: 
 
-.. literalinclude:: ../../examples/twostream.toml 
+.. literalinclude:: ../../.../examples/twostream.toml 
    :language: toml
    :lines: 15-17
 
@@ -63,10 +71,39 @@ and specified using ``num_particles`` block.
 ``mass`` is the species mass. 
 ``type`` is the way which the species is represented or simulated. 
 
-.. literalinclude:: ../../examples/twostream.toml 
+.. literalinclude:: ../../.../examples/twostream.toml 
    :language: toml
    :lines: 20-48
 
-Post Processing 
----------------
+Running 
+-------
 
+To run the simulation, use the following command:
+
+.. code-block:: bash
+
+   $ hpic2 --i twostream.toml
+
+The simulation will run for 15 plasma oscillation periods,
+and all outputs will be tagged with the ``twostream`` prefix.
+
+The standard output will show the simulation progress:
+
+.. code-block:: bash
+
+   $ hpic2 --i twostream.toml
+   [INFO] [2021-05-18 15:00:00] [twostream] [twostream.toml] [twostream]
+   [INFO] [2021-05-18 15:00:00] [twostream] [twostream.toml] [twostream] Running simulation
+   ...
+
+Plotting the results
+---------------------
+
+The simulation results are stored in the ``twostream.h5`` file.
+The ``twostream.h5`` file contains the following datasets:
+
+* ``/fields``: contains the electric field :math:`\vec{E}` and electric potential :math:`\phi`.
+* ``/particles``: contains the particle positions and velocities.
+
+You can visualize the results in multiple ways, for example 
+using Python and the ``h5py`` package (follow instructions, etc.).
