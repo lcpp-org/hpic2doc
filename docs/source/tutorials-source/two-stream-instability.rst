@@ -107,3 +107,41 @@ The ``twostream.h5`` file contains the following datasets:
 
 You can visualize the results in multiple ways, for example 
 using Python and the ``h5py`` package (follow instructions, etc.).
+
+.. code-block:: python
+
+   import h5py
+   import matplotlib.pyplot as plt
+   import numpy as np
+
+   f = h5py.File("twostream.h5", "r")
+
+   # Plot the electric field
+   fig, ax = plt.subplots()
+   ax.plot(f["/fields/E/x"][:, 0], label="E_x")
+   ax.plot(f["/fields/E/y"][:, 0], label="E_y")
+   ax.plot(f["/fields/E/z"][:, 0], label="E_z")
+   ax.legend()
+   ax.set_xlabel("x")
+   ax.set_ylabel("E")
+   fig.savefig("twostream_E.png")
+
+   # Plot the electric potential
+   fig, ax = plt.subplots()
+   ax.plot(f["/fields/phi"][:, 0], label="phi")
+   ax.legend()
+   ax.set_xlabel("x")
+   ax.set_ylabel("phi")
+   fig.savefig("twostream_phi.png")
+
+   # Plot the particle positions
+   fig, ax = plt.subplots()
+   ax.scatter(f["/particles/e-_red/x"][:, 0], np.zeros_like(f["/particles/e-_red/x"][:, 0]), label="e-_red")
+   ax.scatter(f["/particles/e-_blue/x"][:, 0], np.zeros_like(f["/particles/e-_blue/x"][:, 0]), label="e-_blue")
+   ax.scatter(f["/particles/h+/x"][:, 0], np.zeros_like(f["/particles/h+/x"][:, 0]), label="h+")
+   ax.legend()
+   ax.set_xlabel("x")
+   ax.set_ylabel("y")
+   fig.savefig("twostream_particles.png")
+
+   f.close()
