@@ -45,7 +45,7 @@ Input File (TOML)
 
 .. literalinclude:: ../../../examples/twostream.toml 
    :language: toml
-   .. :lines: 1-4
+   :lines: 1-
 
 The mesh used in this example is ``type = "uniform"``.
 The domain size :math:`L` was selected to match the wavelength of interest,
