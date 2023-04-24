@@ -497,9 +497,14 @@ that is uniformly partitioned.
    dt = #<float>
    termination_time = #<float>
    # Optional, only valid when built with MFEM and with at least one fluid species.
+   fluid_adaptive_substepping = #<boolean (false)>
    fluid_integrator = #<options below ("ForwardEulerSolver")>
        [time.fluid_integrator_params]
        #<options specific to fluid integrator>
+
+       # Optional, omit if adaptive substepping is disable.
+       [time.fluid_adaptive_substepping_params]
+       cfl = #<float (0.3)>
 
 ``num_time_steps``
 : Number of time steps into which the simulation should be partitioned.
@@ -509,6 +514,21 @@ that is uniformly partitioned.
 
 ``termination_time``
 : Length of total simulation time.
+
+
+``fluid_adaptive_substepping``
+: If enabled, the fluid dynamically selects stable timesteps due to the current
+state of the system.
+The overall hPIC2 timesteps are still preserved;
+with adaptive substepping, the fluid solver will not choose larger timesteps,
+but may choose smaller timesteps to maintain stability.
+
+``cfl``
+: Generally, the stable time step is chosen to be `dt = cfl * timescale`
+where `timescale` is the minimum numerical timescale across all fluids.
+The default value of 0.3 is typical for fluid solvers.
+Increase the cfl to reduce the number of timesteps at the risk of potentially
+driving instabilities.
 
 ``fluid_integrator``
 : ODE integrator used to integrate fluid species.
@@ -1139,7 +1159,7 @@ The table below lists the options and some notes.
    * - ``"none"``
      - No limiter is applied. Default.
    * - ``"moe"``
-     - Limiter from Moe et al. Suitable for most problems.
+     - Limiter from :cite:`moe2015simple`. Suitable for most problems.
 
 ``initial_condition``
 : Specifies the initial fluid state throughout the computational domain.

@@ -57,7 +57,7 @@ If the second command fails run this next set
 Use spack to setup to install hpic2
 -----------------------------------
 
-Do the following steps at wherever location you want hpic2 to be saved. First, make a new spack repo
+Do the following steps where you want hpic2 to be saved. First, make a new spack repo
 
 .. code-block:: bash
 
@@ -70,7 +70,7 @@ Register spack repo
       spack repo add hpic2_dev
       cd hpic2_dev/packages
 
-download hpic2 source, making sure to include the submodules, and optionally also RustBCA
+Download hpic2 source, making sure to include the submodules, and optionally also RustBCA
 
 .. code-block:: bash
 

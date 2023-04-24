@@ -87,8 +87,8 @@ leads to numerical oscillations and simulation divergence.
 The adoption of Boltzmann electrons always require to enforce
 charge conservation through a dedicated scheme.
 Details of the charge conservation scheme are described in the
-paper `Elias and Curreli <https://doi.org/10.1016/j.jcp.2020.109320>`_,
-and are briefly described below.
+paper `Elias and Curreli <https://doi.org/10.1016/j.jcp.2020.109320>`_ 
+:cite:`elias2020charge`, and are briefly described below.
 
 The charge conservation scheme is derived from the
 `Ampere-Maxwell equation <https://doi.org/10.1017/9781108333511>`_ in
