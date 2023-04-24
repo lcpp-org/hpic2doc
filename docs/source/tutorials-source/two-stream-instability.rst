@@ -7,9 +7,14 @@ Problem Description
 Two-stream instability is one of the classical examples of beam-type instability that occurs in plasma physics. 
 Streaming instabilities are a special case of instability whereby the thermal non-equilibrium
 is caused by relative drift velocities between two plasma species.
-In this problem, we consider the two-stream instability, which occurs when two populations of cold electrons,
-each with number density :math:`n_0/2` and equal but opposite velocities :math:`\vec{v}_0 = \pm v_0 \hat{x}`,
-interact electrostatically with each other and a stationary ion background with number density n0. 
+
+In this problem, we consider a plasma made of the following species:
+
+* Two electron populations, ``"e-_red"`` and ``"e-_blue"``, with equal but opposite drift velocities :math:`\vec{v}_0 = \pm v_0 \hat{x}`, each with number density :math:`n_0/2`
+* A charge-neutralizing hydrogen background ``"h+"`` and number density :math:`n_0`
+
+The two electron populations interact electrostatically with each other and with the 
+stationary ion background.
 
 Theory
 ------
@@ -22,7 +27,7 @@ The dispersion relation for the two-stream instability can be derived using line
    1 = \frac{1}{2} \omega_p^2 \left[ \frac{1}{\left(\omega - k v_0 \right)^2} + \left(\frac{1}{\omega - k v_0}\right)^2 \right],
 
 Where :math:`\omega` and :math:`k` are respectively the angular frequency and wave-number of the unstable electrostatic wave,
-:math:`\omega_p \approx n_e e^2/(m_e \epsilon_0)` 
+:math:`\omega_p^2 \approx n_e e^2/(m_e \epsilon_0)` 
 is the plasma frequency of electrons with number density :math:`n_e`
 and mass :math:`m_e` , and :math:`v_0` is the initial drift speed of the electron streams
 
