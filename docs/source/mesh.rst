@@ -25,6 +25,17 @@ support 1D and 2D.
 
 1D multi-block boundary layer grid
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In 1D, the domain is partitioned into a sequence of grid block or segments.
+Each block of mesh can be uniform or geometrically graded.
+There are three types grid blocks. 
+The first type is uniform grid block, which is a uniform grid block.
+The second type is lower boundary layer grid block, which is a geometrically
+graded grid block with the cell size decreasing from left to right.
+The third type is upper boundary layer grid block, which is a geometrically
+graded grid block with the cell size increasing from left to right.
+
+
 .. figure:: figures/lowerbl.png
    :alt:
 
@@ -33,6 +44,9 @@ support 1D and 2D.
 
 .. figure:: figures/upperbl.png
    :alt:
+
+The following figure shows an example of a 1D multi-block boundary layer grid that 
+includes all three types of grid blocks.
 
 .. figure:: figures/1d_block_structured_mesh.png
    :alt:
