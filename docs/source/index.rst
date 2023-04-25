@@ -74,9 +74,23 @@ If you use hPIC2, please cite us in your publication :cite:`meredith2023hpic2`:
 
    L.T. Meredith, M. Rezazadeh, M.F. Huq, J. Drobny, V.V. Srinivasaragavan, O. Sahni, D. Curreli,
    hPIC2: A hardware-accelerated, hybrid particle-in-cell code for dynamic plasma-material interactions,
-   Computer Physics Communications, 283, 108569, 2023.  
+   Computer Physics Communications, 283, 108569, 2023.
    `https://doi.org/10.1016/j.cpc.2022.108569 <https://doi.org/10.1016/j.cpc.2022.108569>`_
 
+Acknowledgements
+-------------------
+
+This material is based upon work supported by the U.S. Department of Energy
+Office of Science, Office of Fusion Energy Sciences and Office of Advanced
+Scientific Computing Research through the Scientific Discovery through Advanced
+Computing (SciDAC) project on Plasma-Surface Interactions under
+Award No. DE-SC0018141;
+and by the U.S. Department of Energy NNSA LRGF under grant number DE-NA0003960.
+This research used the Delta advanced computing and data resource which is
+supported by the National Science Foundation (award OAC 2005572)
+and the State of Illinois.
+Delta is a joint effort of the University of Illinois Urbana-Champaign
+and its National Center for Supercomputing Applications.
 
 .. figure:: figures/dalle2hpic.png
   :width: 100%
