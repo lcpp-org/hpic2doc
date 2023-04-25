@@ -70,9 +70,16 @@ construct a 2D mesh. By taking the tensor product, we generate a grid that has h
 resolved points in both the x1 and x2 directions, allowing for accurate simulations of 
 complex geometries with varying boundary layer thicknesses.
 
-FD Stencil for 1D First Derivative
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. figure:: figures/2d_block_structured_mesh_as_tensor_product_of_1d.png
+   :alt:
 
+The above figure shows a 2d multi-block boundary layer grid as a tensor product of 1d 
+multi-block boundary layer grids.
+In this example, the first block in the x1 direction is a lowerBL block, the second block
+is a uniform block, and the third block is a upperBL block. Similarly, the first block in
+the x2 direction is a lowerBL block, the second block is a uniform block, and the third block
+is a upperBL block. The tensor product of these two 1D multi-block boundary layer grids
+gives us a 2D multi-block boundary layer grid.
 
 
 Unstructured mesh
