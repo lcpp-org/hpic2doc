@@ -48,8 +48,8 @@ Contents
    build
    running
    input_deck
-   utils
    tutorials
+   codecoupling
    contributing
    references
 
@@ -71,7 +71,7 @@ If you use hPIC2, please cite us in your publication :cite:`meredith2023hpic2`:
    }
 
 .. admonition:: Citing
-   
+
    L.T. Meredith, M. Rezazadeh, M.F. Huq, J. Drobny, V.V. Srinivasaragavan, O. Sahni, D. Curreli,
    hPIC2: A hardware-accelerated, hybrid particle-in-cell code for dynamic plasma-material interactions,
    Computer Physics Communications, 283, 108569, 2023.  
