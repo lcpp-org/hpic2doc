@@ -23,6 +23,10 @@ magnetic field).
 The Newton-Lorentz equation is integrated by means of the Boris-Bunemann
 numerical method, with linearized tangent.
 
+Simulation options in hPIC2 are specified in
+:ref:`this <input_deck:Full orbit, Boris-Buneman>`
+section of the manual.
+
 .. figure:: figures/fullorbit.png
   :width: 75%
   :align: center
@@ -57,6 +61,8 @@ simulations. While alternative methods capture the physical phenomena of
 electron motion to a higher degree of accuracy, the added simulation
 complexity makes it computationally expensive to run large timescale
 simulations.
+A description of how to use Boltzmann electrons in hPIC2 is provided
+:ref:`here <input_deck:Boltzmann electrons>`.
 
 Time advancement schemes calculate unknown time-dependent variables at
 time :math:`t^{k+1} = t^k + \Delta t` from known variables at time
@@ -87,8 +93,10 @@ leads to numerical oscillations and simulation divergence.
 The adoption of Boltzmann electrons always require to enforce
 charge conservation through a dedicated scheme.
 Details of the charge conservation scheme are described in the
-paper `Elias and Curreli <https://doi.org/10.1016/j.jcp.2020.109320>`_ 
+paper `Elias and Curreli <https://doi.org/10.1016/j.jcp.2020.109320>`_
 :cite:`elias2020charge`, and are briefly described below.
+This is the ``"elias"`` option for the ``charge_conservation_scheme``
+in hPIC2 input decks.
 
 The charge conservation scheme is derived from the
 `Ampere-Maxwell equation <https://doi.org/10.1017/9781108333511>`_ in
@@ -335,6 +343,10 @@ which yields
 
     p = (\gamma - 1) \left( n m E - \frac{1}{2} n m u^2 \right).
 
+Further description of the discretization is provided in :ref:`fluids:Fluids`.
+:ref:`This <input_deck:MFEM Euler Fluid>` section of the user manual
+described how a fluid may be used in hPIC2.
+
 Uniform background
 -------------------
 
@@ -348,3 +360,5 @@ so that the distribution is
 
 for a given number density :math:`n` and temperature :math:`T`.
 The charge density is therefore simply :math:`\rho = q n`.
+A description of how to use uniform backgrounds in hPIC2 is provided
+:ref:`here <input_deck:Uniform charge background>`.
