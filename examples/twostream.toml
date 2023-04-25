@@ -1,9 +1,7 @@
 [input_mode]
-hpic_mode = "pic" #, "XGC", "RESTART", "MESH_VIEWER"
+hpic_mode = "pic"
 simulation_tag = "twostream"
 units = "si"
-#      1        2      3
-# P1-------P2------P3------P4
 
 [mesh]
 type = "uniform"
@@ -16,8 +14,6 @@ east_west_periodic = true
 num_time_steps = 1800
 dt = 9.82e-12
 
-
-[species] # actually not necessary, next line automatically creates the species table
 [species."e-_blue"]
 mass = 9.11e-31
 type = "boris_buneman"
@@ -29,6 +25,7 @@ type = "boris_buneman"
         flow_velocity_1 = 3.2e5
         flow_velocity_2 = 0.0
         flow_velocity_3 = 0.0
+
 [species."e-_red"]
 mass = 9.11e-31
 type = "boris_buneman"
@@ -40,6 +37,7 @@ type = "boris_buneman"
         flow_velocity_1 = -3.2e5
         flow_velocity_2 = 0.0
         flow_velocity_3 = 0.0
+
 [species."h+"]
 mass = 1.67e-27
 type = "uniform_background"
@@ -59,15 +57,13 @@ b3 = 0.0
 poisson_solver = "hockney"
 
 [output_diagnostics]
-    output_dir = "twostream_example_out"
-
-    [output_diagnostics.logging]
-    log_level = "info"
-    timing_log_enabled = false
-
-    [output_diagnostics.particle_output]
-    stride = 1
-    species = ["e-_blue", "e-_red"]
+output_dir = "twostream_example_out"
+[output_diagnostics.logging]
+log_level = "info"
+timing_log_enabled = false
+[output_diagnostics.particle_output]
+stride = 1
+species = ["e-_blue", "e-_red"]
 
     [output_diagnostics.field_output]
     stride = 1
