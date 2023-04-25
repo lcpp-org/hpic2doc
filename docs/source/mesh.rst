@@ -12,16 +12,18 @@ In one dimension, a line segment domain is partitioned into
 identically sized line segments.
 In two dimensions, a rectangular domain is partitioned into
 squares.
+A description of how to use uniform grids in hPIC2 is provided
+:ref:`here <input_deck:Uniform mesh>`.
 
 Multi-block boundary layer
 ----------------------------
 
 A multi-block boundary layer grid is a type of grid that allows multiple blocks
-of grids to be merged together with either uniform cell spacing or geometrically 
-graded boundary layer type spacing. This enables large freedom of sampling and 
+of grids to be merged together with either uniform cell spacing or geometrically
+graded boundary layer type spacing. This enables large freedom of sampling and
 facilitate to deal the complex boundary layer problems more efficiently.
-Multi-block boundary layer grid can be of any dimension, but in hPIC2 we only 
-support 1D and 2D.  
+Multi-block boundary layer grid can be of any dimension, but in hPIC2 we only
+support 1D and 2D.
 
 1D multi-block boundary layer grid
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -29,7 +31,7 @@ support 1D and 2D.
 In 1D, the domain is partitioned into a sequence of grid blocks or segments.
 Each block of mesh can be uniform or geometrically graded.
 
-There are three types grid blocks. 
+There are three types grid blocks.
 
 #.  Lower boundary layer grid block or `lowerBL`
 #.  Uniform grid block or `uniform`
@@ -50,13 +52,13 @@ There are three types grid blocks.
 
 `upperBL` is again a geometrically graded grid block with the cell size decreasing from left to right.
 
-The following figure shows an example of a 1D multi-block boundary layer grid that 
+The following figure shows an example of a 1D multi-block boundary layer grid that
 includes all three types of grid blocks.
 
 .. figure:: figures/1d_block_structured_mesh.png
    :alt:
 
-Here, the first block is a lowerBL block, middle block is a uniform block, and the 
+Here, the first block is a lowerBL block, middle block is a uniform block, and the
 last block is a upperBL block.
 
 2D multi-block boundary layer grid
@@ -64,16 +66,16 @@ last block is a upperBL block.
 
 A 2D multi-block boundary layer grid is constructed by taking the tensor product of
 two 1D multi-block boundary layer meshes in the x1 and x2 directions, respectively.
-The idea behind this approach is to first create a highly resolved 1D mesh along the 
-boundary layer in each direction, and then use these meshes as building blocks to 
-construct a 2D mesh. By taking the tensor product, we generate a grid that has highly 
-resolved points in both the x1 and x2 directions, allowing for accurate simulations of 
+The idea behind this approach is to first create a highly resolved 1D mesh along the
+boundary layer in each direction, and then use these meshes as building blocks to
+construct a 2D mesh. By taking the tensor product, we generate a grid that has highly
+resolved points in both the x1 and x2 directions, allowing for accurate simulations of
 complex geometries with varying boundary layer thicknesses.
 
 .. figure:: figures/2d_block_structured_mesh_as_tensor_product_of_1d.png
    :alt:
 
-The above figure shows a 2d multi-block boundary layer grid as a tensor product of 1d 
+The above figure shows a 2d multi-block boundary layer grid as a tensor product of 1d
 multi-block boundary layer grids.
 In this example, the first block in the x1 direction is a lowerBL block, the second block
 is a uniform block, and the third block is a upperBL block. Similarly, the first block in
@@ -101,3 +103,6 @@ and correspondingly for hanging edges and faces.
 In one dimension, the elements are line segments.
 In two dimensions, the elements are triangles or quadrilaterals.
 In three dimensions, the elements are tetrahedra, hexahedra, wedges, or pyramids.
+
+A description of how to use unstructured meshes in hPIC2 is provided
+:ref:`here <input_deck:MFEM>`.
