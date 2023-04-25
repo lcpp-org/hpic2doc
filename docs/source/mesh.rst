@@ -62,6 +62,13 @@ last block is a upperBL block.
 2D multi-block boundary layer grid
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+A 2D multi-block boundary layer grid is constructed by taking the tensor product of
+two 1D multi-block boundary layer meshes in the x1 and x2 directions, respectively.
+The idea behind this approach is to first create a highly resolved 1D mesh along the 
+boundary layer in each direction, and then use these meshes as building blocks to 
+construct a 2D mesh. By taking the tensor product, we generate a grid that has highly 
+resolved points in both the x1 and x2 directions, allowing for accurate simulations of 
+complex geometries with varying boundary layer thicknesses.
 
 FD Stencil for 1D First Derivative
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
