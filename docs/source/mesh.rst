@@ -14,10 +14,31 @@ In two dimensions, a rectangular domain is partitioned into
 squares.
 
 Multi-block boundary layer
----------------------------
+----------------------------
 
-1D Non-uniform Grid
-~~~~~~~~~~~~~~~~~~~
+A multi-block boundary layer grid is a type of grid that allows multiple blocks
+of grids to be merged together with either uniform cell spacing or geometrically 
+graded boundary layer type spacing. This enables large freedom of sampling and 
+facilitate to deal the complex boundary layer problems more efficiently.
+Multi-block boundary layer grid can be of any dimension, but in hPIC2 we only 
+support 1D and 2D.  
+
+1D multi-block boundary layer grid
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. figure:: figures/lowerbl.png
+   :alt:
+
+.. figure:: figures/uniform.png
+   :alt:
+
+.. figure:: figures/upperbl.png
+   :alt:
+
+.. figure:: figures/1d_block_structured_mesh.png
+   :alt:
+
+2D multi-block boundary layer grid
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 FD Stencil for 1D First Derivative
