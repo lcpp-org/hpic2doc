@@ -67,15 +67,15 @@ the newly calculated ion density :math:`n_i^{k+1}` and
 equation :eq:`botlzmann.equation1`, i.e,;
 
 .. math::
-   :label: poision.equation
+   :label: poisson.equation
 
    \begin{aligned}
-   \epsilon_0 \nabla^2\phi^{k+1}(\mathbf{x})&=-\rho^{k+1}(\mathbf{x})\label{poision.equation}\\
-   &=en_e^{k+1}(\mathbf{x})-en_i^{k+1}(\mathbf{x})\label{poision.equation1}\\
-   &=en_0^{k+1} \exp(\phi^{k+1}(\mathbf{x})/T_e)-en_i^{k+1}(\mathbf{x})\label{poision.equation2}.
+   \epsilon_0 \nabla^2\phi^{k+1}(\mathbf{x})&=-\rho^{k+1}(\mathbf{x})\label{poisson.equation}\\
+   &=en_e^{k+1}(\mathbf{x})-en_i^{k+1}(\mathbf{x})\label{poisson.equation1}\\
+   &=en_0^{k+1} \exp(\phi^{k+1}(\mathbf{x})/T_e)-en_i^{k+1}(\mathbf{x})\label{poisson.equation2}.
    \end{aligned}
 
-Equation :eq:`poision.equation` can be solved
+Equation :eq:`poisson.equation` can be solved
 using Newton-Raphson, or other methods, to calculate the plasma
 potential for the next iteration. Problems arise when the reference
 electron density :math:`n_0` varies with time as is the case in the
@@ -87,8 +87,8 @@ leads to numerical oscillations and simulation divergence.
 The adoption of Boltzmann electrons always require to enforce
 charge conservation through a dedicated scheme.
 Details of the charge conservation scheme are described in the
-paper `Elias and Curreli <https://doi.org/10.1016/j.jcp.2020.109320>`_,
-and are briefly described below.
+paper `Elias and Curreli <https://doi.org/10.1016/j.jcp.2020.109320>`_ 
+:cite:`elias2020charge`, and are briefly described below.
 
 The charge conservation scheme is derived from the
 `Ampere-Maxwell equation <https://doi.org/10.1017/9781108333511>`_ in
