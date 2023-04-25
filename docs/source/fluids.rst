@@ -7,6 +7,8 @@ The fluid equations are solved broadly using the method of lines,
 in which the system is first partially discretized in space,
 and the resulting system of ordinary differential equations
 is then discretized in time.
+A description of how to use fluids in hPIC2 is provided
+:ref:`here <input_deck:MFEM Euler Fluid>`.
 
 Discontinuous Galerkin spatial discretization
 ----------------------------------------------
@@ -667,6 +669,8 @@ the state just outside of the wall should be set to
     \end{Bmatrix}.
 
 This ensures that the boundary effectively acts as a wall.
+Use of wall boundary conditions in hPIC2 is described
+:ref:`here <input_deck:Wall boundary condition>`.
 
 Copy-out boundary conditions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -679,6 +683,8 @@ that is, :math:`u^+ = u^-`.
 This is perfectly adequate for supersonic flows normal to the boundary,
 whose characteristics all extend out of the domain.
 For subsonic flows, this type of boundary will spuriously reflect some waves.
+Use of copy-out boundary conditions in hPIC2 is described
+:ref:`here <input_deck:Copy-out boundary condition>`.
 
 Far-field boundary conditions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -687,3 +693,5 @@ Another possible method for handling outflow boundaries is to specify that
 the ghost state has zero density, momentum density, and total energy density.
 If generalized to possibly nonzero ghost states,
 this boundary condition approximates contact with a static fluid reservoir.
+Use of far-field boundary conditions in hPIC2 is described
+:ref:`here <input_deck:Far-field boundary condition>`.

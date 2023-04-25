@@ -1139,9 +1139,9 @@ The table below lists the options and some notes.
    * - Riemann solver option
      - Description
    * - ``"rusanov"``
-     - Solver from Rusanov. Also known as local Lax-Friedrichs. Extremely robust.
+     - :ref:`Solver from Rusanov <fluids:Rusanov solver>`. Also known as local Lax-Friedrichs. Extremely robust.
    * - ``"hll"``
-     - Harten-Lax-van Leer. Sometimes more accurate than Rusanov.
+     - :ref:`Harten-Lax-van Leer <fluids:Harten-Lax-van Leer solver>`. Sometimes more accurate than Rusanov.
 
 ``limiter``
 : Slope limiter used to stabilize solution.
@@ -1159,7 +1159,7 @@ The table below lists the options and some notes.
    * - ``"none"``
      - No limiter is applied. Default.
    * - ``"moe"``
-     - Limiter from :cite:`moe2015simple`. Suitable for most problems.
+     - :ref:`Limiter <fluids:Moe limiter>` from :cite:`moe2015simple`. Suitable for most problems.
 
 ``initial_condition``
 : Specifies the initial fluid state throughout the computational domain.
@@ -1277,6 +1277,7 @@ Wall boundary condition
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Models an impermeable wall.
+Theory described :ref:`here <fluids:Wall boundary conditions>`.
 
 .. code-block:: toml
 
@@ -1294,6 +1295,7 @@ Outflow boundaries are notoriously difficult to numerically model
 with the Euler equations.
 A cheap approximation is to copy the fluid state just on the inside of
 the boundary to the outside in order to compute a numerical flux.
+Theory described :ref:`here <fluids:Copy-out boundary conditions>`.
 
 .. code-block:: toml
 
@@ -1309,6 +1311,7 @@ Far-field boundary condition
 
 This boundary condition approximates contact with a fluid reservoir
 with a constant and uniform state.
+Theory described :ref:`here <fluids:Far-field boundary conditions>`.
 
 .. code-block:: toml
 
