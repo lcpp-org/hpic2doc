@@ -20,10 +20,10 @@ FD Stencil for 1D First Derivative
 Let’s consider the problem,
 
 
-.. math:: 
+.. math::
    :label: eq_1stdev1
 
-   E_i = - \frac{d\phi}{dx}|_i 
+   E_i = - \frac{d\phi}{dx}|_i
 
 
 
@@ -45,7 +45,7 @@ Now, using Taylor series expansion at :math:`\phi_{i+1}` we get,
 
 .. math::
    :label: eq_1stdev2
-   
+
    \phi_{i+1} = \phi_i+(\Delta x_i) \frac{\partial \phi}{\partial x}|_{i}+\frac{\Delta x_i^2}{2!}\frac{\partial^2\phi}{\partial x^2}|_i +......
 
 And, using Taylor series expansion at :math:`\phi_{i-1}` we get,
@@ -66,14 +66,14 @@ Rearranging we get,
 
 .. math::
     :label: eq_1stdev5
-    
+
     \frac {\partial \phi}{\partial x}|_i = \frac{\phi_{i+1}-\phi_{i-1}}{\Delta x_i + \Delta x_{i-1}} = \frac{r(\phi_{i+1}-\phi_{i-1})}{(r+1)\Delta x_i} = \frac{\phi_{i+1}-\phi_{i-1}}{(r+1)\Delta x_{i-1}}
 
 Therefore, from equation :eq:`eq_1stdev1` we can write,
 
 .. math::
     :label: eq_1stdev6
-    
+
     E_i = - \frac {\partial \phi}{\partial x}|_i = - \frac{\phi_{i+1}-\phi_{i-1}}{\Delta x_i + \Delta x_{i-1}} = - \frac{r(\phi_{i+1}-\phi_{i-1})}{(r+1)\Delta x_i} = - \frac{\phi_{i+1}-\phi_{i-1}}{(r+1)\Delta x_{i-1}}
 
 1D Non-uniform Mesh Stencil for Poisson Solver
@@ -87,7 +87,7 @@ Let's consider the problem,
 
 where, :math:`\rho` is the charge density and :math:`\epsilon_0` is the permittivity of free space.
 
-Full Poisson problem: Dirichlet boundary conditions 
+Full Poisson problem: Dirichlet boundary conditions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Let's consider the boundary conditions and grading ratio are,
@@ -121,7 +121,7 @@ Multiplying equation :eq:`eq_2nddev4` by :math:`r` and adding with equation :eq:
 .. math::
    :label: eq_2nddev5
 
-   \phi_{i+1}+r\phi_{i-1} = (1+r)\phi_i+(\Delta x_i - r\Delta x_{i-1})\frac{\partial \phi}{\partial x}|_{i} +\frac{(\Delta x_i)^2 + r(\Delta x_{i-1})^2}{2}\frac{\partial^2\phi}{\partial x^2}|_i 
+   \phi_{i+1}+r\phi_{i-1} = (1+r)\phi_i+(\Delta x_i - r\Delta x_{i-1})\frac{\partial \phi}{\partial x}|_{i} +\frac{(\Delta x_i)^2 + r(\Delta x_{i-1})^2}{2}\frac{\partial^2\phi}{\partial x^2}|_i
 
 Since :math:`\Delta{x_i} = r\Delta{x_{i-1}}`, second term of the right hand side is  eliminated and we get,
 
@@ -134,7 +134,7 @@ Since :math:`\Delta{x_i} = r\Delta{x_{i-1}}`, second term of the right hand side
    :label: eq_2nddev7
 
    => r\phi_{i-1}-(r+1)\phi_i+\phi_{i+1} = \frac{(\Delta x_i)^2 + r(\frac{\Delta x_{i}}{r})^2}{2}\frac{\partial^2\phi}{\partial x^2}|_i
-   
+
 .. math::
    :label: eq_2nddev8
 
@@ -142,20 +142,20 @@ Since :math:`\Delta{x_i} = r\Delta{x_{i-1}}`, second term of the right hand side
 
 .. math::
     :label: eq_2nddev9
-    
-    => \frac{\partial^2\phi}{\partial x^2}|_i = \frac{r\phi_{i-1}-(r+1)\phi_i+\phi_{i+1}}{(\frac{r+1}{2r})(\Delta x_i)^2} 
+
+    => \frac{\partial^2\phi}{\partial x^2}|_i = \frac{r\phi_{i-1}-(r+1)\phi_i+\phi_{i+1}}{(\frac{r+1}{2r})(\Delta x_i)^2}
 
 .. math::
     :label: eq_2nddev10
-    
+
     => \frac{\partial^2\phi}{\partial x^2}|_i = \frac{(\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1}}{(\Delta x_i)^2}
 
-So, the discrete finite difference form of equation :eq:`eq_2nddev1` is, 
+So, the discrete finite difference form of equation :eq:`eq_2nddev1` is,
 
 .. math::
    :label: eq_2nddev11
 
-   => \frac{\partial^2\phi}{\partial x^2}|_i = \frac{(\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1}}{(\Delta x_i)^2} = -(\frac{\rho}{\epsilon_0})_i 
+   => \frac{\partial^2\phi}{\partial x^2}|_i = \frac{(\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1}}{(\Delta x_i)^2} = -(\frac{\rho}{\epsilon_0})_i
 
 Corresponding stencil is :math:`((\frac{2r^2}{r+1}), -2r, (\frac{2r}{r+1}))`.
 
@@ -163,7 +163,7 @@ So, the system of linear equations are,
 
 .. math::
 
-    \label{eq_2nddev12} 
+    \label{eq_2nddev12}
     \phi_0 = 0;
 
 .. math::
@@ -270,7 +270,7 @@ The vector :math:`\vec b` is,
     right \ bc
     \end{vmatrix}
 
-Therefore the :math:`A \vec x = \vec b` system of equations will be, 
+Therefore the :math:`A \vec x = \vec b` system of equations will be,
 
 .. math::
     :label: eq_2nddev24
@@ -283,7 +283,7 @@ Therefore the :math:`A \vec x = \vec b` system of equations will be,
     ..&..&..&..&..&..&..&..\\
     0&..&..&..&..&\frac{2r^2}{(r+1)}&-2r&\frac{2r}{r+1}\\
     0&0&..&..&..&..&0&1\\
-    \end{vmatrix} 
+    \end{vmatrix}
     \begin{vmatrix}
     \phi_0\\
     \phi_1\\
@@ -302,7 +302,7 @@ Therefore the :math:`A \vec x = \vec b` system of equations will be,
     right \ bc
     \end{vmatrix}
 
-This is for Dirichlet boundary condition on both ends. 
+This is for Dirichlet boundary condition on both ends.
 
 1D Full Poisson problem: Neumann boundary condition
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -315,9 +315,9 @@ Let's consider the Neumann boundary condition on left boundary,
 
 Where, :math:`g` is the value of the derivative at the boundary.
 
-Now, to deal the boundary simply, we consider a ghost node at the left of :math:`x_0` so that, :math:`x_0 - x_{-1} = x_1 - x_0`, that is, 
-even though our mesh is nonuniform (graded), we consider uniform grid for ghost node. This will make calculation easier for boundary condition. 
-So, now using central difference scheme on the boundary node and considering direction as towards left, this equation can be written as, 
+Now, to deal the boundary simply, we consider a ghost node at the left of :math:`x_0` so that, :math:`x_0 - x_{-1} = x_1 - x_0`, that is,
+even though our mesh is nonuniform (graded), we consider uniform grid for ghost node. This will make calculation easier for boundary condition.
+So, now using central difference scheme on the boundary node and considering direction as towards left, this equation can be written as,
 
 .. math::
 
@@ -331,15 +331,15 @@ Considering a ghost node at :math:`x_{-1}` and uniform mesh for first three node
     \frac{\phi_{-1} - 2\phi_0 + \phi_1}{(\Delta x_0)^2} = (-(\frac{\rho}{\epsilon_0})|_0) \notag    \\
     \implies \phi_{-1} - 2\phi_0 + \phi_1 = \Delta x_0^2 (-(\frac{\rho}{\epsilon_0})|_0)  \notag    \\
     \implies 2\Delta x_0 g + \phi_1 -2\phi_0 + \phi_1 = \Delta x_0^2 (-(\frac{\rho}{\epsilon_0})|_0) \notag \\
-    \implies -2 \phi_0 + 2\phi_1 = \Delta x_0^2 (-(\frac{\rho}{\epsilon_0})|_0) - 2\Delta x_0\ g     
+    \implies -2 \phi_0 + 2\phi_1 = \Delta x_0^2 (-(\frac{\rho}{\epsilon_0})|_0) - 2\Delta x_0\ g
 
 Similar treatment at right boundary gives,
 
 .. math::
 
-    2x_{n-2} - 2x_{n-1} = \Delta x_{n-2}^2 (-(\frac{\rho}{\epsilon_0})|_{n-1}) - 2\Delta x_{n-2}\ g 
+    2x_{n-2} - 2x_{n-1} = \Delta x_{n-2}^2 (-(\frac{\rho}{\epsilon_0})|_{n-1}) - 2\Delta x_{n-2}\ g
 
-Therefore the :math:`A\vec x = \vec b` system of equations will be, 
+Therefore the :math:`A\vec x = \vec b` system of equations will be,
 
 .. math::
     :label: `eq_2nddev24`
@@ -352,7 +352,7 @@ Therefore the :math:`A\vec x = \vec b` system of equations will be,
     ..&..&..&..&..&..&..&..\\
     0&..&..&..&..&\frac{2r^2}{(r+1)}&-2r&\frac{2r}{r+1}\\
     0&0&..&..&..&..&2&-2\\
-    \end{vmatrix} 
+    \end{vmatrix}
     \begin{vmatrix}
     \phi_0\\
     \phi_1\\
@@ -371,51 +371,51 @@ Therefore the :math:`A\vec x = \vec b` system of equations will be,
     -((\Delta x_{n-2})^2 (\frac{\rho}{\epsilon_0})_{n-1}) - 2g\Delta x_{n-2}
     \end{vmatrix}
 
-This is for Neumann boundary condition on both ends. 
-Please note that, we can't set both the boundaries as Neumann in the implementation at the moment. 
-At least one should be Dirichlet for now. 
+This is for Neumann boundary condition on both ends.
+Please note that, we can't set both the boundaries as Neumann in the implementation at the moment.
+At least one should be Dirichlet for now.
 
 1D Boltzmann electron problem
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For Boltzmann electrons, equation :eq:`eq_2nddev1` will be, 
+For Boltzmann electrons, equation :eq:`eq_2nddev1` will be,
 
 .. math::
-    
+
     \Delta^2 \phi (x) = -\frac{\rho}{\epsilon_0} + \frac{n_0 e}{\epsilon_0}\ exp\ (\frac{e\phi}{k_B T_e})
 
-Where :math:`n_0` is the electron density, :math:`e` is the elementary charge, :math:`k_B` is the Boltzmann constant and :math:`T_e` is the electron temperature. 
+Where :math:`n_0` is the electron density, :math:`e` is the elementary charge, :math:`k_B` is the Boltzmann constant and :math:`T_e` is the electron temperature.
 
-Following similar treatment for nonuniform mesh, using equation :eq:`eq_2nddev11` we can write, 
+Following similar treatment for nonuniform mesh, using equation :eq:`eq_2nddev11` we can write,
 
 .. math::
 
     \frac{\partial^2\phi}{\partial x^2}|_i = \frac{(\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1}}{(\Delta x_i)^2} = -(\frac{\rho}{\epsilon_0})_i + \frac{n_0 e}{\epsilon_0}\ exp\ (\frac{e\phi_i}{k_B T_e}) \notag \\
     \implies (\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1} = -(\frac{\rho}{\epsilon_0})_i (\Delta x_i)^2 + \frac{n_0 e}{\epsilon_0} (\Delta x_i)^2 \ exp\ (\frac{e\phi_i}{k_B T_e}) \notag \\
     \implies (\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1} + (\frac{\rho}{\epsilon_0})_i (\Delta x_i)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_i)^2 \ exp\ (\frac{e\phi_i}{k_B T_e}) = 0 \notag  \\
-    \implies F(\phi_i) =  (\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1} + (\frac{\rho}{\epsilon_0})_i (\Delta x_i)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_i)^2 \ exp\ (\frac{e\phi_i}{k_B T_e}) = 0 \notag 
+    \implies F(\phi_i) =  (\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1} + (\frac{\rho}{\epsilon_0})_i (\Delta x_i)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_i)^2 \ exp\ (\frac{e\phi_i}{k_B T_e}) = 0 \notag
 
-Considering :math:`\vec \phi = (\phi_0, \phi_1, ....., \phi_{n-1})^t`, we need to solve the following equation for :math:`\phi_i`, 
+Considering :math:`\vec \phi = (\phi_0, \phi_1, ....., \phi_{n-1})^t`, we need to solve the following equation for :math:`\phi_i`,
 
 .. math::
     :label: `eq_boltzmann_nonlinear`
 
     F_i(\vec{\phi}) =  (\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1} + (\frac{\rho}{\epsilon_0})_i (\Delta x_i)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_i)^2 \ exp\ (\frac{e\phi_i}{k_B T_e})
 
-This is a nonlinear problem and we can solve it using Newton-Raphson method. With some initial guess :math:`x^0`, accoding to Newton-Raphson method, consecutive iterative solution will be, 
+This is a nonlinear problem and we can solve it using Newton-Raphson method. With some initial guess :math:`x^0`, accoding to Newton-Raphson method, consecutive iterative solution will be,
 
 .. math::
 
     x^{n+1} = x^{n} - \frac{f(x^{n})}{f^{'}(x^{n})}
     \implies f^{'}(x^{n}) (x^{n} - x^{n+1}) = f(x^{n})
 
-For system of equations :math:`f(\vec x) = \vec(0)`, this equation becomes, 
+For system of equations :math:`f(\vec x) = \vec(0)`, this equation becomes,
 
 .. math::
 
     f^{'}(\vec x^n) (\vec x^n - \vec x^{n+1}) = f(\vec x^n)
 
-Considering, :math:`\delta \vec x = \vec x^n - \vec x^{n+1}`, the equation becomes, 
+Considering, :math:`\delta \vec x = \vec x^n - \vec x^{n+1}`, the equation becomes,
 
 .. math::
 
@@ -423,15 +423,15 @@ Considering, :math:`\delta \vec x = \vec x^n - \vec x^{n+1}`, the equation becom
     \implies \frac{\partial f(\vec x^n)}{\partial \vec x^n} \delta \vec x = f(\vec x^n)
 
 
-Applying this treatment on equation :eq:`eq_boltzmann_nonlinear` for :math:`i^{th}` term of potential, we can write, 
+Applying this treatment on equation :eq:`eq_boltzmann_nonlinear` for :math:`i^{th}` term of potential, we can write,
 
 .. math::
     :label: `eq_boltz_elec`
 
     (\frac{2r^2}{r+1})\delta \phi_{i-1}-2r\delta \phi_i+(\frac{2r}{r+1})\delta \phi_{i+1} - \frac{n_0 e^2}{\epsilon_0 k_B T_e} (\Delta x_i)^2 \delta \phi_i \ exp\ (\frac{e\phi^n_i}{k_B T_e}) = \notag \\ (\frac{2r^2}{r+1})\phi^n_{i-1}-2r\phi^n_i+(\frac{2r}{r+1})\phi^n_{i+1} + (\frac{\rho}{\epsilon_0})_i (\Delta x_i)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_i)^2 \ exp\ (\frac{e\phi^n_i}{k_B T_e})
 
-Solving this equation for :math:`\delta \vec \phi` for all nodes and computing :math:`\vec \phi^{n+1} = \vec \phi^n - \delta \vec \phi` for consecutive iteration 
-we can solve for :math:`\vec \phi` for a required tolerance. 
+Solving this equation for :math:`\delta \vec \phi` for all nodes and computing :math:`\vec \phi^{n+1} = \vec \phi^n - \delta \vec \phi` for consecutive iteration
+we can solve for :math:`\vec \phi` for a required tolerance.
 
 The Dirichlet boundary condition at each time steps for the left boundary can be applied as,
 
@@ -444,20 +444,20 @@ The Dirichlet boundary condition at each time steps for the left boundary can be
 Where :math:`C` is the left boundary value.
 Similar condition is also applicable for Dirichlet right boundary.
 
-If the Neumann boundary condition for left boundary is :math:`g`, then using central difference and one uniform distance ghost node, we can write, 
+If the Neumann boundary condition for left boundary is :math:`g`, then using central difference and one uniform distance ghost node, we can write,
 
 .. math::
 
     \frac{\phi^n_{-1} - \phi^n_1}{2\Delta x_0} = g \notag \\
     \implies \phi^n_{-1} - \phi^n_1 = 2\Delta x_0\ g
- 
-Similarly for next iteration, 
- 
-.. math:: 
-    
+
+Similarly for next iteration,
+
+.. math::
+
    \phi^{n+1}_{-1} - \phi^{n+1}_1 = 2\Delta x_0\ g
- 
-Subtracting previous two equation, we can write, 
+
+Subtracting previous two equation, we can write,
 
 .. math::
 
@@ -465,25 +465,25 @@ Subtracting previous two equation, we can write,
     \implies \delta \phi_{-1} - \delta \phi_1 &= 0 \notag \\
     \implies \delta \phi_{-1} &= \delta \phi_1
 
-Substituting :math:`\delta \phi_{-1}` for :math:`\delta \phi_1` in equation :eq:`eq_boltz_elec`, for left boundary node :math:`i = 0` we can write, 
+Substituting :math:`\delta \phi_{-1}` for :math:`\delta \phi_1` in equation :eq:`eq_boltz_elec`, for left boundary node :math:`i = 0` we can write,
 
 .. math::
 
    ()\frac{2r^2}{r+1})\delta \phi_{1}-2r\delta \phi_0+(\frac{2r}{r+1})\delta \phi_{1} - \frac{n_0 e^2}{\epsilon_0 k_B T_e} (\Delta x_0)^2 \delta \phi_0 \ exp\ (\frac{e\phi^n_0}{k_B T_e}) = \notag \\ (\frac{2r^2}{r+1})\phi^n_{-1}-2r\phi^n_0+(\frac{2r}{r+1})\phi^n_{1} + (\frac{\rho}{\epsilon_0})_0 (\Delta x_0)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_0)^2 \ exp\ (\frac{e\phi^n_0}{k_B T_e})
 
-Since we consider ghost node equidistant, for boundary node we have :math:`r = 1`, and substituting :math:`\phi^n_{-1} = \phi^n_1 + 2 \Delta x_0\ g`, we can simplify equation as, 
+Since we consider ghost node equidistant, for boundary node we have :math:`r = 1`, and substituting :math:`\phi^n_{-1} = \phi^n_1 + 2 \Delta x_0\ g`, we can simplify equation as,
 
 .. math::
 
     \delta \phi_{1}-2\delta \phi_0+\delta \phi_{1} - \frac{n_0 e^2}{\epsilon_0 k_B T_e} (\Delta x_0)^2 \delta \phi_0 \ exp\ (\frac{e\phi^n_0}{k_B T_e}) = \notag \\ \phi^n_{1} + 2 \Delta x_0\ g  -2\phi^n_0+\phi^n_{1} + (\frac{\rho}{\epsilon_0})_0 (\Delta x_0)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_0)^2 \ exp\ (\frac{e\phi^n_0}{k_B T_e}) \notag \\
     \implies -2\delta \phi_0 + 2\delta \phi_{1} - \frac{n_0 e^2}{\epsilon_0 k_B T_e} (\Delta x_0)^2 \delta \phi_0 \ exp\ (\frac{e\phi^n_0}{k_B T_e}) = \notag \\ -2\phi^n_0 + 2 \phi^n_{1} + 2 \Delta x_0\ g + (\frac{\rho}{\epsilon_0})_0 (\Delta x_0)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_0)^2 \ exp\ (\frac{e\phi^n_0}{k_B T_e})
 
-For right Neumann boundary condition (at :math:`x = x_{n-1}`), similar treatement will give, 
+For right Neumann boundary condition (at :math:`x = x_{n-1}`), similar treatement will give,
 
 .. math::
 
     -2\delta \phi_{n-1} + 2\delta \phi_{n-2} - \frac{n_0 e^2}{\epsilon_0 k_B T_e} (\Delta x_{n-1})^2 \delta \phi_{n-1} \ exp\ (\frac{e\phi^n_{n-1}}{k_B T_e}) = \notag \\ -2\phi^n_{n-1} + 2 \phi^n_{n-2} + 2 \Delta x_{n-1}\ g + (\frac{\rho}{\epsilon_0})_{n-1} (\Delta x_{n-1})^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_{n-1})^2 \ exp\ (\frac{e\phi^n_{n-1}}{k_B T_e})
- 
+
 
 2D non-uniform mesh stencil for Poisson solver
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -494,29 +494,29 @@ This section has not been written yet.
 Finite element method Poisson equation
 ---------------------------------------
 
-In hPIC2 the electric field acting on charged particles 
-can be evaluated from a finite-element solution of the 
+In hPIC2 the electric field acting on charged particles
+can be evaluated from a finite-element solution of the
 electrostatic Poisson equation,
 
 .. math::
    :label: EqField001
-   
-   \nabla^{2}\phi = -\rho/\epsilon_{0} 
-   
+
+   \nabla^{2}\phi = -\rho/\epsilon_{0}
+
 
 .. math::
    :label: EqField001bc1
 
    \phi = V_{i} \quad \text{on} \quad \Gamma_{1,i}
-   
+
 .. math::
    :label: EqField001bc1
-   
-   \frac{\partial \phi}{\partial n} = g \quad \text{on} \quad \Gamma_{2} 
 
-where 
-:math:`\phi` is the electric potential, 
-:math:`\rho` the charge density 
+   \frac{\partial \phi}{\partial n} = g \quad \text{on} \quad \Gamma_{2}
+
+where
+:math:`\phi` is the electric potential,
+:math:`\rho` the charge density
 
 .. math::
    :label: EqChargeDenssdfasfd
@@ -524,7 +524,7 @@ where
    \rho = \sum_s e Z_s n_s
 
 and the two boundary conditions are either Dirichlet, Neumann,
-or combinations of them imposed on the domain boundary :math:`\Gamma`. 
+or combinations of them imposed on the domain boundary :math:`\Gamma`.
 
 The weak formulation of the electrostatic problem of
 Eq. :eq:`EqField001`, with the conditions
@@ -533,7 +533,7 @@ Eq. `[EqField001bc1] <#EqField001bc1>`__ and
 using standard variational methods and Green’s formulas:
 
 .. math::
-   :label: EqField002 
+   :label: EqField002
 
    -\int_{\Omega} \nabla \phi \cdot \nabla \psi dV   +   \int_{\Gamma} \frac{\partial \phi}{\partial n} \psi dS + \int_{\Omega}\frac{\rho}{\epsilon_0} \psi dV = 0
 
@@ -577,3 +577,6 @@ boundary conditions are included inside the formulation itself.
 Eq. `[EqField002] <#EqField002>`__ has been solved using Galerkin
 discretization, by means of first-order basis functions, on the same
 nodes of the 2D mesh of tetrahedra used for particles.
+
+The finite element solver can be used with the
+:ref:`input_deck:MFEM solver` in hPIC2 input decks.
