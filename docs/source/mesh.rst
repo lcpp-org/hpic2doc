@@ -15,9 +15,6 @@ squares.
 
 Multi-block boundary layer
 ---------------------------
-This section was prepared by
-
--  Huq Md Fazlul, UIUC
 
 1D Non-uniform Grid
 ~~~~~~~~~~~~~~~~~~~
@@ -279,7 +276,7 @@ Unstructured mesh
 -----------------
 
 Suppose that the problem domain :math:`\Omega` is polyhedral.
-A mesh :math:`\mathcal{T}_h = \{ T_1, \ldots, T_M \}`
+A mesh :math:`\mathcal{T} = \{ T_1, \ldots, T_M \}`
 of :math:`\Omega` is admissible if
 
 #. :math:`\bar{\Omega} = \cup_{i=1}^M T_i`;
