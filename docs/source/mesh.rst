@@ -104,5 +104,12 @@ In one dimension, the elements are line segments.
 In two dimensions, the elements are triangles or quadrilaterals.
 In three dimensions, the elements are tetrahedra, hexahedra, wedges, or pyramids.
 
+A number of mesh formats are supported by hPIC2,
+as described in `MFEM's documentation <https://mfem.org/mesh-formats/>`_.
+Notably, Gmsh version 2.2 files are supported by MFEM.
+To use meshes from newer versions of Gmsh,
+either specify ``Mesh.MshFileVersion = 2.2;`` in the geometry file
+or run Gmsh with ``-format msh22`` on the command line.
+
 A description of how to use unstructured meshes in hPIC2 is provided
 :ref:`here <input_deck:MFEM>`.
