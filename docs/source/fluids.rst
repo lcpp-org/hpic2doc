@@ -22,6 +22,16 @@ since the finite element solution in a given element is influenced
 only by immediately adjacent elements.
 Parallelism is therefore relatively easy with DG methods.
 
+The Euler equations are given by
+
+.. math::
+
+    \frac{\partial}{\partial t} (nm) + \nabla \cdot (n m \vec{u}) = \int_{\mathbb{R}^3} m \mathcal{C}[f] \, \mathrm{d} \vec{v},
+
+    \frac{\partial}{\partial t} (nmu_i) + \frac{\partial}{\partial x_j} \left( n m u_i u_j + p \delta_{ij} \right) = q n (\vec{E} + \vec{u} \times \vec{B})_i + \int_{\mathbb{R}^3} m \vec{v} \mathcal{C}[f] \, \mathrm{d} \vec{v},
+
+    \frac{\partial}{\partial t} (nmE) + \nabla \cdot \left(nmE \vec{u} + p \vec{u} \right) = q n \vec{u} \cdot \vec{E} + \int_{\mathbb{R}^3} H \mathcal{C}[f] \, \mathrm{d} \vec{v}.
+
 Note that the Euler equations can be written in conservative form
 
 .. math::
