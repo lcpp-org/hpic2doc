@@ -9,9 +9,6 @@ Solvers on uniform grid
 
 Solvers on non-uniform grid
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-This section was prepared by
-
--  Huq Md Fazlul, UIUC
 
 1D Non-uniform Grid
 ~~~~~~~~~~~~~~~~~~~
