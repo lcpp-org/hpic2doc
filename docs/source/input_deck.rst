@@ -842,6 +842,8 @@ and the number density, cutoff energy,
 surface binding energy,
 and bulk binding energy
 of each of the target species that compose the boundary.
+When available, it is best to get these from the
+`RustBCA repo <https://github.com/lcpp-org/RustBCA/blob/main/scripts/materials.py>`_.
 
 .. code-block:: toml
 
