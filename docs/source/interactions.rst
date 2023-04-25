@@ -74,6 +74,9 @@ figure below.
   :width: 100%
   :align: center
 
+Use of RustBCA in hPIC2 is described
+:ref:`here <input_deck:RustBCA boundary condition>`.
+
 Coulomb collision force
 ----------------------------
 
@@ -186,3 +189,6 @@ this effective force over :math:`N` time steps. Hence a given
 macroparticle's velocity :math:`\vec{v}` is incremented by
 :math:`N \Delta t \vec{R}_{st} / m_s`, where :math:`\Delta t` is the
 simulation time step.
+
+Use of the Coulomb collision force in hPIC2 is described
+:ref:`here <input_deck:Coulomb collision force>`.
