@@ -343,6 +343,9 @@ which yields
 
     p = (\gamma - 1) \left( n m E - \frac{1}{2} n m u^2 \right).
 
+The specific heat ratio :math:`\gamma` can be specified in hPIC2
+using the ``gamma`` option.
+
 Further description of the discretization is provided in :ref:`fluids:Fluids`.
 :ref:`This <input_deck:MFEM Euler Fluid>` section of the user manual
 described how a fluid may be used in hPIC2.

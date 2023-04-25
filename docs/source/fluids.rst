@@ -1,7 +1,7 @@
 Fluids
 ======
 
-This page desecribes the numerical methods used to solve the Euler
+This page describes the numerical methods used to solve the Euler
 equations described in the :ref:`species:Euler fluid` section.
 The fluid equations are solved broadly using the method of lines,
 in which the system is first partially discretized in space,
@@ -179,6 +179,7 @@ and :math:`R = M^{-1} (K_{\mathrm{face}} + K_{\mathrm{flux}} + K_{\mathrm{source
 
 Since the basis functions are usually taken to be polynomials,
 these integrals are typically computed using Gaussian quadrature.
+The degree of the basis functions is specified using the ``order`` option.
 
 Slope limiters
 --------------
@@ -208,6 +209,8 @@ discretizations,
 but recent research has expanded the number of options.
 Throughout this page, we will denote the action of the limiter as :math:`L`,
 so that a limited solution is given by :math:`\tilde{u} = L(\vec{u})`.
+
+In hPIC2, the limiter is specified using the ``limiter`` option.
 
 Moe limiter
 ~~~~~~~~~~~~
@@ -299,6 +302,8 @@ The procedure is as follows:
 
       \tilde{u}_h|_{T_i} (\vec{x}, t) = \bar{u}_i + \theta_i \left( u_h|_{T_i} ( \vec{x}, t) - \bar{u}_i \right).
 
+Set ``limiter = "moe"`` to use this limiter in hPIC2.
+
 Runge-Kutta Time Stepping and Sub-stepping
 ------------------------------------------
 
@@ -380,6 +385,7 @@ which, in the case of the Euler equations, will be nonlinear.
 However, explicit methods tend to have much smaller regions of
 numerical stability than implicit methods;
 that is, explicit methods typically demand a smaller time step for stability.
+The method used in hPIC2 is specified using the ``fluid_integrator`` option.
 
 While different explicit RK methods have different regions of stability,
 the stable time step is typically a linear function of the characteristic
@@ -435,6 +441,8 @@ where :math:`C > 0` is called the Courant-Friedrichs-Lewy (CFL) number
 and :math:`t_{\text{min}}` is the minimum timescale in the simulation.
 Most explicit RK methods require :math:`C \leq 1`.
 Implicit methods may permit much larger CFL numbers.
+In hPIC2, the CFL number can be specified with the ``cfl`` option
+if ``fluid_adaptive_substepping = true``.
 
 Fluids in plasmas are associated with widely varying timescales.
 In most problems, :math:`t_{\text{p}} \ll t_{\text{c}} \ll t_{\text{s}}`.
@@ -526,10 +534,13 @@ The algorithm is shown below for an explicit RK method.
     \END{ALGORITHMIC}
     \END{ALGORITHM}
 
+A number of options are available for time stepping in hPIC2.
+These are described :ref:`here <input_deck:Time>`.
+
 Riemann solvers
 ---------------
 
-As desecribed in the `Discontinuous Galerkin spatial discretization`_ section,
+As described in the `Discontinuous Galerkin spatial discretization`_ section,
 the numerical flux through interfaces is approximated in
 :eq:`fluids:numerical_flux`
 as the solution to a Riemann problem.
@@ -563,6 +574,8 @@ Many Riemann solvers return the approximate flux solution without
 stating the solution itself.
 
 Some examples of Riemann solvers are described below.
+In hPIC2, the Riemann solver used can be specified with the ``riemann_solver``
+option.
 
 Harten-Lax-van Leer solver
 ~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -480,7 +480,7 @@ Generates a 3D mesh.
 ``nx3`` must also be specified if this is provided.
 Otherwise, a 2D mesh is generated.
 
-``time``
+Time
 --------
 
 The ``time`` table governs the time discretization.
