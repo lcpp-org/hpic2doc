@@ -93,6 +93,6 @@ The ``+cuda`` option enables the CUDA backend of Kokkos.
 
 .. warning::
 
-   The ``spack install`` command will take a while to
-   complete. Depending on the speed your machine this can 
+   If the ``spack install`` command includes ``+rustbca``, it will take a while to
+   complete if the rust dependency isn't already installed through spack. Depending on the speed of your machine this can 
    take up to 10 hours. Plan accordingly. 
