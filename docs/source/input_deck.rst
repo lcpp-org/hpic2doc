@@ -1027,7 +1027,8 @@ At most one Boltzmann electron species is allowed.
        charge_conservation_scheme = #<options below ("hagelaar")>
 
 ``temperature``
-: Temperature of the electrons.
+: Temperature of the electrons. If you are using ``"si"``, 
+temperature is in kelvin (1 eV = 11604 K). 
 
 ``charge_conservation_scheme``
 : Scheme used to update the electron reference density. There are two options:
