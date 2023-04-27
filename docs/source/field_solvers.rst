@@ -342,7 +342,7 @@ Similar treatment at right boundary gives,
 Therefore the :math:`A\vec x = \vec b` system of equations will be,
 
 .. math::
-    :label: `eq_2nddev24`
+    :label: eq_2nddev24
 
     \begin{vmatrix}
     -2&2&0&0&..&..&..&0\\
@@ -398,7 +398,7 @@ Following similar treatment for nonuniform mesh, using equation :eq:`eq_2nddev11
 Considering :math:`\vec \phi = (\phi_0, \phi_1, ....., \phi_{n-1})^t`, we need to solve the following equation for :math:`\phi_i`,
 
 .. math::
-    :label: `eq_boltzmann_nonlinear`
+    :label: eq_boltzmann_nonlinear
 
     F_i(\vec{\phi}) =  (\frac{2r^2}{r+1})\phi_{i-1}-2r\phi_i+(\frac{2r}{r+1})\phi_{i+1} + (\frac{\rho}{\epsilon_0})_i (\Delta x_i)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_i)^2 \ exp\ (\frac{e\phi_i}{k_B T_e})
 
@@ -426,7 +426,7 @@ Considering, :math:`\delta \vec x = \vec x^n - \vec x^{n+1}`, the equation becom
 Applying this treatment on equation :eq:`eq_boltzmann_nonlinear` for :math:`i^{th}` term of potential, we can write,
 
 .. math::
-    :label: `eq_boltz_elec`
+    :label: eq_boltz_elec
 
     (\frac{2r^2}{r+1})\delta \phi_{i-1}-2r\delta \phi_i+(\frac{2r}{r+1})\delta \phi_{i+1} - \frac{n_0 e^2}{\epsilon_0 k_B T_e} (\Delta x_i)^2 \delta \phi_i \ exp\ (\frac{e\phi^n_i}{k_B T_e}) = \notag \\ (\frac{2r^2}{r+1})\phi^n_{i-1}-2r\phi^n_i+(\frac{2r}{r+1})\phi^n_{i+1} + (\frac{\rho}{\epsilon_0})_i (\Delta x_i)^2 - \frac{n_0 e}{\epsilon_0} (\Delta x_i)^2 \ exp\ (\frac{e\phi^n_i}{k_B T_e})
 
@@ -436,7 +436,7 @@ we can solve for :math:`\vec \phi` for a required tolerance.
 The Dirichlet boundary condition at each time steps for the left boundary can be applied as,
 
  .. math::
-     :label: `eq_dirichlet`
+     :label: eq_dirichlet
 
      \delta \phi_0 = \phi^n_0 - left\ boundary\ value \notag \\
      \implies \delta \phi_0 = \phi^n_0 - C
