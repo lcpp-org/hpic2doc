@@ -85,10 +85,24 @@ The standard output will show the simulation progress:
 
 .. code-block:: bash
 
-   $ hpic2 --i twostream.toml
-   [INFO] [2021-05-18 15:00:00] [twostream] [twostream.toml] [twostream]
-   [INFO] [2021-05-18 15:00:00] [twostream] [twostream.toml] [twostream] Running simulation
+   $ ./hpic2 --i twostream.toml 
+   2023-04-28 14:57:56.704977 UTC-05:00     info [main] [mpi rank 0] starting simulation.
+   2023-04-28 14:57:56.978742 UTC-05:00     info [ElectricFieldHockney] [mpi rank 0] saving E-Field to twostream_example_out/twostream_EFIELD_t0000000.dat
+   2023-04-28 14:57:56.979273 UTC-05:00     info [ElectricFieldHockney] [mpi rank 0] saving potential to twostream_example_out/twostream_PHI_t0000000.dat
+   2023-04-28 14:57:56.980860 UTC-05:00     info [ElectricFieldHockney] [mpi rank 0] saving electrostatic energy to twostream_example_out/twostream_ENERGY_ELECTROSTATIC.dat
+   2023-04-28 14:57:56.980904 UTC-05:00     info [ElectricFieldHockney] [mpi rank 0] saving B-Field to twostream_example_out/twostream_BFIELD_t0000000.dat
+   2023-04-28 14:57:56.981601 UTC-05:00     info [State] [mpi rank 0] At timestep 1
+   2023-04-28 14:57:57.266270 UTC-05:00     info [ElectricFieldHockney] [mpi rank 0] saving E-Field to twostream_example_out/twostream_EFIELD_t0000001.dat
+   2023-04-28 14:57:57.266797 UTC-05:00     info [ElectricFieldHockney] [mpi rank 0] saving potential to twostream_example_out/twostream_PHI_t0000001.dat
+   2023-04-28 14:57:57.267052 UTC-05:00     info [ElectricFieldHockney] [mpi rank 0] saving electrostatic energy to twostream_example_out/twostream_ENERGY_ELECTROSTATIC.dat
+   2023-04-28 14:57:57.267082 UTC-05:00     info [ElectricFieldHockney] [mpi rank 0] saving B-Field to twostream_example_out/twostream_BFIELD_t0000001.dat
+   2023-04-28 14:57:57.267762 UTC-05:00     info [State] [mpi rank 0] At timestep 2
+   2023-04-28 14:57:57.552878 UTC-05:00     info [ElectricFieldHockney] [mpi rank 0] saving E-Field to twostream_example_out/twostream_EFIELD_t0000002.dat
+   2023-04-28 14:57:57.553416 UTC-05:00     info [ElectricFieldHockney] [mpi rank 0] saving potential to twostream_example_out/twostream_PHI_t0000002.dat
+   2023-04-28 14:57:57.553668 UTC-05:00     info [ElectricFieldHockney] [mpi rank 0] saving electrostatic energy to twostream_example_out/twostream_ENERGY_ELECTROSTATIC.dat
+   2023-04-28 14:57:57.553698 UTC-05:00     info [ElectricFieldHockney] [mpi rank 0] saving B-Field to twostream_example_out/twostream_BFIELD_t0000002.dat
    ...
+
 
 Plotting the results
 ---------------------
