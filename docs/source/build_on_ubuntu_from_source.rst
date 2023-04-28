@@ -137,7 +137,7 @@ Create a CMake script to configure the build
 
    cat > ~/hpic2_dev/hpic2_omp_opt.sh << 'EOF'
    spacktivate hpic2_omp_opt
-   cmake -DCMAKE_BUILD_TYPE=Release -DWITH_MFEM=ON -DWITH_TESTS=ON -DWITH_RUSTBCA=ON ~/hpic2_dev/hpic2
+   cmake -DCMAKE_BUILD_TYPE=Release -DWITH_MFEM=ON -DWITH_TESTS=ON -DWITH_RUSTBCA=ON ~/hpic2_dev/packages/hpic2
    EOF
 
 Source the configure script from the build directory
