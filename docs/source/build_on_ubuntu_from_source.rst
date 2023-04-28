@@ -94,7 +94,7 @@ Create and enter a spack env
    spack env create hpic2_omp_opt
    spack env activate hpic2_omp_opt
 
-Add dependencies to spack env
+Add dependencies to spack env 
 
 .. code-block:: bash
 
@@ -105,13 +105,21 @@ Add dependencies to spack env
    spack add mpi
    spack add spdlog
 
-optionally add also RustBCA 
+.. note:: 
+
+   If you would like to specify a version for each dependency, 
+   you can specify it with the ``@:`` operator, 
+   e.g. ``spack add kokkos@:3.8 ~cuda+openmp``; 
+   otherwise Spack will automatically choose the last version 
+   available from the main Spack package list. 
+
+Optionally add also RustBCA 
 
 .. code-block:: bash
 
    spack add rustbca
 
-and install them
+And install all dependencies
 
 .. code-block:: bash
 
@@ -123,7 +131,6 @@ and install them
    takes about 30 minutes on a HP-Z230. 
    Including RustBCA increases the Spack install time
    to about 10 hours.
-
 
 Create a build directory
 
