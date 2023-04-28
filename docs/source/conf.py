@@ -21,7 +21,8 @@ extensions = [
     'sphinxcontrib.bibtex',
     'sphinxcontrib.pseudocode',
     'sphinx.ext.autosectionlabel',
-    'sphinx.ext.intersphinx'
+    'sphinx.ext.intersphinx',
+    'sphinx_copybutton'
 ]
 
 bibtex_bibfiles = ['refs.bib']
