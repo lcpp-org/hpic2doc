@@ -75,16 +75,11 @@ Download the hpic2 source with its submodules,
 
 
 Optionally, download the rustbca source at the same location, 
+and rename it to ``rustbca``
 
 .. code-block:: bash
 
    git clone https://github.com/lcpp-org/RustBCA.git
-
-
-and rename it to ``rustbca``
-
-.. code-block::
-
    mv RustBCA rustbca
 
 
