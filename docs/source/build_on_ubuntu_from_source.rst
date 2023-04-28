@@ -10,7 +10,7 @@ then manually run ``cmake`` to set up the hPIC2 build.
 It is highly recommended installing all the dependencies of 
 hPIC2 via Spack, even if you already have some of them installed
 on your system. This will ensure that the correct versions are used.
-Before installing hPIC from source, set up Spack and the dependencies 
+Before installing hPIC2 from source, set up Spack and the dependencies 
 as follows.
 
 .. Follow the instructions for
@@ -114,7 +114,7 @@ Add dependencies to spack env
 and install them
 
 .. code-block:: bash
-   
+
    spack install
 
 Create a build directory
@@ -213,5 +213,8 @@ Compile
 
 When you make changes to the source code in ``~/hpic2_dev/hpic2``,
 you need only run ``make`` from the build directory again to recompile.
-Note that when you open a fresh terminal, you must ``spacktivate``
-the Spack env or source the configure script again before you can ``make``.
+
+.. note:: 
+   
+   Note that when you open a fresh terminal, you must ``spacktivate``
+   the Spack env or source the configure script again before you can ``make``.
