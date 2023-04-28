@@ -103,14 +103,27 @@ Add dependencies to spack env
    spack add kokkos~cuda+openmp
    spack add mfem~cuda+openmp~zlib
    spack add mpi
-   spack add rustbca
    spack add spdlog
+
+optionally add also RustBCA 
+
+.. code-block:: bash
+
+   spack add rustbca
 
 and install them
 
 .. code-block:: bash
 
    spack install
+
+.. note:: 
+
+   Spack installation without RustBCA 
+   takes about 30 minutes on a HP-Z230. 
+   Including RustBCA increases the Spack install time
+   to about 10 hours.
+
 
 Create a build directory
 
