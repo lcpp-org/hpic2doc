@@ -7,10 +7,87 @@ make changes, compile, and test locally.
 We have found that it is easiest to install dependencies via Spack,
 then manually run ``cmake`` to set up the hPIC2 build.
 
-Follow the instructions for
-:ref:`build_on_ubuntu:Building hpic2 on Ubuntu via spack`
-up until running ``spack install hpic2``,
-in order to set up the Spack repo.
+It is highly recommended installing all the dependencies of 
+hPIC2 via Spack, even if you already have some of them installed
+on your system. This will ensure that the correct versions are used.
+Before installing hPIC from source, set up Spack and the dependencies 
+as follows.
+
+.. Follow the instructions for
+.. :ref:`build_on_ubuntu:Building hpic2 on Ubuntu via spack`
+.. up until running ``spack install hpic2``,
+.. in order to set up the Spack repo.
+
+Setting up your Spack environment for hPIC2 dependencies
+----------------------------------------------------------
+
+Download the Spack repository 
+(suggested location, your ``$HOME`` directory):
+
+.. code-block:: bash
+
+   git clone -c feature.manyFiles=true https://github.com/spack/spack.git
+
+
+Source the spack environment:
+
+.. code-block:: bash
+
+   source $HOME/spack/share/spack/setup-env.sh
+
+.. note:: 
+   
+   Since the source step is needed every time, 
+   we suggest to add the source command to your ``.bashrc`` file
+   to avoid forgetting to re-tyoe it every time you open a new terminal.
+
+   .. code-block:: bash
+
+      echo "source $HOME/spack/share/spack/setup-env.sh" >> ~/.bashrc
+
+
+make a new spack repository for hpic2,
+
+.. code-block:: bash
+
+   spack repo create hpic2_dev
+
+
+register a Spack repository for hpic2,
+
+.. code-block:: bash
+
+   spack repo add hpic2_dev
+
+
+change to the spack repository ``packages`` directory,
+
+.. code-block:: bash
+
+   cd /hpic2_dev/packages
+
+
+Download the hpic2 source with its submodules,
+
+.. code-block:: bash
+
+   git clone --recurse-submodules https://github.com/lcpp-org/hpic2.git
+
+
+Optionally, download the rustbca source at the same location, 
+
+.. code-block:: bash
+
+   git clone https://github.com/lcpp-org/RustBCA.git
+
+
+and rename it to ``rustbca``
+
+.. code-block::
+
+   mv RustBCA rustbca
+
+
 
 Building hPIC2 with OpenMP
 ---------------------------
@@ -22,7 +99,7 @@ Create and enter a spack env
    spack env create hpic2_omp_opt
    spack env activate hpic2_omp_opt
 
-Add dependencies to spack env and install them
+Add dependencies to spack env
 
 .. code-block:: bash
 
@@ -33,6 +110,11 @@ Add dependencies to spack env and install them
    spack add mpi
    spack add rustbca
    spack add spdlog
+
+and install them
+
+.. code-block:: bash
+   
    spack install
 
 Create a build directory
