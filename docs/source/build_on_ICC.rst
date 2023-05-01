@@ -2,16 +2,16 @@
 Building hpic2 on the Illinois Campus Cluster (ICC)
 ===================================================
 
-The Illinois Campus Cluster (ICC) is a high-performance computing (HPC) 
-cluster that is available to the students, faculty, and staff at the 
-University of Illinois at Urbana-Champaign. The ICC is a shared resource, 
-and users are expected to abide by the 
+The Illinois Campus Cluster (ICC) is a high-performance computing (HPC)
+cluster that is available to the students, faculty, and staff at the
+University of Illinois at Urbana-Champaign. The ICC is a shared resource,
+and users are expected to abide by the
 `ICC User Policy <https://campuscluster.illinois.edu/resources/docs/policies/>`_.
 
 Step 1: Get an account on the ICC
 ---------------------------------
 
-If you do not already have an account on the Illinois Campus Cluster, 
+If you do not already have an account on the Illinois Campus Cluster,
 request access for Research here,
 
 
@@ -19,18 +19,18 @@ request access for Research here,
 
 specifying to be added to the following group: ``dcurreli-npre-eng``
 
-Read the ICC `resources <https://campuscluster.illinois.edu/resources/docs/>`_\ , such as: 
+Read the ICC `resources <https://campuscluster.illinois.edu/resources/docs/>`_\ , such as:
 
 
 * `ICC Getting started <https://campuscluster.illinois.edu/resources/docs/start/>`_
-* `ICC User Guide <https://campuscluster.illinois.edu/resources/docs/user-guide/>`_ 
+* `ICC User Guide <https://campuscluster.illinois.edu/resources/docs/user-guide/>`_
 * `ICC Storage and Data Guide <https://campuscluster.illinois.edu/resources/docs/storage-and-data-guide/>`_
 * `ICC Training and Tutorials <https://campuscluster.illinois.edu/resources/training/>`_
 
 Step 2: Connect to the ICC
 --------------------------
 
-The Campus Cluster can be accessed via Secure Shell (SSH) to the head nodes 
+The Campus Cluster can be accessed via Secure Shell (SSH) to the head nodes
 using your official University NetID login and password:
 
 .. code-block:: bash
@@ -40,15 +40,15 @@ using your official University NetID login and password:
 Step 3: Check your login environment
 ------------------------------------
 
-Once you login to the ICC, you normally land on a folder named after your NetID. 
+Once you login to the ICC, you normally land on a folder named after your NetID.
 
 .. code-block:: bash
 
    $ echo $HOME
    /home/<yournetid>
 
-The login environment is set up to provide a minimal set of tools and libraries. 
-The necessary modules have to be loaded to use the software. 
+The login environment is set up to provide a minimal set of tools and libraries.
+The necessary modules have to be loaded to use the software.
 To see what is available:
 
 .. code-block:: bash
@@ -58,20 +58,20 @@ To see what is available:
 Step 4: Load the necessary modules
 ----------------------------------
 
-In order to use the software, you need to load the necessary modules. 
-Dependencies are hanldes via `spack <https://spack.io/>`_. 
-A spack environment is provided in a shared folder of the campus cluster. 
+In order to use the software, you need to load the necessary modules.
+Dependencies are hanldes via `spack <https://spack.io/>`_.
+A spack environment is provided in a shared folder of the campus cluster.
 To use it, you need to source the spack environment:
 
 .. code-block:: bash
 
    source /home/dcurreli/lcpp/hpic2/spack/share/spack/setup-env.sh
 
-Now the list of available modules should include also the hpic2 dependencies 
-in the form ``hpic2deps/<desired-configuration>``\ , where ``<desired-configuration>`` 
-is a combination of the libraries and compilers. For example, to use the GCC 
-compiler and the MVAPICH2 MPI library, you can load the module 
-``hpic2deps/gcc-7.2.0/mvapich2-2.3.5``. To see the list of available configurations, 
+Now the list of available modules should include also the hpic2 dependencies
+in the form ``hpic2deps/<desired-configuration>``\ , where ``<desired-configuration>``
+is a combination of the libraries and compilers. For example, to use the GCC
+compiler and the MVAPICH2 MPI library, you can load the module
+``hpic2deps/gcc-7.2.0/mvapich2-2.3.5``. To see the list of available configurations,
 type:
 
 .. code-block:: bash
@@ -119,16 +119,16 @@ A ``module list`` command should now show the loaded modules, for example:
 Which modules to load?
 ^^^^^^^^^^^^^^^^^^^^^^
 
-In order to fully utilize the hybrid parallelism of hpic2 on the ICC, 
-you need to load modules including either ``+openmp`` or ``+cuda`` in the name. 
-For example, to use the OpenMP backend, you can load the module 
-``hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=70/~debug``. 
-To use the CUDA backend, you can load the module 
-``hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+cuda~pthread-cuda_arch=70/~debug``. 
-For a debug build, you can load a module including the ``+debug``\ , such as 
-``hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=70/+debug``. 
-For a release build, you can load a module including the ``~debug``\ , such as 
+In order to fully utilize the hybrid parallelism of hpic2 on the ICC,
+you need to load modules including either ``+openmp`` or ``+cuda`` in the name.
+For example, to use the OpenMP backend, you can load the module
+``hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=none/~debug``.
+To use the CUDA backend, you can load the module
 ``hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=70/~debug``.
+For a debug build, you can load a module including the ``+debug``\ , such as
+``hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=none/+debug``.
+For a release build, you can load a module including the ``~debug``\ , such as
+``hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=none/~debug``.
 
 How to load the modules automatically?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -144,8 +144,8 @@ You can add the following lines to your ``.bashrc`` file:
 How to generate new modules for hpic2?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-New modules can be generated using ``spack``. In order to use spack, 
-load the python3 module, ``module load python3``. If you would like to 
+New modules can be generated using ``spack``. In order to use spack,
+load the python3 module, ``module load python3``. If you would like to
 generate new modules for hpic2, you can start from the following script:
 
 .. code-block:: bash
@@ -160,16 +160,16 @@ Example:
    ...
    ...
 
-This script will generate the modules for all the configurations in the 
-``configurations`` folder. The script will also generate a ``modulefiles`` folder 
-with the modules. You can then copy the ``modulefiles`` folder to the shared 
+This script will generate the modules for all the configurations in the
+``configurations`` folder. The script will also generate a ``modulefiles`` folder
+with the modules. You can then copy the ``modulefiles`` folder to the shared
 folder of the campus cluster:
 
 .. code-block:: bash
 
    cp -r modulefiles /home/dcurreli/lcpp/hpic2/spack/share/spack/modules/linux-rhel7-sandybridge
 
-Check that the list of available moduels now includes the new modules, 
+Check that the list of available moduels now includes the new modules,
 
 .. code-block:: bash
 
@@ -230,9 +230,9 @@ Example of expected output:
    -- Detecting CXX compile features
    -- Detecting CXX compile features - done
    -- Enabled Kokkos devices: OPENMP;SERIAL
-   -- Found MPI_C: /usr/local/mpi/rh7/openmpi/4.1.0/gcc/7.2.0/pmi2/lib/libmpi.so (found version "3.1") 
-   -- Found MPI_CXX: /usr/local/mpi/rh7/openmpi/4.1.0/gcc/7.2.0/pmi2/lib/libmpi.so (found version "3.1") 
-   -- Found MPI: TRUE (found version "3.1")  
+   -- Found MPI_C: /usr/local/mpi/rh7/openmpi/4.1.0/gcc/7.2.0/pmi2/lib/libmpi.so (found version "3.1")
+   -- Found MPI_CXX: /usr/local/mpi/rh7/openmpi/4.1.0/gcc/7.2.0/pmi2/lib/libmpi.so (found version "3.1")
+   -- Found MPI: TRUE (found version "3.1")
    -- Looking for pthread.h
    -- Looking for pthread.h - found
    -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
@@ -241,8 +241,8 @@ Example of expected output:
    -- Looking for pthread_create in pthreads - not found
    -- Looking for pthread_create in pthread
    -- Looking for pthread_create in pthread - found
-   -- Found Threads: TRUE  
-   -- Found Hypre: /home/dcurreli/lcpp/hpic2/spack/opt/spack/linux-rhel7-sandybridge/gcc-7.2.0/hypre-2.20.0-2olp2oaczn3zf4nzq47qlkiqhrr6l6ec/lib/libHYPRE.so  
+   -- Found Threads: TRUE
+   -- Found Hypre: /home/dcurreli/lcpp/hpic2/spack/opt/spack/linux-rhel7-sandybridge/gcc-7.2.0/hypre-2.20.0-2olp2oaczn3zf4nzq47qlkiqhrr6l6ec/lib/libHYPRE.so
    -- Configuring done
    -- Generating done
    -- Build files have been written to: /home/dcurreli/hpic2_build_tmp
@@ -258,8 +258,8 @@ Compile hpic2 from the build directory:
    cmake $HOME/hpic2
    make -j8
 
-This will compile hpic2 using 8 cores and produce the ``hpic2`` executable 
-in the ``$HOME/hpic2-build`` folder. You can change the number of cores to 
+This will compile hpic2 using 8 cores and produce the ``hpic2`` executable
+in the ``$HOME/hpic2-build`` folder. You can change the number of cores to
 use by changing the number after the ``-j`` flag.
 
 Step 9: Check the executable
@@ -295,9 +295,9 @@ If the executable is present, you can check it runs correctly simply as follows:
 Acknowledgements
 ----------------
 
-To cite the ICC in your publications, use the following 
-`acknowledgement statement <https://campuscluster.illinois.edu/science/acknowledging/>`_\ : 
-"This work made use of the Illinois Campus Cluster, a computing resource that 
-is operated by the Illinois Campus Cluster Program (ICCP) in conjunction with 
-the National Center for Supercomputing Applications (NCSA) and which is 
+To cite the ICC in your publications, use the following
+`acknowledgement statement <https://campuscluster.illinois.edu/science/acknowledging/>`_\ :
+"This work made use of the Illinois Campus Cluster, a computing resource that
+is operated by the Illinois Campus Cluster Program (ICCP) in conjunction with
+the National Center for Supercomputing Applications (NCSA) and which is
 supported by funds from the University of Illinois at Urbana-Champaign."
