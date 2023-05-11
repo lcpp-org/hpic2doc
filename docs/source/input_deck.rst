@@ -1027,8 +1027,8 @@ At most one Boltzmann electron species is allowed.
        charge_conservation_scheme = #<options below ("hagelaar")>
 
 ``temperature``
-: Temperature of the electrons. If you are using ``"si"``, 
-temperature is in kelvin (1 eV = 11604 K). 
+: Temperature of the electrons. If you are using ``"si"``,
+temperature is in kelvin (1 eV = 11604 K).
 
 ``charge_conservation_scheme``
 : Scheme used to update the electron reference density. There are two options:
@@ -1871,22 +1871,11 @@ These are written into the source code and not adjustable by users.
 
 The ``particle_output`` subtable governs particle output.
 For a particle-based species, this will periodically output information about
-every particle currently active particle in the simulation.
-For simulations that are not parallelized with MPI,
-output filenames take the form
-``<simulation tag>_<species name>_particles_t<time step zero padded to 7 digits>.dat``
-where the simulation tag is taken from the ``input_mode`` table.
-For MPI-parallelized runs, each MPI process outputs a separate file,
-and ``.<rank>`` is appended to the end of the above filename for each MPI process.
-The files themselves are a space-separated value format.
-Each row represents a particle and takes the form
-
-.. code-block::
-
-   <charge number> <element index> <submesh ID> <weight> <x1> <x2> <x3> <v1> <v2> <v3>
-
-with the understanding that the submesh ID is a dummy output for
-non-pumi meshes.
+every currently active particle in the simulation.
+Output is in the
+`h5part <https://gitlab.psi.ch/H5hut/src/-/wikis/Documentation/Layout#user-content-overview>`_
+format.
+Filenames take the form ``<simulation tag>_<species name>.h5part``.
 
 .. code-block:: toml
 
@@ -1953,44 +1942,20 @@ and are not configurable by the user.
 The ``field_output`` subtable governs frequency of field output.
 The electric and magnetic fields, along with the electric potential
 and electrostatic energy, are printed.
-For MFEM meshes, fields are output to the
-`PVTU <https://vtk.org/wp-content/uploads/2015/04/file-formats.pdf>`_
-format,
-which is most easily read by
-`ParaView <https://www.paraview.org/>`_.
-This output is placed in a directory with the name of the simulation tag,
-which itself is placed in the user-specified output directory.
-For all other meshes,
-electric field output is placed in files with filenames of the form
-``<simulation tag>_EFIELD_t<time step zero padded to 7 digits>.dat``\ ;
-magnetic field output is placed in files with filenames of the form
-``<simulation tag>_BFIELD_t<time step zero padded to 7 digits>.dat``\ ;
-electric potential output is placed in files with filenames of the form
-``<simulation tag>_PHI_t<time step zero padded to 7 digits>.dat``\ ;
-and electrostatic energy output is placed in files with filenames of the form
+The fields are printed in the
+`transient <https://gitlab.kitware.com/vtk/vtk/-/merge_requests/10094>`_
+`VTKHDF <https://kitware.github.io/vtk-examples/site/VTKFileFormats/#unstructured-grid>`_
+format.
+The filename is ``<simulation tag>_fields.hdf``.
+
+The electrostatic energy output is placed in files with filenames of the form
 ``<simulation tag>_ENERGY_ELECTROSTATIC.dat``.
-The electric and magnetic field output files
-are all in a space-separated value format.
-Each line represents a node in the mesh and takes the form
-
-.. code-block::
-
-   <x1-component> <x2-component> <x3-component>
-
-The potential is similar, but each line contains only a single scalar value.
-The electrostatic energy output differs, since there is a single scalar value
-to output per time step.
-It is also in a space-separated value format,
-but of the form
+The electrostatic energy output is in a space-separated value format,
+each of whose line is of the form
 
 .. code-block::
 
    <time step zero padded to 7 digits> <total electrostatic energy>
-
-..
-
-   MFEM meshes currently do not compute or print the electrostatic energy.
-
 
 .. code-block:: toml
 
@@ -2099,17 +2064,16 @@ The moment orders are specified as a triple of nonnegative integers,
 indicating the order in each direction separately. In case of directional
 moments, a list of direction vectors (one for each moment-order triple)
 is needed. More details are provided in the list of options below.
-In case of standard moments, the output is placed in files with filenames of the form
-``<simulation tag>_<species name>_<lab or rest>_frame_moment_<order triple>.dat``. For
-directional moments, the output file name will be of the form
-``<simulation tag>_<species name>_<lab or rest>_frame_directional_moment_<order triple>_n<direction_number>.dat`` where the ``direction_number`` refers to the index
+All of the moments are saved as cell data in the
+`transient <https://gitlab.kitware.com/vtk/vtk/-/merge_requests/10094>`_
+`VTKHDF <https://kitware.github.io/vtk-examples/site/VTKFileFormats/#unstructured-grid>`_
+format.
+In case of standard moments, the field names will be of the form
+``<species name>_<lab or rest>_frame_moment_<order triple>``. For
+directional moments, the field names will be of the form
+``<species name>_<lab or rest>_frame_directional_moment_<order triple>_n<direction_number>`` where the ``direction_number`` refers to the index
 of a direction in the list of direction vectors. The files are in a space-separated value format where each row represents an output time step and
 each column represents a node in the mesh.
-
-..
-
-   Moment output is currently not supported on MFEM meshes.
-
 
 .. code-block:: toml
 
