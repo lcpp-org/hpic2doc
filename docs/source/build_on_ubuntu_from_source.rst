@@ -104,6 +104,7 @@ Add dependencies to spack env
    spack add mfem~cuda+openmp~zlib
    spack add mpi
    spack add spdlog
+   spack add hdf5+cxx+mpi
 
 .. note:: 
 
