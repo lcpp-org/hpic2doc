@@ -224,25 +224,22 @@ Example of expected output:
 
 .. code-block:: bash
 
-   $ cmake $HOME/hpic2
-   -- The C compiler identification is GNU 7.2.0
-   -- The CXX compiler identification is GNU 7.2.0
+   -- The C compiler identification is GNU 8.2.0
+   -- The CXX compiler identification is GNU 8.2.0
    -- Detecting C compiler ABI info
    -- Detecting C compiler ABI info - done
-   -- Check for working C compiler: /usr/local/gcc/7.2.0/bin/gcc - skipped
+   -- Check for working C compiler: /usr/local/gcc/8.2.0/bin/gcc - skipped
    -- Detecting C compile features
    -- Detecting C compile features - done
    -- Detecting CXX compiler ABI info
    -- Detecting CXX compiler ABI info - done
-   -- Check for working CXX compiler: /usr/local/gcc/7.2.0/bin/c++ - skipped
+   -- Check for working CXX compiler: /usr/local/gcc/8.2.0/bin/c++ - skipped
    -- Detecting CXX compile features
    -- Detecting CXX compile features - done
    -- Enabled Kokkos devices: OPENMP;SERIAL
-   -- Found MPI_C: /usr/local/mpi/rh7/openmpi/4.1.0/gcc/7.2.0/pmi2/lib/libmpi.so (found version "3.1")
-   -- Found MPI_CXX: /usr/local/mpi/rh7/openmpi/4.1.0/gcc/7.2.0/pmi2/lib/libmpi.so (found version "3.1")
+   -- Found MPI_C: /usr/local/mpi/openmpi/4.1.4/gcc/8.2.0/lib/libmpi.so (found version "3.1")
+   -- Found MPI_CXX: /usr/local/mpi/openmpi/4.1.4/gcc/8.2.0/lib/libmpi.so (found version "3.1")
    -- Found MPI: TRUE (found version "3.1")
-   -- Looking for pthread.h
-   -- Looking for pthread.h - found
    -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
    -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
    -- Looking for pthread_create in pthreads
@@ -250,10 +247,11 @@ Example of expected output:
    -- Looking for pthread_create in pthread
    -- Looking for pthread_create in pthread - found
    -- Found Threads: TRUE
-   -- Found Hypre: /home/dcurreli/lcpp/hpic2/spack/opt/spack/linux-rhel7-sandybridge/gcc-7.2.0/hypre-2.20.0-2olp2oaczn3zf4nzq47qlkiqhrr6l6ec/lib/libHYPRE.so
-   -- Configuring done
-   -- Generating done
-   -- Build files have been written to: /home/dcurreli/hpic2_build_tmp
+   -- Found Hypre: /home/logantm2/share/spack/opt/spack/linux-rhel7-sandybridge/gcc-8.2.0/hypre-2.28.0-6kog5ghteysufv4tept7iw3axzhqbld5/lib/libHYPRE.so
+   -- Found HDF5: hdf5_cpp-shared (found version "1.14.1") found components: CXX
+   -- Configuring done (2.4s)
+   -- Generating done (0.0s)
+   -- Build files have been written to: /home/logantm2/hpic2_openmp_release
 
 Step 8: Compile hpic2
 ---------------------
