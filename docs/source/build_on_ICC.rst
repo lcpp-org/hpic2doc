@@ -152,36 +152,11 @@ You can add the following lines to your ``.bashrc`` file:
 How to generate new modules for hpic2?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-New modules can be generated using ``spack``. In order to use spack,
-load the python3 module, ``module load python3``. If you would like to
-generate new modules for hpic2, you can start from the following script:
-
-.. code-block:: bash
-
-   ./home/dcurreli/lcpp/hpic2/spack/install_hpic2deps.sh
-
-Example:
-
-.. code-block:: bash
-
-   spack install hpic2deps%gcc@7.2.0 ^openmpi@4.1.0%gcc@7.2.0+pmi ^googletest%gcc@7.2.0 ^hypre%gcc@7.2.0 ^spdlog%gcc@7.2.0 ^kokkos%gcc@7.2.0+compiler_warnings+debug+debug_bounds_check+debug_dualview_modify_check
-   ...
-   ...
-
-This script will generate the modules for all the configurations in the
-``configurations`` folder. The script will also generate a ``modulefiles`` folder
-with the modules. You can then copy the ``modulefiles`` folder to the shared
-folder of the campus cluster:
-
-.. code-block:: bash
-
-   cp -r modulefiles /home/dcurreli/lcpp/hpic2/spack/share/spack/modules/linux-rhel7-sandybridge
-
-Check that the list of available moduels now includes the new modules,
-
-.. code-block:: bash
-
-   less /home/dcurreli/lcpp/hpic2/spack/share/spack/modules/module-index.yaml
+The modules were generated using the scripts in the
+<campuscluster_spack `https://github.com/logantm2/campuscluster_spack`>_
+github repo.
+Add additional lines in ``install_hpic2deps.sh``
+before running ``. setup.sh`` to register new modules.
 
 Known issues
 ^^^^^^^^^^^^
