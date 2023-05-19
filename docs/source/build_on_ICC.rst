@@ -59,19 +59,20 @@ Step 4: Load the necessary modules
 ----------------------------------
 
 In order to use the software, you need to load the necessary modules.
-Dependencies are hanldes via `spack <https://spack.io/>`_.
+Dependencies are handled via `spack <https://spack.io/>`_.
 A spack environment is provided in a shared folder of the campus cluster.
 To use it, you need to source the spack environment:
 
 .. code-block:: bash
 
-   source /home/dcurreli/lcpp/hpic2/spack/share/spack/setup-env.sh
+   source /home/logantm2/share/spack/share/spack/setup-env.sh
 
 Now the list of available modules should include also the hpic2 dependencies
 in the form ``hpic2deps/<desired-configuration>``\ , where ``<desired-configuration>``
 is a combination of the libraries and compilers. For example, to use the GCC
-compiler and the MVAPICH2 MPI library, you can load the module
-``hpic2deps/gcc-7.2.0/mvapich2-2.3.5``. To see the list of available configurations,
+compiler and the OpenMPI library, you can load the module
+``hpic2deps/gcc-8.2.0/openmpi-4.1.4/<additional options>``.
+To see the list of available configurations,
 type:
 
 .. code-block:: bash
@@ -82,39 +83,46 @@ The output should now look like this:
 
 .. code-block:: bash
 
-   --------------------- /home/dcurreli/lcpp/hpic2/spack/share/spack/modules/linux-rhel7-sandybridge --------------------
-   cuda/qcqjn52irigxuxymgaj2esjwrhzga2nd                                          kokkos/72z7t2rw7lpazlo5ewqjel7dip3gkdcz
-   googletest/thxshjk2cy3djebhfarv567blmhazvs2                                    kokkos/7haeqcoi4d2ie32pdioe6gtvh2p7cw7j
-   googletest/ul2hvjsx3qkgbzchjcoia2jrgfwxjbkg                                    kokkos/7ytomdkkwoxrwmvzutjhulfyh4w6ytzq
-   hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=35/+debug   kokkos/bcvdiuc2smud5dlm3k5cvmxnjb45ehcr
-   hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=35/~debug   kokkos/buqhmtbppfgjtwfd4g5vxew2qwqft7xm
-   hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=37/+debug   kokkos/c7m6o26u2sn5wbzlihmdzfhg646hwzsv
-   hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=37/~debug   kokkos/cp44r62ukspb4odkf4xwfmccwuwyhxlu
-   hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=60/+debug   kokkos/ct3hf5rwhaj7npkir6gr3gkkk2oi255b
-   hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=60/~debug   kokkos/dozyczjvmfu2vwcrcdgrdccd6okh6apw
-   hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=70/+debug   kokkos/dphrrmtm5jyaxtvy4tnbhwf2xojltlwv
-   hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=70/~debug   kokkos/eg5eigg7ttkdq34ednbbcda4edgsloj3
-   ...
-   ...
-   etc.
+   --------------------------------------------------------------------- /home/logantm2/share/spack/share/spack/modules/linux-rhel7-sandybridge ----------------------------------------------------------------------
+   berkeley-db/ywedesyuksbao2hvydby5petbnkkp5h5                        hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos~openmp+pthread~cuda/~debug mfem/3ig32fska5si27kqokjkfmmq7gkdh6wr
+   bzip2/umydrl2hddhx4aox4agypqochacdvylh                              hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos~openmp~pthread~cuda/+debug mfem/3ss6fvwftbpy7anqa2rx3wqnwvtnx3jf
+   ca-certificates-mozilla/hz7uokisoulr4xxkxzedm4fh25akvzsa            hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos~openmp~pthread~cuda/~debug mfem/h7dalt34tv2qjhoxhlmruqsuowasvdck
+   cmake/oguolevxfkshg7pesak6j6txrqmbcif6                              hypre/6kog5ghteysufv4tept7iw3axzhqbld5                              mfem/hiagqk42kkj7u67f2xjwdrddciaoypel
+   cuda/ldovkahimo3jbs65cjlfkloxo5mwlaf6                               kokkos/3lxmkn4opoy3345pkwfkssjrbqzvowl5                             ncurses/dkehzhlmhfilyytqrbjvlfec6xp2lkg6
+   diffutils/t25bet7qlskfjj4n6u777uwtmwefvmyi                          kokkos/3s2pu2uf767j2dp5apfatxdogqzlb6jm                             openblas/6iismk3yomdzrjokiouvdxgufssch3ys
+   gdbm/2jjcrmy7lmtypzdlhyqlzgopiabc5e2n                               kokkos/76l2z2pz3rowdykwjjboikzr4ylhbiv3                             openmpi/dszsfg2fbkalv7pp3husb7y562o3hpw3
+   gmake/d3osoidv7oklhch3o6x3urzpu7xvhwsw                              kokkos/bv4ymtu6u4kqyktglga5m7445vjjqogd                             openssl/2solcz7zwzdld4l7a6ugcj5ggtg5aqyn
+   googletest/jrls53uwhvtla2y4nyxj5nmm4hlvuusv                         kokkos/fgz5g5kuyxtfs74io4lezp4c55r5aifp                             perl/zyo4ghspyxb2kk7hdppm4rjn7tvwugoo
+   hdf5/adlpghib4yxif3r3nzl3n7fqcgyeiied                               kokkos/r6bp3uwgktrqe26jyiw2tmeh5efcafz2                             pkgconf/dubwtb3eulxgo3bkpeqs5plnxaxencju
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread+cuda/+debug kokkos/szd4fwkv3vcmyhf4r4np7axdq4wyxnrw                             readline/gzx2j4omsdomqyaezyu5mizgkmzghhkm
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread+cuda/~debug kokkos/vfenl2e6g4pd25l3fezsmqeno7jtwo52                             spdlog/snfoztnizhqurhkhrx5zrxt54sphzzlb
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/+debug kokkos-nvcc-wrapper/tg27x6bflvlu2lpwv5n7cu3oip7wjahi                zlib/dyc2g2hml2v42bwcuxpxt65n7ytpjtj6
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/~debug libiconv/vawybcva23n3seeqy4bmuylxfl3rgrhh
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos~openmp+pthread~cuda/+debug metis/qulheqtvkr6hdh52nhtl5tjrlc3j7mrv
+
 
 Now you can load the desired modules, for example:
 
 .. code-block:: bash
 
-   module load cmake
-   module load hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=70/~debug
+   module purge
+   module load hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/~debug
 
 A ``module list`` command should now show the loaded modules, for example:
 
 .. code-block:: bash
 
-   $ module list
    Currently Loaded Modulefiles:
-     1) gcc/7.2.0                                           5) kokkos/mn3h6o774qymfi6iv5wiedwk7k7jlkyg
-     2) cmake/3.18.4                                        6) openmpi/tpcwumes5rjhwpzkf3pvog5j2rdxxroh
-     3) googletest/thxshjk2cy3djebhfarv567blmhazvs2         7) spdlog/yyst4bxqpyoiv4ktc7pmqnk2yvh5t3y5
-     4) hypre/2olp2oaczn3zf4nzq47qlkiqhrr6l6ec              8) hpic2deps/gcc-7.2.0/openmpi-4.1.0/kokkos+openmp~pthread-cuda_arch=none/+debug
+   1) zlib/dyc2g2hml2v42bwcuxpxt65n7ytpjtj6                                 9) metis/qulheqtvkr6hdh52nhtl5tjrlc3j7mrv
+   2) spdlog/snfoztnizhqurhkhrx5zrxt54sphzzlb                              10) mfem/3ig32fska5si27kqokjkfmmq7gkdh6wr
+   3) pkgconf/dubwtb3eulxgo3bkpeqs5plnxaxencju                             11) kokkos/76l2z2pz3rowdykwjjboikzr4ylhbiv3
+   4) openssl/2solcz7zwzdld4l7a6ugcj5ggtg5aqyn                             12) hdf5/adlpghib4yxif3r3nzl3n7fqcgyeiied
+   5) openmpi/dszsfg2fbkalv7pp3husb7y562o3hpw3                             13) googletest/jrls53uwhvtla2y4nyxj5nmm4hlvuusv
+   6) openblas/6iismk3yomdzrjokiouvdxgufssch3ys                            14) cuda/ldovkahimo3jbs65cjlfkloxo5mwlaf6
+   7) ncurses/dkehzhlmhfilyytqrbjvlfec6xp2lkg6                             15) cmake/oguolevxfkshg7pesak6j6txrqmbcif6
+   8) hypre/6kog5ghteysufv4tept7iw3axzhqbld5                               16) hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/~debug
+
+The modules with long hashes are dependent submodules of the ``hpic2deps`` module.
 
 Which modules to load?
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -122,13 +130,13 @@ Which modules to load?
 In order to fully utilize the hybrid parallelism of hpic2 on the ICC,
 you need to load modules including either ``+openmp`` or ``+cuda`` in the name.
 For example, to use the OpenMP backend, you can load the module
-``hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=none/~debug``.
+``hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/~debug``.
 To use the CUDA backend, you can load the module
-``hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=70/~debug``.
+``hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread+cuda/~debug``.
 For a debug build, you can load a module including the ``+debug``\ , such as
-``hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=none/+debug``.
+``hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/+debug``.
 For a release build, you can load a module including the ``~debug``\ , such as
-``hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=none/~debug``.
+``hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/~debug``.
 
 How to load the modules automatically?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -137,9 +145,9 @@ You can add the following lines to your ``.bashrc`` file:
 
 .. code-block:: bash
 
-   module load cmake
-   source /home/dcurreli/lcpp/hpic2/spack/share/spack/setup-env.sh
-   module load hpic2deps/gcc-7.2.0/mvapich2-2.3.5/kokkos+openmp~pthread-cuda_arch=70/~debug
+   source /home/logantm2/share/spack/share/spack/setup-env.sh
+   module purge
+   module load hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/~debug
 
 How to generate new modules for hpic2?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
