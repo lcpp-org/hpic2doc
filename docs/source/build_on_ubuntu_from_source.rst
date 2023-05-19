@@ -7,10 +7,10 @@ make changes, compile, and test locally.
 We have found that it is easiest to install dependencies via Spack,
 then manually run ``cmake`` to set up the hPIC2 build.
 
-It is highly recommended installing all the dependencies of 
+It is highly recommended installing all the dependencies of
 hPIC2 via Spack, even if you already have some of them installed
 on your system. This will ensure that the correct versions are used.
-Before installing hPIC2 from source, set up Spack and the dependencies 
+Before installing hPIC2 from source, set up Spack and the dependencies
 as follows.
 
 .. Follow the instructions for
@@ -21,7 +21,7 @@ as follows.
 Setting up your Spack environment for hPIC2 dependencies
 ----------------------------------------------------------
 
-Download the Spack repository 
+Download the Spack repository
 (suggested location, your ``$HOME`` directory):
 
 .. code-block:: bash
@@ -35,9 +35,9 @@ Source the spack environment:
 
    source $HOME/spack/share/spack/setup-env.sh
 
-.. note:: 
-   
-   Since the source step is needed every time, 
+.. note::
+
+   Since the source step is needed every time,
    we suggest to add the source command to your ``.bashrc`` file
    to avoid forgetting to re-tyoe it every time you open a new terminal.
 
@@ -74,7 +74,7 @@ Download the hpic2 source with its submodules,
    git clone --recurse-submodules https://github.com/lcpp-org/hpic2.git
 
 
-Optionally, download the rustbca source at the same location, 
+Optionally, download the rustbca source at the same location,
 and rename it to ``rustbca``
 
 .. code-block:: bash
@@ -94,7 +94,7 @@ Create and enter a spack env
    spack env create hpic2_omp_opt
    spack env activate hpic2_omp_opt
 
-Add dependencies to spack env 
+Add dependencies to spack env
 
 .. code-block:: bash
 
@@ -106,15 +106,15 @@ Add dependencies to spack env
    spack add spdlog
    spack add hdf5+cxx+mpi
 
-.. note:: 
+.. note::
 
-   If you would like to specify a version for each dependency, 
-   you can specify it with the ``@:`` operator, 
-   e.g. ``spack add kokkos@:3.8 ~cuda+openmp``; 
-   otherwise Spack will automatically choose the last version 
-   available from the main Spack package list. 
+   If you would like to specify a version for each dependency,
+   you can specify it with the ``@:`` operator,
+   e.g. ``spack add kokkos@:3.8 ~cuda+openmp``;
+   otherwise Spack will automatically choose the last version
+   available from the main Spack package list.
 
-Optionally add also RustBCA 
+Optionally add also RustBCA
 
 .. code-block:: bash
 
@@ -126,10 +126,10 @@ And install all dependencies
 
    spack install
 
-.. note:: 
+.. note::
 
-   Spack installation without RustBCA 
-   takes about 30 minutes on a HP-Z230. 
+   Spack installation without RustBCA
+   takes about 30 minutes on a HP-Z230.
    Including RustBCA increases the Spack install time
    to about 10 hours.
 
@@ -197,6 +197,7 @@ Add dependencies to spack env and install them
    spack add openmpi +cuda cuda_arch=$MY_CC
    spack add rustbca
    spack add spdlog
+   spack add hdf5+cxx+mpi
    spack install
 
 Create a build directory
@@ -230,7 +231,7 @@ Compile
 When you make changes to the source code in ``~/hpic2_dev/hpic2``,
 you need only run ``make`` from the build directory again to recompile.
 
-.. note:: 
-   
+.. note::
+
    Note that when you open a fresh terminal, you must ``spacktivate``
    the Spack env or source the configure script again before you can ``make``.
