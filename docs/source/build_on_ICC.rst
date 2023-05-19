@@ -186,9 +186,9 @@ Check that the list of available moduels now includes the new modules,
 Known issues
 ^^^^^^^^^^^^
 
-
-* When using OpenMPI with the Intel compiler, must manually ``module load intel/18.0``
-* When using CUDA, must manually ``module load cuda``
+* The dependencies have only been built with CUDA for CC 7.0.
+  Your mileage may vary on GPUs with other Compute Capabilities.
+* Cannot build with both CUDA and MFEM pending an issue with cusparse.
 
 Step 5: Clone the hpic2 repository
 ----------------------------------
