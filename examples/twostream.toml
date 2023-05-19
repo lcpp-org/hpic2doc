@@ -17,9 +17,9 @@ dt = 9.82e-12
 [species."e-_blue"]
 mass = 9.11e-31
 type = "boris_buneman"
-[species."e-_blue".type_params]
+    [species."e-_blue".type_params]
     initial_condition = "uniform_beam"
-    [species."e-_blue".type_params.initial_condition_params]
+        [species."e-_blue".type_params.initial_condition_params]
         num_particles = 50000
         charge_states = [ { charge_number = -1, density = 5.0e15 } ]
         flow_velocity_1 = 3.2e5
@@ -29,9 +29,9 @@ type = "boris_buneman"
 [species."e-_red"]
 mass = 9.11e-31
 type = "boris_buneman"
-[species."e-_red".type_params]
+    [species."e-_red".type_params]
     initial_condition = "uniform_beam"
-    [species."e-_red".type_params.initial_condition_params]
+        [species."e-_red".type_params.initial_condition_params]
         num_particles = 50000
         charge_states = [ { charge_number = -1, density = 5.0e15 } ]
         flow_velocity_1 = -3.2e5
@@ -41,7 +41,7 @@ type = "boris_buneman"
 [species."h+"]
 mass = 1.67e-27
 type = "uniform_background"
-[species."h+".type_params]
+    [species."h+".type_params]
     charge_number = 1
     density = 1.0e16
 
@@ -58,12 +58,15 @@ poisson_solver = "hockney"
 
 [output_diagnostics]
 output_dir = "twostream_example_out"
-[output_diagnostics.logging]
-log_level = "info"
-timing_log_enabled = false
-[output_diagnostics.particle_output]
-stride = 1
-species = ["e-_blue", "e-_red"]
-
+    [output_diagnostics.logging]
+    log_level = "info"
+    timing_log_enabled = false
+    [output_diagnostics.particle_output]
+    stride = 0
+    first_step = false
+    final_step = true
+    species = ["e-_blue", "e-_red"]
     [output_diagnostics.field_output]
-    stride = 1
+    stride = 0
+    first_step = false
+    final_step = true
