@@ -153,7 +153,7 @@ How to generate new modules for hpic2?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The modules were generated using the scripts in the
-<campuscluster_spack `https://github.com/logantm2/campuscluster_spack`>_
+`campuscluster_spack <https://github.com/logantm2/campuscluster_spack>`_
 github repo.
 Add additional lines in ``install_hpic2deps.sh``
 before running ``. setup.sh`` to register new modules.
