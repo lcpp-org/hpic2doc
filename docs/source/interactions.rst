@@ -17,7 +17,7 @@ we refer specifically to this method.
 MCC allows a source species to collide with arbitrarily many target species,
 but an individual source particle may only undergo a maximum of one
 collision per time step.
-For each source particle, a collision probability is computed from the sum
+For each source particle, we could compute a collision probability from the sum
 of collision rates over all :math:`N` possible collisions as
 
 .. math::
@@ -25,25 +25,47 @@ of collision rates over all :math:`N` possible collisions as
     P = 1 - \exp \left( - \Delta t \sum_{i=1}^N n_i \sigma_i (\vec{g}_i) g_i \right),
 
 where :math:`\Delta t` is the time step size,
-:math:`n_i` is the local number density of the target for collision :math:`i`,
+:math:`n_i = n_i(\vec{x})` is the local number density of the target for collision :math:`i`,
 :math:`\sigma_i = \sigma_i(\vec{g})` is the collision cross section function,
 and :math:`\vec{g}_i` is the relative velocity between the source particle
 and its target collision partner.
 Collision partners are drawn randomly from the target species' distribution.
-Another random number is drawn uniformly from :math:`[0,1)`,
-and if it is less than :math:`P`,
-then we say that a collision will occur.
 
-We must then decide which type of collision will occur.
+It can be expensive to compute the collision probability for each particle.
+Instead, we add a fictitious "null" collision whose cross section is such that
+the total collision frequency is constant.
+We choose the constant collision frequency to be
+
+.. math::
+
+    \nu' = \max_{\vec{x}, \vec{g}} \sum_{i=1}^N n_i (\vec{x}) \sigma_i (\vec{g}) g.
+
+Now the maximum fraction of particles that will undergo collisions is
+
+.. math::
+    P_{\text{null}} = 1 - \exp \left( - \Delta t \nu' \right).
+
+Given :math:`M` particles, :math:`\lceil M P_{\text{null}} \rceil`
+are randomly sampled without replacement.
+We must then decide which type of collision will occur for each such particle.
 Uniformly draw a random number :math:`U \in [0,1)`.
 Then collision :math:`i` will occur if
 
 .. math::
 
-    \frac{\sum_{j=1}^{i-1} n_j \sigma_j (\vec{g}_j) g_j}{\sum_{j=1}^N n_j \sigma_j (\vec{g}_j) g_j} \leq
+    \frac{\sum_{j=1}^{i-1} n_j \sigma_j (\vec{g}_j) g_j}{\nu'} \leq
     U <
-    \frac{\sum_{j=1}^{i} n_j \sigma_j (\vec{g}_j) g_j}{\sum_{j=1}^N n_j \sigma_j (\vec{g}_j) g_j}.
+    \frac{\sum_{j=1}^{i} n_j \sigma_j (\vec{g}_j) g_j}{\nu'},
 
+and the null collision will occur if
+
+.. math::
+
+    \frac{\sum_{i=1}^N n_i \sigma_i (\vec{g}_i) g_i}{\nu'} \leq U
+
+for the selected particle,
+again where collision partners are drawn randomly
+from the target species' distribution.
 This strategy weights the possible collisions by their collision rates.
 
 Many things can happen when a collision occurs.
