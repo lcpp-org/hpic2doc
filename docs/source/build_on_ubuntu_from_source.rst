@@ -13,6 +13,12 @@ on your system. This will ensure that the correct versions are used.
 Before installing hPIC2 from source, set up Spack and the dependencies
 as follows.
 
+Ensure you have some basic compilers installed:
+
+.. code-block:: bash
+
+   sudo apt install -y build-essential gfortran
+
 .. Follow the instructions for
 .. :ref:`build_on_ubuntu:Building hpic2 on Ubuntu via spack`
 .. up until running ``spack install hpic2``,
@@ -44,6 +50,12 @@ Source the spack environment:
    .. code-block:: bash
 
       echo "source $HOME/spack/share/spack/setup-env.sh" >> ~/.bashrc
+
+Let Spack find your compilers,
+
+.. code-block:: bash
+
+   spack compiler find
 
 
 make a new spack repository for hpic2,

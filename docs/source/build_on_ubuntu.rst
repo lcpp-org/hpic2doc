@@ -2,20 +2,26 @@
 Building hpic2 on Ubuntu via spack
 ==================================
 
-Those instuctions were tested on Ubuntu 22.04 LTS jammy.
+These instructions were tested on Ubuntu 22.04 LTS jammy.
+
+Ensure you have some basic compilers installed:
+
+.. code-block:: bash
+
+   sudo apt install -y build-essential gfortran
 
 Download and source spack
 -------------------------
 
-Install the package manager 
-`spack <https://spack.readthedocs.io/en/latest/index.html>`_ 
-as described in the 
-`spack documentation <https://spack.readthedocs.io/en/latest/getting_started.html>`_. 
-Python 3.6 or later is required. Check also the 
+Install the package manager
+`spack <https://spack.readthedocs.io/en/latest/index.html>`_
+as described in the
+`spack documentation <https://spack.readthedocs.io/en/latest/getting_started.html>`_.
+Python 3.6 or later is required. Check also the
 `minimum system requirements <https://spack.readthedocs.io/en/latest/getting_started.html#system-prerequisites>`_
-which are assumed to be present on the machine where Spack is run. 
+which are assumed to be present on the machine where Spack is run.
 
-Download the spack repository 
+Download the spack repository
 (suggested location, ``$HOME`` directory)
 
 .. code-block::
@@ -30,8 +36,14 @@ Source the spack environment
    source $HOME/spack/share/spack/setup-env.sh
 
 
-Since the source step is needed every time, 
-we suggest to add the source command to your ``.bashrc`` file. 
+Since the source step is needed every time,
+we suggest to add the source command to your ``.bashrc`` file.
+
+Let Spack find your compilers
+
+.. code-block:: bash
+
+   spack compiler find
 
 Install hpic2 via Spack
 -----------------------
@@ -85,14 +97,14 @@ Use spack to install hpic2
    spack install hpic2+testing+rustbca ^kokkos+openmp
 
 
-The ``+testing`` option enables the tests and 
-the ``+rustbca`` option enables the RustBCA solver. 
+The ``+testing`` option enables the tests and
+the ``+rustbca`` option enables the RustBCA solver.
 The ``^kokkos+openmp`` option enables the OpenMP backend of Kokkos
-to allow for shared-memory parallelism. 
-The ``+cuda`` option enables the CUDA backend of Kokkos. 
+to allow for shared-memory parallelism.
+The ``+cuda`` option enables the CUDA backend of Kokkos.
 
 .. warning::
 
    If the ``spack install`` command includes ``+rustbca``, it will take a while to
-   complete if the rust dependency isn't already installed through spack. Depending on the speed of your machine this can 
-   take up to 10 hours. Plan accordingly. 
+   complete if the rust dependency isn't already installed through spack. Depending on the speed of your machine this can
+   take up to 10 hours. Plan accordingly.
