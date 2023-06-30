@@ -2195,6 +2195,10 @@ than ``MAX_ENERGY_TE`` will be binned into the final row. (default 24)
 in the IEAD histogram for species ``SPECIES_NAME``. ``de_eV`` is therefore
 ``MAX_ENERGY_TE`` / ``NUM_ENERGY_BINS`` (default: 240).
 
+``iead_output.<SPECIES_NAME>.num_angle_bins``\ : the number of columns, or angle bins,
+in the IEAD histogram for species ``SPECIES_NAME``. ``deAngle_deg`` is therefore
+``90`` / ``NUM_ENERGY_BINS`` (default: 90).
+
 Example TOML Subtable
 ~~~~~~~~~~~~~~~~~~~~~~
 
