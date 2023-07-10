@@ -2173,7 +2173,7 @@ is included in the output  filename. Note that the IEAD file output at
 each timestep is cumulative: values in the histogram represent total number of physical particles
 which have impacted the boundary since the start of the simulation. The final row of the
 IEAD is used as an accumulation point, meaning all particles greater than
-``MAX_ENREGY_TE`` will be binned into this row.
+``MAX_ENREGY_TE`` * ``TE`` will be binned into this row.
 
 Explanation of Fields
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2187,17 +2187,17 @@ Explanation of Fields
 (default: false)
 
 ``iead_output.<SPECIES_NAME>.max_energy_te``\ : the energy of the final row of the
-IEAD for species ``SPECIES_NAME``\ , in electron volts. This row will serve as an
-accumulation point. All particles impacting the boundary with energy greater
-than ``MAX_ENERGY_TE`` will be binned into the final row. (default 24)
+IEAD for species ``SPECIES_NAME``\ , as a multiple of the electron temperature in electron volts ``TE``\. 
+This row will serve as an accumulation point. All particles impacting the boundary with energy greater
+than ``MAX_ENERGY_TE`` * ``TE`` will be binned into the final row (default: 24).
 
 ``iead_output.<SPECIES_NAME>.num_energy_bins``\ : the number of rows, or energy bins,
 in the IEAD histogram for species ``SPECIES_NAME``. ``de_eV`` is therefore
-``MAX_ENERGY_TE`` / ``NUM_ENERGY_BINS`` (default: 240).
+``MAX_ENERGY_TE`` * ``TE`` / ``NUM_ENERGY_BINS`` (default: 240).
 
 ``iead_output.<SPECIES_NAME>.num_angle_bins``\ : the number of columns, or angle bins,
 in the IEAD histogram for species ``SPECIES_NAME``. ``deAngle_deg`` is therefore
-``90`` / ``NUM_ENERGY_BINS`` (default: 90).
+``90`` / ``NUM_ANGLE_BINS`` (default: 90).
 
 Example TOML Subtable
 ~~~~~~~~~~~~~~~~~~~~~~
