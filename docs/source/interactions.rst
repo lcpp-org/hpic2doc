@@ -75,6 +75,109 @@ the collision may spawn a new electron and a new ion;
 if the collision models elastic scattering events,
 the source particle's trajectory may simply be skewed to reflect the collision.
 
+Direct simulation Monte Carlo
+--------------------------------
+
+Direct simulation Monte Carlo (DSMC) methods form a family of algorithms for
+collisions between particle-based species.
+The most common method for DSMC is the no-time-counter (NTC) scheme,
+which first computes a maximum collision number of collisions,
+selects that many particle pairs,
+then decides between possible reactions with some
+probability :cite:`bird1994molecular`.
+The original NTC scheme does not allow for variable particle weights,
+so the stochastic weighted particle method (SWPM) was developed to address
+this disadvantage :cite:`rjasanow1996stochastic`.
+The SWPM was subsequently extended to the case of interspecies
+collisions :cite:`araki2020interspecies`.
+This latter approach is used by hPIC2.
+
+First, for each pair of colliding species, define
+
+.. math::
+
+    \chi = \max_{\vec{g}} \sum_{i=1}^N \sigma_i (\vec{g}) g,
+
+where :math:`N` is the number of possible reactions between the two species
+and :math:`\sigma_i (\vec{g})` is the cross section of reaction :math:`i`
+as a function of relative velocity :math:`\vec{g}`.
+For each mesh element,
+the maximum number of collisions is computed as
+
+.. math::
+
+    N_{\text{coll}} = N_\alpha N_\beta (\bar{w}_\alpha + \bar{w}_\beta - \min w) \frac{\chi \Delta t}{V},
+
+where :math:`N_\alpha` and :math:`N_\beta` are the numbers of particles in
+species :math:`\alpha` and :math:`\beta`, respectively,
+
+.. math::
+
+    \bar{w}_\alpha = \frac{1}{N_\alpha} \sum_{i=1}^{N_\alpha} w_i
+
+and
+
+.. math::
+
+    \bar{w}_\beta = \frac{1}{N_\beta} \sum_{j=1}^{N_\beta} w_j
+
+are the average weights of particles in the two species,
+:math:`\min w` is the minimum particle weight across both species,
+:math:`\Delta t` is the colliding time step,
+and :math:`V` is the volume of the element.
+In practice, if :math:`N_{\text{coll}}` is computed to be small (:math:`<64`),
+it is sampled from a Poisson distribution,
+and otherwise rounded up to the nearest integer.
+
+For each of :math:`N_{\text{coll}}` possible collisions,
+a pair of particles (say, particle :math:`i` from species :math:`\alpha`
+and particle :math:`j` from species :math:`\beta`)
+and accepted with probability
+
+.. math::
+
+    P_{ij} = \frac{w_i + w_j - \min w}{\max_\alpha w + \max_\beta w - \min w},
+
+where the maximum weights are computed over particles of the appropriate species.
+If a pair is rejected, the process of selecting a new pair is repeated
+until the pair is accepted.
+We must then decide which type of collision will occur for each such pair,
+if any.
+Uniformly draw a random number :math:`U \in [0,1)`.
+Then collision :math:`k` will occur if
+
+.. math::
+
+    \frac{\max(w_i, w_j)}{w_i + w_j - \min w} \frac{\sum_{l=1}^{k-1} \sigma_l (\vec{g}) g}{\chi} \leq
+    U <
+    \frac{\max(w_i, w_j)}{w_i + w_j - \min w} \frac{\sum_{l=1}^{k} \sigma_l (\vec{g}) g}{\chi},
+
+and the null collision will occur if
+
+.. math::
+
+    \frac{\max(w_i, w_j)}{w_i + w_j - \min w} \frac{\sum_{l=1}^N \sigma_l (\vec{g}) g}{\chi} \leq U.
+
+If the null collision occurs, nothing further happens to this pair.
+Otherwise, the particle with the greater weight is copied.
+This new particle has the smaller of the two weights,
+and the original particle has its weight reduced to the difference of the
+greater and smaller weights.
+The copied particle and smaller particle finally collide according to
+the reaction type.
+This particle splitting ensures detailed mass, momentum, and energy conservation.
+:math:`N_\alpha` and :math:`N_\beta` are also updated to reflect the addition
+of new particles,
+effectively allowing the new particles to collide multiple times.
+
+If :math:`\alpha = \beta`, i.e. if the species is colliding with itself,
+the only change is to modify the maximum number of collisions to
+be :cite:`martin2016conservative`
+
+.. math::
+
+    N_{\text{coll}} = N_\alpha (N_\alpha - 1) (2 \bar{w}_\alpha - \min w) \frac{\chi \Delta t}{V}.
+
 RustBCA coupling
 ------------------
 
