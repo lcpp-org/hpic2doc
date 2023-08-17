@@ -43,7 +43,7 @@ We choose the constant collision frequency to be
 Now the maximum fraction of particles that will undergo collisions is
 
 .. math::
-    P_{\text{null}} = 1 - \exp \left( - \Delta t \nu' \right).
+    P_{\text{null}} = 1 - \exp \left( - \Delta t \nu' \right) \approx \Delta t \nu'.
 
 Given :math:`M` particles, :math:`\lceil M P_{\text{null}} \rceil`
 are randomly sampled without replacement.
