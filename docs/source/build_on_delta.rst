@@ -25,7 +25,7 @@ Build hPIC2 for A40s
 The following script will install the latest version of hPIC2 with MFEM,
 pumiMBBL, and RustBCA support.
 
-.. literalinclude:: build_hpic2_cc80.sh
+.. literalinclude:: build_hpic2_cc86.sh
    :language: sh
 
 Build hPIC2 for A100s
@@ -34,5 +34,5 @@ Build hPIC2 for A100s
 The following script will install the latest version of hPIC2 with MFEM,
 pumiMBBL, and RustBCA support.
 
-.. literalinclude:: build_hpic2_cc86.sh
+.. literalinclude:: build_hpic2_cc80.sh
    :language: sh
