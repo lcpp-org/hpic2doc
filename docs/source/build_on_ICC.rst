@@ -83,22 +83,34 @@ The output should now look like this:
 
 .. code-block:: bash
 
-   --------------------------------------------------------------------- /home/logantm2/share/spack/share/spack/modules/linux-rhel7-sandybridge ----------------------------------------------------------------------
-   berkeley-db/ywedesyuksbao2hvydby5petbnkkp5h5                        hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos~openmp+pthread~cuda/~debug mfem/3ig32fska5si27kqokjkfmmq7gkdh6wr
-   bzip2/umydrl2hddhx4aox4agypqochacdvylh                              hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos~openmp~pthread~cuda/+debug mfem/3ss6fvwftbpy7anqa2rx3wqnwvtnx3jf
-   ca-certificates-mozilla/hz7uokisoulr4xxkxzedm4fh25akvzsa            hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos~openmp~pthread~cuda/~debug mfem/h7dalt34tv2qjhoxhlmruqsuowasvdck
-   cmake/oguolevxfkshg7pesak6j6txrqmbcif6                              hypre/6kog5ghteysufv4tept7iw3axzhqbld5                              mfem/hiagqk42kkj7u67f2xjwdrddciaoypel
-   cuda/ldovkahimo3jbs65cjlfkloxo5mwlaf6                               kokkos/3lxmkn4opoy3345pkwfkssjrbqzvowl5                             ncurses/dkehzhlmhfilyytqrbjvlfec6xp2lkg6
-   diffutils/t25bet7qlskfjj4n6u777uwtmwefvmyi                          kokkos/3s2pu2uf767j2dp5apfatxdogqzlb6jm                             openblas/6iismk3yomdzrjokiouvdxgufssch3ys
-   gdbm/2jjcrmy7lmtypzdlhyqlzgopiabc5e2n                               kokkos/76l2z2pz3rowdykwjjboikzr4ylhbiv3                             openmpi/dszsfg2fbkalv7pp3husb7y562o3hpw3
-   gmake/d3osoidv7oklhch3o6x3urzpu7xvhwsw                              kokkos/bv4ymtu6u4kqyktglga5m7445vjjqogd                             openssl/2solcz7zwzdld4l7a6ugcj5ggtg5aqyn
-   googletest/jrls53uwhvtla2y4nyxj5nmm4hlvuusv                         kokkos/fgz5g5kuyxtfs74io4lezp4c55r5aifp                             perl/zyo4ghspyxb2kk7hdppm4rjn7tvwugoo
-   hdf5/adlpghib4yxif3r3nzl3n7fqcgyeiied                               kokkos/r6bp3uwgktrqe26jyiw2tmeh5efcafz2                             pkgconf/dubwtb3eulxgo3bkpeqs5plnxaxencju
-   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread+cuda/+debug kokkos/szd4fwkv3vcmyhf4r4np7axdq4wyxnrw                             readline/gzx2j4omsdomqyaezyu5mizgkmzghhkm
-   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread+cuda/~debug kokkos/vfenl2e6g4pd25l3fezsmqeno7jtwo52                             spdlog/snfoztnizhqurhkhrx5zrxt54sphzzlb
-   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/+debug kokkos-nvcc-wrapper/tg27x6bflvlu2lpwv5n7cu3oip7wjahi                zlib/dyc2g2hml2v42bwcuxpxt65n7ytpjtj6
-   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/~debug libiconv/vawybcva23n3seeqy4bmuylxfl3rgrhh
-   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos~openmp+pthread~cuda/+debug metis/qulheqtvkr6hdh52nhtl5tjrlc3j7mrv
+   ---------------------------------------------------------------------- /home/logantm2/share/spack/share/spack/modules/linux-rhel7-broadwell -----------------------------------------------------------------------
+   berkeley-db/whkl34dyhiyyucnodtq7d54hponalu77                                kokkos/i5kpt4sbuqsqx2lsu76t2snogwihyfyq
+   bzip2/kru65z26vmowdfncpkuxcu4jrhlqoryn                                      kokkos/igd6mhtohiaheudyhjcqufeyrxlziskb
+   ca-certificates-mozilla/6epw3wprmf7pqjr77wsnwu7z3ct2ghvh                    kokkos/inqgneifiafoo65sibdgzc4tvap4kcn4
+   cmake/ris452uafjevbjmzsb3omuaappxhinih                                      kokkos/ok4jr4u4bdrwq62kaomhuulxrv4cpztv
+   cuda/ajg3d2xhe7uqpwadrdtogqfuguxww7cv                                       kokkos/wmtrpdeuqaivzzrtzu534ixqgxxhmrus
+   curl/b6uexft6mivyzgoivsf5swqtvefhrius                                       kokkos-nvcc-wrapper/f4ehc24wnng6pa4ni3mpfwuc2l5lw3co
+   diffutils/zhg75e4qwyf7kc32duquzn4sn6xzug6p                                  libiconv/rwnetmcbalo6jf54gthchpkoowmq7ozb
+   gdbm/54wyi4k4m4zluhy3gk5zcgnecdjv6uj5                                       metis/pzlmomifruqqjhsakamas4aheufrko6t
+   gmake/wl36mnohkox5kkv4tvkjxl5zvq7w77s2                                      mfem/dv5vqt7pfbffkopbw6uebw4ddr4dtzrm
+   googletest/b7qf5czgre7jevqlzwnd3wxe2urmb5qe                                 mfem/mi5wvude2vji3bue6rpv35qxi6g5orxf
+   hdf5/vhky5innywdthi467axsqpqloak4wyh3                                       mfem/nbubqg3pziugqyyn55bc62hlu44wilmc
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~threads+cuda/+debug/ijx5e5y mfem/nk5lwti2vixj6vjpjwq3eawjiw7p37x3
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~threads+cuda/+debug/kfqouuu mfem/qn3wwoel7wbaiq5gvatbrmxdrvwq6bhq
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~threads+cuda/~debug/b4qghgu mfem/qobvaalki6xfmqz6vwgwr74csyhdry6g
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~threads+cuda/~debug/wx7itr2 mfem/torsksjujw7z6p7wkejpmtvyi24rcsd5
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~threads~cuda/+debug/6gwnr4g mfem/vgrl656pcwokw2meciitihadvf3e33dn
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~threads~cuda/~debug/po3ggco ncurses/3zojnvbmscs65qscuwx6vfyfd5sg62r6
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos~openmp+threads~cuda/+debug/dh7ayxh nghttp2/po2ilhiczysycq3kadhdbgi74b4qnnpq
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos~openmp+threads~cuda/~debug/4e4xvri openblas/sqs52e3y3tg4ppytdetxhiihdfrog5q6
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos~openmp~threads~cuda/+debug/5b33jls openmpi/mly6sy3dfrpugef4o74lz3un7uv7ht2j
+   hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos~openmp~threads~cuda/~debug/vkhnyhd openssl/7qnyy7z2zlnga7uxnjislgtizyhw3mo7
+   hypre/5i5vubkv73svzy3tp5eppqklc2vxnm7f                                      perl/24ggfycduqqit434cd5qcxmbnlex7erz
+   kokkos/3nmmtfthwymyvqk2e5up54xpeyguwu6k                                     pkgconf/nrzd3nbpvy7674cl7vhngj6ylkmmxuxc
+   kokkos/3ptpc5eifcdlmqqo2n43nezge7mvlmzy                                     readline/ta46if5eireyg6csugdxu5u4uvwmtslu
+   kokkos/6xt5rs2ekms74tkek3yi2wjzqquw3y4g                                     spdlog/r26kz7hh4coo23rod7swiuh2c6we3pk3
+   kokkos/gwsttvjdixkxf3cutanez4l5w633lvpv                                     zlib-ng/stvfbiik54rfrphpc2uq7xygaaq4hj3g
+   kokkos/he2ijnnxyhbqvmkefnsmyixgfbxlfbmx
 
 
 Now you can load the desired modules, for example:
@@ -106,21 +118,22 @@ Now you can load the desired modules, for example:
 .. code-block:: bash
 
    module purge
-   module load hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/~debug
+   module load hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~threads~cuda/~debug/po3ggco
 
 A ``module list`` command should now show the loaded modules, for example:
 
 .. code-block:: bash
 
    Currently Loaded Modulefiles:
-   1) zlib/dyc2g2hml2v42bwcuxpxt65n7ytpjtj6                                 9) metis/qulheqtvkr6hdh52nhtl5tjrlc3j7mrv
-   2) spdlog/snfoztnizhqurhkhrx5zrxt54sphzzlb                              10) mfem/3ig32fska5si27kqokjkfmmq7gkdh6wr
-   3) pkgconf/dubwtb3eulxgo3bkpeqs5plnxaxencju                             11) kokkos/76l2z2pz3rowdykwjjboikzr4ylhbiv3
-   4) openssl/2solcz7zwzdld4l7a6ugcj5ggtg5aqyn                             12) hdf5/adlpghib4yxif3r3nzl3n7fqcgyeiied
-   5) openmpi/dszsfg2fbkalv7pp3husb7y562o3hpw3                             13) googletest/jrls53uwhvtla2y4nyxj5nmm4hlvuusv
-   6) openblas/6iismk3yomdzrjokiouvdxgufssch3ys                            14) cuda/ldovkahimo3jbs65cjlfkloxo5mwlaf6
-   7) ncurses/dkehzhlmhfilyytqrbjvlfec6xp2lkg6                             15) cmake/oguolevxfkshg7pesak6j6txrqmbcif6
-   8) hypre/6kog5ghteysufv4tept7iw3axzhqbld5                               16) hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/~debug
+   1) zlib-ng/stvfbiik54rfrphpc2uq7xygaaq4hj3g                                     10) metis/pzlmomifruqqjhsakamas4aheufrko6t
+   2) spdlog/r26kz7hh4coo23rod7swiuh2c6we3pk3                                      11) mfem/nk5lwti2vixj6vjpjwq3eawjiw7p37x3
+   3) pkgconf/nrzd3nbpvy7674cl7vhngj6ylkmmxuxc                                     12) kokkos/wmtrpdeuqaivzzrtzu534ixqgxxhmrus
+   4) openssl/7qnyy7z2zlnga7uxnjislgtizyhw3mo7                                     13) hdf5/vhky5innywdthi467axsqpqloak4wyh3
+   5) openmpi/mly6sy3dfrpugef4o74lz3un7uv7ht2j                                     14) googletest/b7qf5czgre7jevqlzwnd3wxe2urmb5qe
+   6) openblas/sqs52e3y3tg4ppytdetxhiihdfrog5q6                                    15) curl/b6uexft6mivyzgoivsf5swqtvefhrius
+   7) nghttp2/po2ilhiczysycq3kadhdbgi74b4qnnpq                                     16) cuda/ajg3d2xhe7uqpwadrdtogqfuguxww7cv
+   8) ncurses/3zojnvbmscs65qscuwx6vfyfd5sg62r6                                     17) cmake/ris452uafjevbjmzsb3omuaappxhinih
+   9) hypre/5i5vubkv73svzy3tp5eppqklc2vxnm7f                                       18) hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~threads~cuda/~debug/po3ggco
 
 The modules with long hashes are dependent submodules of the ``hpic2deps`` module.
 
@@ -130,13 +143,65 @@ Which modules to load?
 In order to fully utilize the hybrid parallelism of hpic2 on the ICC,
 you need to load modules including either ``+openmp`` or ``+cuda`` in the name.
 For example, to use the OpenMP backend, you can load the module
-``hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/~debug``.
-To use the CUDA backend, you can load the module
-``hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread+cuda/~debug``.
+``hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~threads~cuda/~debug/po3ggco``.
 For a debug build, you can load a module including the ``+debug``\ , such as
-``hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/+debug``.
+``hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~threads~cuda/+debug/6gwnr4g``.
 For a release build, you can load a module including the ``~debug``\ , such as
-``hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/~debug``.
+``hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~threads~cuda/~debug/po3ggco``.
+
+A little bit more work is required to use CUDA.
+There are two main GPU types on the cluster:
+V100s and A10s.
+The V100s have Compute Capability (CC) 7.0,
+whereas the A10s have CC 8.6.
+You must load the module corresponding to the nodes you intend to run on.
+To check which CC a module is built for, run ``spack spec`` on the short hash
+at the end of the module name.
+For example, ``spack spec /b4qghgu`` returns
+
+.. code-block::
+
+   Input spec
+   --------------------------------
+   -   /b4qghgu
+
+   Concretized
+   --------------------------------
+   [+]  hpic2deps@main%gcc@8.2.0 build_system=bundle arch=linux-rhel7-broadwell
+   [+]      ^cmake@3.26.3%gcc@8.2.0~doc+ncurses+ownlibs build_system=generic build_type=Release arch=linux-rhel7-broadwell
+   [+]          ^curl@8.1.2%gcc@8.2.0~gssapi~ldap~libidn2~librtmp~libssh~libssh2+nghttp2 build_system=autotools libs=shared,static tls=openssl arch=linux-rhel7-broadwell
+   [+]              ^nghttp2@1.52.0%gcc@8.2.0 build_system=autotools arch=linux-rhel7-broadwell
+   [+]              ^openssl@3.1.2%gcc@8.2.0~docs+shared build_system=generic certs=mozilla arch=linux-rhel7-broadwell
+   [+]                  ^ca-certificates-mozilla@2023-05-30%gcc@8.2.0 build_system=generic arch=linux-rhel7-broadwell
+   [+]          ^ncurses@6.4%gcc@8.2.0~symlinks+termlib abi=none build_system=autotools arch=linux-rhel7-broadwell
+   [+]          ^zlib-ng@2.1.3%gcc@8.2.0+compat+opt build_system=autotools patches=299b958,ae9077a,b692621 arch=linux-rhel7-broadwell
+   [e]      ^cuda@11.7.1%gcc@8.2.0~allow-unsupported-compilers~dev build_system=generic arch=linux-rhel7-broadwell
+   [+]      ^googletest@1.12.1%gcc@8.2.0+gmock~ipo+pthreads+shared build_system=cmake build_type=Release cxxstd=11 generator=make arch=linux-rhel7-broadwell
+   [+]          ^gmake@4.4.1%gcc@8.2.0~guile build_system=autotools arch=linux-rhel7-broadwell
+   [+]      ^hdf5@1.14.2%gcc@8.2.0+cxx~fortran~hl~ipo~java~map+mpi+shared~szip~threadsafe+tools api=default build_system=cmake build_type=Release generator=make arch=linux-rhel7-broadwell
+   [+]          ^pkgconf@1.9.5%gcc@8.2.0 build_system=autotools arch=linux-rhel7-broadwell
+   [+]      ^hypre@2.29.0%gcc@8.2.0~caliper~complex~cuda~debug+fortran~gptune~int64~internal-superlu~mixedint+mpi~openmp~rocm+shared~superlu-dist~sycl~umpire~unified-memory build_system=autotools arch=linux-rhel7-broadwell
+   [+]          ^openblas@0.3.10%gcc@8.2.0~bignuma~consistent_fpcsr~ilp64+locking+pic+shared build_system=makefile patches=865703b symbol_suffix=none threads=none arch=linux-rhel7-broadwell
+   [+]              ^perl@5.38.0%gcc@8.2.0+cpanm+opcode+open+shared+threads build_system=generic patches=714e4d1 arch=linux-rhel7-broadwell
+   [+]                  ^berkeley-db@18.1.40%gcc@8.2.0+cxx~docs+stl build_system=autotools patches=26090f4,b231fcc arch=linux-rhel7-broadwell
+   [+]                  ^bzip2@1.0.8%gcc@8.2.0~debug~pic+shared build_system=generic arch=linux-rhel7-broadwell
+   [+]                      ^diffutils@3.9%gcc@8.2.0 build_system=autotools arch=linux-rhel7-broadwell
+   [+]                          ^libiconv@1.17%gcc@8.2.0 build_system=autotools libs=shared,static arch=linux-rhel7-broadwell
+   [+]                  ^gdbm@1.23%gcc@8.2.0 build_system=autotools arch=linux-rhel7-broadwell
+   [+]                      ^readline@8.2%gcc@8.2.0 build_system=autotools patches=bbf97f1 arch=linux-rhel7-broadwell
+   [+]      ^kokkos@3.7.02%gcc@8.2.0~aggressive_vectorization+compiler_warnings+cuda~cuda_constexpr+cuda_lambda~cuda_ldg_intrinsic~cuda_relocatable_device_code~cuda_uvm~debug~debug_bounds_check~debug_dualview_modify_check~deprecated_code~examples~hpx~hpx_async_dispatch~hwloc~ipo~memkind~numactl+openmp~openmptarget+pic~rocm+serial+shared~sycl~tests~threads~tuning+wrapper build_system=cmake build_type=Release cuda_arch=86 cxxstd=17 generator=make intel_gpu_arch=none arch=linux-rhel7-broadwell
+   [+]          ^kokkos-nvcc-wrapper@4.0.01%gcc@8.2.0 build_system=generic arch=linux-rhel7-broadwell
+   [+]      ^metis@5.1.0%gcc@8.2.0~gdb~int64~ipo~real64+shared build_system=cmake build_type=Release generator=make patches=4991da9,93a7903,b1225da arch=linux-rhel7-broadwell
+   [+]      ^mfem@4.5.2%gcc@8.2.0~amgx~conduit+cuda~debug~examples~exceptions~fms~ginkgo~gnutls~gslib~hiop~lapack~libceed~libunwind+metis~miniapps~mpfr+mpi~netcdf~occa~openmp~petsc~pumi~raja~rocm~shared~slepc+static~strumpack~suite-sparse~sundials~superlu-dist~threadsafe~umpire~zlib build_system=generic cuda_arch=86 timer=auto arch=linux-rhel7-broadwell
+   [e]      ^openmpi@4.1.4%gcc@8.2.0~atomics~cuda~cxx~cxx_exceptions~gpfs~internal-hwloc~internal-pmix~java~legacylaunchers~lustre~memchecker~openshmem~orterunprefix+romio+rsh~singularity+static+vt+wrapper-rpath build_system=autotools fabrics=none schedulers=none arch=linux-rhel7-broadwell
+   [+]      ^spdlog@1.11.0%gcc@8.2.0~fmt_external~ipo+shared build_system=cmake build_type=Release generator=make arch=linux-rhel7-broadwell
+
+Note that ``kokkos`` is enabled with ``cuda_arch=86``
+(this can be seen on the line starting with ``^kokkos``),
+which means that it is compiled for CC 8.6.
+The command
+``module load hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~threads+cuda/~debug/b4qghgu``
+therefore loads the dependencies for GPUs with CC 8.6.
 
 How to load the modules automatically?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -147,7 +212,7 @@ You can add the following lines to your ``.bashrc`` file:
 
    source /home/logantm2/share/spack/share/spack/setup-env.sh
    module purge
-   module load hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~pthread~cuda/~debug
+   module load hpic2deps/gcc-8.2.0/openmpi-4.1.4/kokkos+openmp~threads~cuda/~debug/po3ggco
 
 How to generate new modules for hpic2?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
