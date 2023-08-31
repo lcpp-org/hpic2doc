@@ -1056,6 +1056,7 @@ The species is assumed to be uniform and static.
        [species.<string>.type_params]
        charge_number = #<integer>
        density = #<float>
+       temperature = #<float (0.0)>
 
 ``charge_number``
 : Charge number for this species.
@@ -1064,6 +1065,9 @@ elementary charge.
 
 ``density``
 : Number density of this species.
+
+``temperature``
+: Temperature of this species. Can be zero to act as a static background.
 
 MFEM Euler Fluid
 ^^^^^^^^^^^^^^^^^
@@ -2187,7 +2191,7 @@ Explanation of Fields
 (default: false)
 
 ``iead_output.<SPECIES_NAME>.max_energy_te``\ : the energy of the final row of the
-IEAD for species ``SPECIES_NAME``\ , as a multiple of the electron temperature in electron volts ``TE``\. 
+IEAD for species ``SPECIES_NAME``\ , as a multiple of the electron temperature in electron volts ``TE``\.
 This row will serve as an accumulation point. All particles impacting the boundary with energy greater
 than ``MAX_ENERGY_TE`` * ``TE`` will be binned into the final row (default: 24).
 
