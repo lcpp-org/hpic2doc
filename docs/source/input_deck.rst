@@ -1538,7 +1538,7 @@ and no symbol indicates that the mesh is completely incompatible.
 .. list-table::
    :header-rows: 1
 
-   * - Solver\Mesh
+   * - Solver\\Mesh
      - 1D uniform
      - 2D uniform
      - 1D pumi
