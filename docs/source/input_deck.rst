@@ -2260,3 +2260,245 @@ which must have been defined in the ``species`` table.
 ``target_species``
 : Name of the target species,
 which must have been defined in the ``species`` table.
+
+MCC
+^^^^^^^^^^^^^^
+
+Monte Carlo collisions (MCC) handles collisions between a PIC source species
+and a continuum target species.
+hPIC2 uses the classic null-collision method for MCC.
+In hPIC2, moments of the target species are computed element-wise
+in order to draw particles randomly from a drifting Maxwellian distribution
+with the same number density, average velocity, and temperature
+as the target species.
+The details of the MCC algorithm are provided in the
+:ref:`MCC <interactions:Monte Carlo collisions>` section
+of the theory document.
+
+.. code-block:: toml
+
+   [[interactions.MCC]]
+   source_species = #<string>
+   target_species = #<string>
+   cross_section = #<options below>
+   effect = #<options below>
+      [interactions.MCC.cross_section_params]
+      #<options specific to cross section>
+      [interactions.MCC.effect_params]
+      #<options specific to effect>
+
+MCC is specified as an array of tables,
+each entry of which defines an interaction between two species.
+
+``source_species``
+: Name of the ``"boris_buneman"`` source species,
+which must have been defined in the ``species`` table.
+
+``target_species``
+: Name of the target species,
+which must have been defined in the ``species`` table.
+
+``cross_section``
+: Function to compute cross section.
+Options are described in the :ref:`cross section <input_deck:Cross sections>` section.
+
+``effect``
+: What to do when a collision occurs.
+Options are described in subsequent sections.
+
+Boltzmann ionization
+~~~~~~~~~~~~~~~~~~~~~~
+
+This effect models electron-impact ionization due to electrons from a Boltzmann
+electron background.
+The effect increments the source particle's charge number by one
+without affecting the particle's trajectory.
+This effectively adds an electron to the simulation,
+for which the conservation routine correctly accounts if and only if the
+target species is a ``"boltzmann"`` species.
+
+The difference between this and :ref:`kinetic ionization <input_deck:Kinetic ionization>`
+is that this uses neutral or ion source particles and an electron background,
+whereas kinetic ionization uses electron source particles
+and a neutral background.
+
+.. code-block:: toml
+
+   effect = "boltzmann_ionization"
+
+Note that the ``effect_params`` subtable is unnecessary and should be omitted.
+
+Kinetic ionization
+~~~~~~~~~~~~~~~~~~~
+
+This effect models electron-impact ionization of a neutral background
+due to electron source particles.
+The effect generates an ion particle and a new electron particle.
+The kinetic energy is computed in the center-of-mass (COM) frame
+and the ionization energy is removed from that.
+The remaining energy is equally split between the scattered and created electron,
+which are isotropically scattered in the COM frame.
+The created ion's velocity in the COM frame is set to zero.
+The ion is created with a charge number of 1.
+
+The difference between this and :ref:`Boltzmann ionization <input_deck:Boltzmann ionization>`
+is that this uses electron source particles and a neutral background,
+whereas Boltzmann ionization uses neutral or ion source particles
+and an electron background.
+
+.. code-block:: toml
+
+   effect = "kinetic_ionization"
+      [interactions.MCC.effect_params]
+      heat_of_reaction = #<float>
+      ion_species = #<string>
+
+``heat_of_reaction``
+: Ionization energy.
+
+``ion_species``
+: The name of a :ref:`full-orbit <input_deck:Full orbit, Boris-Buneman>` species in which
+to add generated ion particles.
+
+Isotropic scattering
+~~~~~~~~~~~~~~~~~~~~~
+
+The source particle is isotropically scattered in the center-of-mass frame.
+Kinetic energy is reduced by a given heat of reaction for inelastic collisions,
+such as excitations.
+
+.. code-block:: toml
+
+   effect = "isotropic_scattering"
+      [interactions.MCC.effect_params]
+      heat_of_reaction = #<float>
+
+``heat_of_reaction``
+: Energy to remove in the center-of-mass frame.
+The associated cross section must be zero for energies less than this,
+or else it is possible that the particle will have negative energy after the
+collision.
+
+Backward scattering
+~~~~~~~~~~~~~~~~~~~~
+
+The source particle's velocity is reversed in the center-of-mass frame.
+Kinetic energy is reduced by a given heat of reaction for inelastic collisions,
+such as excitations.
+
+.. code-block:: toml
+
+   effect = "backward_scattering"
+      [interactions.MCC.effect_params]
+      heat_of_reaction = #<float>
+
+``heat_of_reaction``
+: Energy to remove in the center-of-mass frame.
+The associated cross section must be zero for energies less than this,
+or else it is possible that the particle will have negative energy after the
+collision.
+
+Cross sections
+^^^^^^^^^^^^^^^
+
+Cross sections are used by various interaction methods.
+Available options are listed below.
+
+Bell cross section
+~~~~~~~~~~~~~~~~~~~~
+
+This function uses a semi-empirical formula for computing cross sections
+based on measured parameters :cite:`bell1983recommended,lennon1988recommended`.
+It is generally computed as
+
+.. math::
+
+   \sigma = \frac{1}{IE} \left[ A \ln (E/I) + \sum_{i=1}^5 B_i \left( 1 - \frac{I}{E} \right)^i \right],
+
+where :math:`E` is the collisional kinetic energy in the center-of-mass frame
+and :math:`A`, :math:`I`, and :math:`B_i` are the measured parameters.
+
+.. code-block:: toml
+
+   cross_section = "bell"
+      [interactions.<interaction type>.cross_section_params]
+      A = #<array of float>
+      B = #<array of array of float>
+      I = #<array of float>
+
+``A``
+: Array of floats, representing the value of the :math:`A` parameter in Bell's
+formula for each charge state.
+The array must be no longer than the atomic number of the source species,
+which reflects the maximum ionization of the species.
+The array may be shorter than the atomic number;
+in this case, omitted values of :math:`A` are taken to be zero.
+
+``B``
+: Array of quintuples of floats, representing the values of the five :math:`B`
+parameters in Bell's formula for each charge state.
+The array must be no longer than the atomic number of the source species,
+which reflects the maximum ionization of the species.
+The array may be shorter than the atomic number;
+in this case, omitted values of :math:`B` are taken to be zero.
+Similarly, each quintuple may actually have length less than five,
+in which case omitted values of :math:`B` are taken to be zero.
+
+``I``
+: Array of floats, representing the values of the :math:`I` parameter in Bell's
+formula for each charge state.
+The array must be no longer than the atomic number of the source species,
+which reflects the maximum ionization of the species.
+The array may be shorter than the atomic number;
+in this case, omitted values of :math:`I` are taken to be zero.
+
+Maxwell molecule cross section
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Maxwell molecules have cross section
+
+.. math::
+
+   \sigma(\vec{g}) = \frac{\kappa}{g},
+
+where :math:`\kappa` is some reference cross section.
+Note this gives a constant collision rate,
+irrespective of particle velocities.
+This is desirable for testing,
+but not very physically correct.
+
+.. code-block:: toml
+
+   cross_section = "maxwell"
+      [interactions.<interaction type>.cross_section_params]
+      reference_cross_section = #<float>
+
+``reference_cross_section``
+: The reference cross section :math:`\kappa` for the Maxwell molecules.
+
+Cross section from file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Cross section data from experiments is often reported as a table,
+where the cross section is given at many discrete energies.
+hPIC2 can read simple files with data in this format and linearly interpolate
+between energies listed in the data.
+If the energy of a potential collision in hPIC2 falls outside of the minimum
+or maximum energy in the data,
+the cross section at the minimum or maximum energy is used, respectively.
+
+.. code-block:: toml
+
+   cross_section = "from_file"
+      [interactions.<interaction type>.cross_section_params]
+      filename = #<string>
+
+``filename``
+: Path to file containing cross section data at discrete energies.
+The file format should be a simple space-separate value format
+with exactly two floating point values on each line.
+The first value is the energy and the second value is the cross section
+at that energy.
+Energies must be monotone increasing with line count.
+Units must be in the unit system specified in the
+``input_mode`` table.
