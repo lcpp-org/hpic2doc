@@ -2231,63 +2231,6 @@ The ``interactions`` table governs interactions and collisions between species.
 Available interactions and interaction-specific options are presented
 in subsequent sections.
 
-Electron impact ionization
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Electron impact ionizations between a ``"boris_buneman"`` ion species
-and ``"boltzmann"`` electrons is handled using Monte Carlo collisions (MCC).
-The cross sections used are from Bell (1983).
-For each ion charge state, the cross section is parametrized by 7 constants:
-A, B1, B2, B3, B4, B5, and I.
-The first six of these are fitting parameters to a semi-empirical formula,
-whereas the latter of these is the ionization energy.
-
-.. code-block:: toml
-
-   [interactions.electron_impact_ionization.<string>]
-   electron_species = #<string>
-   A = #<array of float>
-   B = #<array of array of float>
-   I = #<array of float>
-
-The key of the table is the name of the desired ``"boris_buneman"`` species,
-which must have been defined in the ``species`` table.
-
-``electron_species``
-: Name of the ``"boltzmann"`` electron species.
-
-``A``
-: An array of floats,
-representing the value of the A parameter in Bell's formula for each charge
-state.
-The array must be no longer than the atomic number
-of the ion species,
-which reflects the maximum ionization of the species.
-The array may be shorter than the atomic number;
-in this case, omitted values of A are taken to be zero.
-
-``B``
-: Array of quintuples of floats,
-representing the values of the five B parameters in Bell's formula for each
-charge state.
-The array must be no longer than the atomic number
-of the ion species,
-which reflects the maximum ionization of the species.
-The array may be shorter than the atomic number;
-in this case, omitted values of B are taken to be zero.
-Similarly, each quintuple may actually have length less than five,
-in which case omitted values of B are taken to be zero.
-
-``I``
-: Array of floats,
-representing the values of the I parameter in Bell's formula for each charge
-state.
-The array must be no longer than the atomic number
-of the ion species,
-which reflects the maximum ionization of the species.
-The array may be shorter than the atomic number;
-in this case, omitted values of I are taken to be zero.
-
 Coulomb collision force
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2303,11 +2246,15 @@ an effective force on each particle.
 
 .. code-block:: toml
 
-   [interactions.coulomb_collision_force.<string>]
+   [[interactions.coulomb_collision_force]]
+   source_speices = #<string>
    target_species = #<string>
 
-The key of the table is the name of the desired ``"boris_buneman"`` source
-species,
+Coulomb collision forces are specified as an array of tables,
+each entry of which defines an interaction between two species.
+
+``source_species``
+: Name of the ``"boris_buneman"`` source species,
 which must have been defined in the ``species`` table.
 
 ``target_species``
