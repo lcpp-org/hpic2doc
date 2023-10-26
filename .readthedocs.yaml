@@ -6,6 +6,7 @@ build:
     python: "3.8"
   jobs:
     pre_build:
+      - pip install sphinx-rtd-theme
       - pip install sphinxcontrib-bibtex
       - pip install sphinxcontrib-pseudocode
       - pip install sphinx-copybutton
