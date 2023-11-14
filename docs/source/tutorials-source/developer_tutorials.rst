@@ -10,7 +10,7 @@ Session 0: C++ Essentials
 
 :download:`Slides <developer_slides/session_0.pdf>`
 
-`Exercise solution <https://github.com/lcpp-org/hpic2doc/tree/main/docs/source/tutorials-source/developer_exercise_solutions/session_0>`
+`Exercise solution <https://github.com/lcpp-org/hpic2doc/tree/main/docs/source/tutorials-source/developer_exercise_solutions/session_0>`_
 
 Errata:
 
@@ -25,4 +25,4 @@ Session 1: Advanced C++
 
 :download:`Slides <developer_slides/session_1.pdf>`
 
-`Exercise solution <https://github.com/lcpp-org/hpic2doc/tree/main/docs/source/tutorials-source/developer_exercise_solutions/session_1>`
+`Exercise solution <https://github.com/lcpp-org/hpic2doc/tree/main/docs/source/tutorials-source/developer_exercise_solutions/session_1>`_
