@@ -2,11 +2,14 @@
 Building hpic2 on the Illinois Campus Cluster (ICC)
 ===================================================
 
-The Illinois Campus Cluster (ICC) is a high-performance computing (HPC)
-cluster that is available to the students, faculty, and staff at the
-University of Illinois at Urbana-Champaign. The ICC is a shared resource,
-and users are expected to abide by the
-`ICC User Policy <https://campuscluster.illinois.edu/resources/docs/policies/>`_.
+The Illinois Campus Cluster (`ICC <https://campuscluster.illinois.edu/>`_) 
+is a high-performance computing (HPC) cluster that is available to the students, 
+faculty, and staff at the University of Illinois at Urbana-Champaign. The ICC is managed by 
+the `National Center for Supercomputing Applications (NCSA) <https://www.ncsa.illinois.edu/>`_.
+Full documentation for the ICC is available at the following link, 
+`https://docs.ncsa.illinois.edu/systems/icc/en/latest/index.html`_. 
+The ICC is a shared resource, and users are expected to abide by the 
+`ICC User Policy <https://docs.ncsa.illinois.edu/systems/icc/en/latest/user_guide/policies.html>`_.
 
 Step 1: Get an account on the ICC
 ---------------------------------
@@ -14,17 +17,17 @@ Step 1: Get an account on the ICC
 If you do not already have an account on the Illinois Campus Cluster,
 request access for Research here,
 
-
 * `ICC Request Access for Research <https://campuscluster.illinois.edu/new_forms/user_form.php>`_
 
 specifying to be added to the following group: ``dcurreli-npre-eng``
 
 Read the ICC `resources <https://campuscluster.illinois.edu/resources/docs/>`_\ , such as:
 
-
-* `ICC Getting started <https://campuscluster.illinois.edu/resources/docs/start/>`_
-* `ICC User Guide <https://campuscluster.illinois.edu/resources/docs/user-guide/>`_
-* `ICC Storage and Data Guide <https://campuscluster.illinois.edu/resources/docs/storage-and-data-guide/>`_
+* `ICC Getting started <https://docs.ncsa.illinois.edu/systems/icc/en/latest/getting_started.html>`_
+* `ICC User Guide <https://docs.ncsa.illinois.edu/systems/icc/en/latest/getting_started.html>`_ 
+* `ICC Access <https://docs.ncsa.illinois.edu/systems/icc/en/latest/user_guide/accessing.html>`_  
+* `ICC Running Jobs <https://docs.ncsa.illinois.edu/systems/icc/en/latest/user_guide/running_jobs.html>`_
+* `ICC Storage and Data Guide <https://docs.ncsa.illinois.edu/systems/icc/en/latest/user_guide/storage_data.html>`_
 * `ICC Training and Tutorials <https://campuscluster.illinois.edu/resources/training/>`_
 
 Step 2: Connect to the ICC
