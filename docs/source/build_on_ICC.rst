@@ -7,7 +7,7 @@ is a high-performance computing (HPC) cluster that is available to the students,
 faculty, and staff at the University of Illinois at Urbana-Champaign. The ICC is managed by 
 the `National Center for Supercomputing Applications (NCSA) <https://www.ncsa.illinois.edu/>`_.
 Full documentation for the ICC is available at the following link, 
-`https://docs.ncsa.illinois.edu/systems/icc/en/latest/index.html`_. 
+`ICC Documentation <https://docs.ncsa.illinois.edu/systems/icc/en/latest/index.html>`_. 
 The ICC is a shared resource, and users are expected to abide by the 
 `ICC User Policy <https://docs.ncsa.illinois.edu/systems/icc/en/latest/user_guide/policies.html>`_.
 
