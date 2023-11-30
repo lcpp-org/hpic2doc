@@ -4,9 +4,9 @@ Running hPIC2
 Serial
 ------
 
-Don't run serial, move on to MPI. But if you really have to, 
+Don't run serial, move on to MPI. But if you really have to,
 just run the executable with the ``--i`` option and the path to
-your input deck as an argument. For example, to run your hpic2 
+your input deck as an argument. For example, to run your hpic2
 executable with the input deck ``myinput.toml``,
 
 .. code-block:: sh
@@ -59,6 +59,10 @@ otherwise specified.
 Illinois Campus Cluster
 -----------------------
 
+Check out this example bash script
+
+.. literalinclude:: ../../scripts/icc_openmp_example.sbatch
+   :language: bash
 
 Delta
 -----
