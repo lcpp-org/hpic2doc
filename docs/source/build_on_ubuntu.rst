@@ -66,7 +66,7 @@ Change to the spack repository ``packages`` directory
 
 .. code-block::
 
-   cd /hpic2_dev/packages
+   cd hpic2_dev/packages/
 
 
 Download the hpic2 source with its submodules
