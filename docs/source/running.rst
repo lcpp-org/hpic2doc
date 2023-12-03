@@ -59,15 +59,49 @@ otherwise specified.
 Illinois Campus Cluster
 -----------------------
 
+hPIC2 is installed on the Illinois Campus Cluster (ICC) 
+and available to LCPP users. 
+Move to the location of the latest hPIC2 release 
+and load the appropriate modules:
+
+.. code-block:: sh
+
+   source load_hpic2.sh
+
+The ``load_hpic2.sh`` script will load the appropriate 
+modules for the latest hPIC2 release.
+
+To run hPIC2 on the ICC, you will need to submit a job to the SLURM scheduler.
 Check out this example bash script
 
 .. literalinclude:: ../../scripts/icc_openmp_example.sbatch
    :language: bash
 
-Delta
------
+and modify it to suit your needs. Here are some notes on the script:
+the ``--time`` option specifies the maximum runtime of the job, 
+the ``--nodes`` option specifies the number of nodes to use,
+the ``--tasks-per-node`` option specifies the number of MPI processes per node, 
+the ``--cpus-per-task`` option specifies the number of threads per MPI process, 
+the ``--mem-per-cpu`` option specifies the amount of memory per thread, 
+the ``--job-name`` option specifies the name of the job,
+the ``--partition`` option specifies the partition to run on (e.g. ``eng-research``),
+the ``--output`` option specifies the name of the output file, 
+and the ``--error`` option specifies the name of the error file.
 
+To submit the job, run the following command:
 
-IPS
----
+.. code-block:: sh
 
+   sbatch <name-of-script>.sbatch
+
+To check the status of the job, run the following command:
+
+.. code-block:: sh
+
+   squeue -u <username>
+
+To cancel the job, run the following command:
+
+.. code-block:: sh
+
+   scancel <job-id>
