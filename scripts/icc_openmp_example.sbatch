@@ -16,9 +16,8 @@
 export OMP_PLACES=cores
 export OMP_PROC_BIND=spread
 
-export EXE=/path/to/hpic2
+export EXE=hpic2
 export DECK=/path/to/input/deck.toml
 
 # Run the hybrid MPI/OpenMP code
 srun ${EXE} --kokkos-threads=${SLURM_CPUS_PER_TASK} --i=${DECK}
-
