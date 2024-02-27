@@ -48,3 +48,13 @@ Session 3: MPI
 :download:`Slides <developer_slides/session_3.pdf>`
 
 `Exercise solution <https://github.com/lcpp-org/hpic2doc/tree/main/docs/source/tutorials-source/developer_exercise_solutions/session_3>`_
+
+Session 4: Hands-On PIC Exercise
+---------------------------------
+
+You must be logged in to UIUC MediaSpace
+and a member of the LCPP channel to view this video.
+
+.. raw:: html
+
+    <iframe id="kmsembed-1_scv080kk" width="400" height="259" src="https://mediaspace.illinois.edu/embed/secure/iframe/entryId/1_scv080kk/uiConfId/26883701/st/0" class="kmsembed" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Session 4"></iframe>
