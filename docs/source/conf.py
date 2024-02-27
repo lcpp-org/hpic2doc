@@ -46,10 +46,7 @@ epub_show_urls = 'footnote'
 
 html_last_updated_fmt = ""
 
-html_extra_path = ["_media"]
-
 html_context = {
 "display_github": False, # Add 'Edit on Github' link instead of 'View page source'
 "commit": False,
 }
-
