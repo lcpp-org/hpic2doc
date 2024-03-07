@@ -69,3 +69,13 @@ The session slides are an attachment to the video on MediaSpace.
 .. raw:: html
 
     <iframe id="kmsembed-1_bqmx42ug" width="400" height="259" src="https://mediaspace.illinois.edu/embed/secure/iframe/entryId/1_bqmx42ug/uiConfId/26883701/st/0" class="kmsembed" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Session 5"></iframe>
+
+Session 6: hPIC2 Code Example Walkthrough Pt. 1
+--------------------------------------------------
+
+You must be logged in to UIUC MediaSpace
+and a member of the LCPP channel to view this video.
+
+.. raw:: html
+
+    <iframe id="kmsembed-1_cui32uwg" width="400" height="259" src="https://mediaspace.illinois.edu/embed/secure/iframe/entryId/1_cui32uwg/uiConfId/26883701/st/0" class="kmsembed" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Session 6"></iframe>
