@@ -183,11 +183,6 @@ You can add the following lines to your ``.bashrc`` file:
    module purge
    module load hpic2deps/+openmp-cuda-arch-None/Release/latest
 
-Known issues
-^^^^^^^^^^^^
-
-* Cannot build with MFEM pending an issue with link order.
-
 Step 5: Clone the hpic2 repository
 ----------------------------------
 
@@ -197,6 +192,7 @@ Clone the hpic2 repository to your home directory:
 
    cd $HOME
    git clone --recurse-submodules https://github.com/lcpp-org/hpic2.git
+
 
 Step 6: Make a build directory
 ------------------------------
