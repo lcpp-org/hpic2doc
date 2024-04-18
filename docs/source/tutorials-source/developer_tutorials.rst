@@ -89,3 +89,63 @@ and a member of the LCPP channel to view this video.
 .. raw:: html
 
     <iframe id="kmsembed-1_ouk5jbj5" width="400" height="259" src="https://mediaspace.illinois.edu/embed/secure/iframe/entryId/1_ouk5jbj5/uiConfId/26883701/st/0" class="kmsembed" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Session 7"></iframe>
+
+Session 8: Finite Element Methods
+------------------------------------------------
+
+You must be logged in to UIUC MediaSpace
+and a member of the LCPP channel to view this video.
+The session slides are an attachment to the video on MediaSpace.
+
+.. raw:: html
+
+    <iframe id="kmsembed-1_loye90d2" width="400" height="259" src="https://mediaspace.illinois.edu/embed/secure/iframe/entryId/1_loye90d2/uiConfId/26883701/st/0" class="kmsembed" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Session 8"></iframe>
+
+.. raw:: html
+
+    <details>
+    <summary><a>Exercise solutions</a></summary>
+
+#.  Given a test function :math:`\psi`, the weak form is
+
+    .. math::
+
+        - \int_\Omega \sigma \nabla u \cdot \nabla \psi \, \mathrm{d} \mathbf{x} + \int_{\partial \Omega} \psi \sigma \nabla u \cdot \hat{\mathbf{n}} \, \mathrm{d} S + k^2 \int_\Omega u \psi \, \mathrm{d} \mathbf{x} = \int_\Omega f \psi \, \mathrm{d} \mathbf{x}.
+
+#.  From the weak form, it can be seen that natural boundary conditions have the form
+
+    .. math::
+
+        \sigma \nabla u \cdot \hat{\mathbf{n}} = g,
+
+    for some known function :math:`g`.
+    This differs from the isotropic Poisson's equation in that
+    we have an extra factor of :math:`\sigma` in the boundary condition;
+    i.e., the natural boundary conditions are not purely Neumann.
+
+#.  With a bilinear form of
+
+    .. math::
+
+        a(u, v) = -\int_\Omega \sigma \nabla u \cdot \nabla v \, \mathrm{d} \mathbf{x} + k^2 \int_\Omega u v \, \mathrm{d} \mathbf{x},
+
+    and a linear form of
+
+    .. math::
+
+        \langle l, u \rangle = \int_\Omega f u \, \mathrm{d} \mathbf{x} - \int_{\partial \Omega} g u \, \mathrm{d} S,
+
+    where :math:`g` corresponds to a natural boundary condition,
+    the weak form can be written as
+
+    .. math::
+
+        a(u, \psi) = \langle l, \psi \rangle.
+
+    Note that this bilinear form is actually only truly bilinear if
+    :math:`\sigma` is a constant matrix.
+    Otherwise, it is called a **nonlinear form**.
+
+.. raw:: html
+
+    </details>
