@@ -45,7 +45,7 @@ Source the spack environment:
 
    Since the source step is needed every time,
    we suggest to add the source command to your ``.bashrc`` file
-   to avoid forgetting to re-tyoe it every time you open a new terminal.
+   to avoid forgetting to re-type it every time you open a new terminal.
 
    .. code-block:: bash
 
