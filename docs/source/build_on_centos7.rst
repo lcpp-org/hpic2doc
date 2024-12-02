@@ -5,6 +5,10 @@ Building hpic2 on Centos 7
 This document contains the Centos 7 build instructions for hPIC2 as of March 2023 (3/31/2023). 
 
 
+CENTOS 7 as of Nov. 2024 is no longer maintained. Operability of these instructions is no longer guaranteed.
+============================================================================================================
+
+
 Update Dependencies and install gcc
 -----------------------------------
 
