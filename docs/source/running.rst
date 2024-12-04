@@ -67,7 +67,7 @@ You can expose the relevant modules by running the following command:
 
 .. code-block:: bash
 
-   module use /scratch/users/logantm2/share/modulefiles
+   module use /projects/illinois/eng/npre/dcurreli/campuscluster_spack/modulefiles
 
 (It is recommended to add this line to your ``.bashrc`` file.)
 Now the list of available modules should include hPIC2
@@ -84,7 +84,7 @@ The output should now have a block that looks like this:
 
 .. code-block:: bash
 
-   ------------------ /scratch/users/logantm2/share/modulefiles -------------------
+   ------------------ /projects/illinois/eng/npre/dcurreli/campuscluster_spack/modulefiles -------------------
    cmake
    hpic2/+openmp-cuda-arch-70/2023-12-05
    hpic2/+openmp-cuda-arch-70/latest
