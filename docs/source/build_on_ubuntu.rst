@@ -89,12 +89,45 @@ and rename it to ``rustbca``
 
    mv RustBCA rustbca
 
+Create and enter a spack env
+
+.. code-block:: bash
+
+   spack env create hpic2_omp_opt
+   spack env activate hpic2_omp_opt
+
+Add dependencies to spack env
+
+.. code-block:: bash
+
+   spack add googletest
+   spack add hypre+openmp
+   spack add kokkos~cuda+openmp
+   spack add mfem~cuda+openmp~zlib
+   spack add mpi
+   spack add spdlog
+   spack add hdf5+cxx+mpi
+
+.. note::
+
+   If you would like to specify a version for each dependency,
+   you can specify it with the ``@:`` operator,
+   e.g. ``spack add kokkos@:3.8 ~cuda+openmp``;
+   otherwise Spack will automatically choose the last version
+   available from the main Spack package list.
+
+Optionally add also RustBCA
+
+.. code-block:: bash
+
+   spack add rustbca
+
 
 Use spack to install hpic2
 
 .. code-block::
 
-   spack install hpic2+testing+rustbca ^kokkos+openmp
+   spack install --add hpic2+testing+rustbca ^kokkos+openmp
 
 
 The ``+testing`` option enables the tests and
