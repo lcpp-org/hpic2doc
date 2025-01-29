@@ -69,7 +69,7 @@ To see them, you need to use the `module use` command:
 
 .. code-block:: bash
 
-   module use /scratch/users/logantm2/share/modulefiles
+   module use /projects/illinois/eng/npre/dcurreli/campuscluster_spack/modulefiles
 
 (It is recommended to add this line to your ``.bashrc`` file.)
 Now the list of available modules should include also the hPIC2 dependencies
@@ -86,7 +86,7 @@ The output should now have a block that looks like this:
 
 .. code-block:: bash
 
-   ------------------ /scratch/users/logantm2/share/modulefiles -------------------
+   ------------------ /projects/illinois/eng/npre/dcurreli/campuscluster_spack/modulefiles -------------------
    cmake
    hpic2/+openmp-cuda-arch-70/2023-12-05
    hpic2/+openmp-cuda-arch-70/latest
@@ -179,7 +179,7 @@ You can add the following lines to your ``.bashrc`` file:
 
 .. code-block:: bash
 
-   module use /scratch/users/logantm2/share/modulefiles
+   module use /projects/illinois/eng/npre/dcurreli/campuscluster_spack/modulefiles
    module purge
    module load hpic2deps/+openmp-cuda-arch-None/Release/latest
 
